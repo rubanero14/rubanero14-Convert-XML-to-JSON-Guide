@@ -1,24 +1,20 @@
-# rss-feed
+# Convert-XML-to-JSON-Guide in JavaScript project
 
-## Project setup
-```
-npm install
-```
+## Dependencies Installation
+<ul>
+  <li>Axios - <code>npm i axios</code> - making API calls</li>
+  <li>Xml2js - <code>npm i xml2js</code> - XML to JSON converter</li>
+  <li>Node-Gyp - <code>npm install node-gyp</code> -  Xml2js conversion to work </li>
+  <li>Steam & Timers - <code>npm install --save stream timers</code> - Xml2js conversion to work</li>
+</ul>
 
-### Compiles and hot-reloads for development
+## Usage
+Structure the API call as code below and assign in to empty variable
+<br/>
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+await axios.get(Insert URL with XML Response here)
+.then((response) => {
+    return xml2js.parseStringPromise(response.data);
+});
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
