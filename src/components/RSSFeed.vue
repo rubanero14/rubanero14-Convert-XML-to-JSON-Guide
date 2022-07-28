@@ -82,10 +82,7 @@ export default {
       console.log(this.pic);
 
       let payload = () => {
-        if (this.url === 'https://tradingeconomics.com/rss/'){
-          return this.url;
-        }
-        return `http://preprod-secureplatformtech.com:9090/${this.url}`;
+        return `https://cors-anywhere.herokuapp.com/${this.url}`;
       }
       
       this.data = await axios
