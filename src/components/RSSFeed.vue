@@ -29,11 +29,21 @@
         </div>
         <div v-else>
           <div v-if="!isError">
-            <ul>
-              <li :key="feed.link" v-for="feed in feeds">
-                {{ feed.title.toString() }}
-              </li>
-            </ul>
+            <div class="mb-2" :key="feed.link" v-for="feed in feeds">
+              <div class="card">
+                <div class="p-3">
+                  <div class="row">
+                    <div class="col-11 text-start">
+                      <h3 class="title text-secondary">{{ feed.title.toString() }}</h3>
+                      <a class="btn btn-secondary link" :href="feed.link.toString()">Read More</a>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-center">
+                      <img v-if="pic" :src="pic"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="text-danger" v-else>
             {{ data }}, Try Reloading...
@@ -68,13 +78,16 @@ export default {
     async getRssFeeds(){
       this.isError = false;
       this.isloading = true;
+      this.pic = this.url.replace("search","www").split('.com')[0]+`.com/favicon.ico`;
+      console.log(this.pic);
+
       let payload = () => {
         if (this.url === 'https://tradingeconomics.com/rss/'){
           return this.url;
         }
         return `http://preprod-secureplatformtech.com:9090/${this.url}`;
       }
-
+      
       this.data = await axios
       .get(payload())
       .then((response) => {
@@ -101,5 +114,16 @@ export default {
   }
   ul {
     list-style: none;
+  }
+
+  img {
+    margin: 20px auto;
+    width: 50px;
+    border-radius: 4px;
+  }
+
+  h3.title{
+    font-size: 30px;
+    margin-bottom: 15px;
   }
 </style>
