@@ -12,9 +12,14 @@
 Structure the API call as code below and assign in to empty variable
 <br/>
 ```
+<script defer>
+// import the dependencies as below
+import axios from 'axios';
+const xml2js = require('xml2js');
 await axios.get(Insert URL with XML Response here)
 .then((response) => {
     return xml2js.parseStringPromise(response.data);
 });
+<script/>
 ```
 
