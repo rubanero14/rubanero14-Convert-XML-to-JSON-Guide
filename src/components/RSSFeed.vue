@@ -33,11 +33,11 @@
               <div class="card">
                 <div class="p-3">
                   <div class="row">
-                    <div class="col-11 text-start">
+                    <div class="col-9 col-md-11 text-start">
                       <h3 class="title text-secondary">{{ feed.title.toString() }}</h3>
                       <a class="btn btn-secondary link" :href="feed.link.toString()">Read More</a>
                     </div>
-                    <div class="col d-flex align-items-center justify-content-center">
+                    <div class="col-3 col-md-1 d-flex align-items-center justify-content-center">
                       <img v-if="pic" :src="pic"/>
                     </div>
                   </div>
@@ -126,4 +126,10 @@ export default {
     font-size: 30px;
     margin-bottom: 15px;
   }
+
+@media only screen and (max-width: 600px) {
+  h3.title{
+    font-size: 15px;
+  }
+}
 </style>
