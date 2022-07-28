@@ -7,20 +7,38 @@
       <div class="col-12 text-center">
         <div class="d-flex justify-content-center align-items-center">
             <div class="col-md-4 d-flex">
-                <select class="form-select" v-model="url" name="feeds">
-                  <option disabled value="">Select Feed Sources:</option>
-                  <option value="https://www.financeasia.com/rss/latest">Finance Asia</option>
-                  <option value="https://tradingeconomics.com/rss/">Trading Economics</option>
-                  <option value="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069">CNBC</option>
-                  <option value="https://finance.yahoo.com/news/rssindex">Yahoo Finance</option>
-                </select>
-                <button class="btn btn-secondary" @click="getRssFeeds">Load</button>
+              <div class="input-group">
+                <select class="form-select" v-model="url" name="feeds" required>
+                    <option disabled value="">Select Feed Sources:</option>
+                    <option selected value="https://www.investing.com/rss/market_overview_Fundamental.rss">Investing.com</option>
+                    <option value="https://www.financeasia.com/rss/latest">Finance Asia</option>
+                    <option value="https://tradingeconomics.com/rss/">Trading Economics</option>
+                    <option value="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069">CNBC</option>
+                    <option value="https://finance.yahoo.com/news/rssindex">Yahoo Finance</option>
+                  </select>
+                  <div class="input-group-append">
+                      <button class="btn btn-secondary right" @click="getRssFeeds">{{isError ? 'Reload' : 'Load'}}</button>
+                  </div>
+              </div>
             </div>
         </div>
       </div>
       <hr class="my-3"/>
       <div class="col-12">
-        <div>{{ feed }}</div>
+        <div v-if="isloading" class="spinner-border text-secondary" role="status">
+        </div>
+        <div v-else>
+          <div v-if="!isError">
+            <ul>
+              <li :key="feed.link" v-for="feed in feeds">
+                {{ feed.title.toString() }}
+              </li>
+            </ul>
+          </div>
+          <div class="text-danger" v-else>
+            {{ data }}, Try Reloading...
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -34,9 +52,11 @@ export default {
   data(){
     return {
       data: '',
-      url: 'https://www.investing.com/rss/market_overview_Fundamental.rss',
+      url: '',
       pic: '',
-      feed: '',
+      feeds: '',
+      isloading: false,
+      isError: false,
     };
   },
   computed: {
@@ -46,6 +66,8 @@ export default {
   },
   methods: {
     async getRssFeeds(){
+      this.isError = false;
+      this.isloading = true;
       let payload = () => {
         if (this.url === 'https://tradingeconomics.com/rss/'){
           return this.url;
@@ -58,14 +80,26 @@ export default {
       .then((response) => {
         console.log(payload())
         return xml2js.parseStringPromise(response.data);
+      })
+      .catch(err => {
+        this.isloading = false;
+        this.isError = true;
+        return err.message;
       });
-      this.feed = this.data.rss.channel[0].item;
-      console.log(this.data)
+
+      this.feeds = this.data.rss.channel[0].item;
+      console.log(this.data);
+      this.isloading = false;
     },
   },
 }
 </script>
 
 <style scoped>
-  
+  .right {
+    border-radius: 0px 4px 4px 0px;
+  }
+  ul {
+    list-style: none;
+  }
 </style>
