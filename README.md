@@ -12,7 +12,6 @@
 Structure the API call as code below and assign in to empty variable
 <br/>
 ```
-<script defer>
 // import the dependencies as below
 import axios from 'axios';
 const xml2js = require('xml2js');
@@ -23,6 +22,5 @@ let data = await axios
     return xml2js.parseStringPromise(response.data);
 });
 console.log(data);
-<script/>
 ```
 
