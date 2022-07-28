@@ -22,6 +22,8 @@ let data = await axios
 .then((response) => {
     return xml2js.parseStringPromise(response.data);
 });
+
+console.log(data);
 <script/>
 ```
 
