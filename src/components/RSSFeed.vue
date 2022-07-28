@@ -12,9 +12,11 @@
                     <option disabled value="">Select Feed Sources:</option>
                     <option selected value="https://www.investing.com/rss/market_overview_Fundamental.rss">Investing.com</option>
                     <option value="https://www.financeasia.com/rss/latest">Finance Asia</option>
-                    <option value="https://tradingeconomics.com/rss/">Trading Economics</option>
+                    <!-- <option value="https://tradingeconomics.com/rss/">Trading Economics</option> -->
                     <option value="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069">CNBC</option>
                     <option value="https://finance.yahoo.com/news/rssindex">Yahoo Finance</option>
+                    <option value="http://feeds.marketwatch.com/marketwatch/realtimeheadlines/">MarketWatch</option>
+                    <!-- <option value="https://www.nasdaq.com/feed/rssoutbound?category=Markets">Nasdaq</option> -->
                   </select>
                   <div class="input-group-append">
                       <button class="btn btn-secondary right" @click="getRssFeeds">{{isError ? 'Reload' : 'Load'}}</button>
@@ -78,7 +80,7 @@ export default {
     async getRssFeeds(){
       this.isError = false;
       this.isloading = true;
-      this.pic = this.url.replace("search","www").split('.com')[0]+`.com/favicon.ico`;
+      this.pic = this.url.replace("search","www").replace("feeds","www").split('.com')[0]+`.com/favicon.ico`;
       console.log(this.pic);
 
       let payload = () => {
