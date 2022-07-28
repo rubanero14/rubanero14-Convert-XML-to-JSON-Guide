@@ -1,15 +1,28 @@
 <template>
-  <div>
-    <h1>RSS Feed</h1>
-    <label for=""><input type="radio" value="https://www.financeasia.com/rss/latest" v-model="url"/>Finance Asia</label>
-    <br>
-    <label for=""><input type="radio" value="https://tradingeconomics.com/rss/" v-model="url"/>Trading Economics</label>
-    <br>
-    <label for=""><input type="radio" value="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069" v-model="url"/>CNBC</label>
-    <br>
-    <button class="btn btn-secondary" @click="getRssFeeds">Load</button>
-    <hr class="my-3"/>
-    <div>{{ data }}</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>RSS Feed</h1>
+      </div>
+      <div class="col-12 text-center">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="col-md-4 d-flex">
+                <select class="form-select" v-model="url" name="feeds">
+                  <option disabled value="">Select Feed Sources:</option>
+                  <option value="https://www.financeasia.com/rss/latest">Finance Asia</option>
+                  <option value="https://tradingeconomics.com/rss/">Trading Economics</option>
+                  <option value="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069">CNBC</option>
+                  <option value="https://finance.yahoo.com/news/rssindex">Yahoo Finance</option>
+                </select>
+                <button class="btn btn-secondary" @click="getRssFeeds">Load</button>
+            </div>
+        </div>
+      </div>
+      <hr class="my-3"/>
+      <div class="col-12">
+        <div>{{ feed }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +35,8 @@ export default {
     return {
       data: '',
       url: 'https://www.investing.com/rss/market_overview_Fundamental.rss',
+      pic: '',
+      feed: '',
     };
   },
   computed: {
@@ -44,6 +59,8 @@ export default {
         console.log(payload())
         return xml2js.parseStringPromise(response.data);
       });
+      this.feed = this.data.rss.channel[0].item;
+      console.log(this.data)
     },
   },
 }
