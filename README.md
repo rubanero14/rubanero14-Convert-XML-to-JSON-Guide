@@ -4,8 +4,8 @@
 <ul>
   <li>Axios - <code>npm i axios</code> - making API calls</li>
   <li>Xml2js - <code>npm i xml2js</code> - XML to JSON converter</li>
-  <li>Node-Gyp - <code>npm install node-gyp</code> -  Xml2js conversion to work </li>
-  <li>Steam & Timers - <code>npm install --save stream timers</code> - Xml2js conversion to work</li>
+  <li>Node-Gyp - <code>npm install node-gyp</code> - needed for XML2JS conversion to work </li>
+  <li>Steam & Timers - <code>npm install --save stream timers</code> - needed for XML2JS conversion to work</li>
 </ul>
 
 ## Usage
