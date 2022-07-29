@@ -88,7 +88,11 @@
                   <div class="p-3">
                     <div class="row">
                       <div class="col-9 col-md-11 text-start">
-                        <h3 class="title text-secondary">{{ ( screenWidth >= 800 ? feed.title.toString().substr(0, 100) : feed.title.toString().substr(0, 50)) + '...' }}</h3>
+                        <h3 class="title text-secondary">
+                          <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250) + '...' }}</span>
+                          <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150) + '...' }}</span>
+                          <span v-else>{{ feed.title.toString().substr(0, 50) + '...' }}</span>
+                        </h3>
                         <span v-if="date()" class="time d-block text-secondary"><em>Updated: {{ date() }} ago</em></span>
                       </div>
                       <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
@@ -131,6 +135,7 @@ export default {
   watch: {
     url(){
       this.getRssFeeds();
+      this.setScreenWidth();
     },
   },
   mounted() {
@@ -196,23 +201,23 @@ export default {
         let weeks = (days / 7);
         
         // Elapsed Time output logic
-        if(seconds > 0 && seconds < 61){
+        if(seconds > 0 && seconds < 60){
           return seconds.toFixed(0) + (seconds.toFixed(0) === 1 ? ' second':' seconds');
         }
 
-        if(minutes > 1 && minutes < 61){
+        if(minutes > 1 && minutes < 60){
           return minutes.toFixed(0) + (minutes.toFixed(0) === 1 ? ' minute':' minutes');
         }
 
-        if(hours > 1 && hours < 25){
+        if(hours > 1 && hours < 24){
           return hours.toFixed(0) + (hours.toFixed(0) === 1 ? ' hour':' hours');
         }
 
-        if(days > 1 && days < 8){
+        if(days > 1 && days < 7){
           return days.toFixed(0) + (days.toFixed(0) === 1 ? ' day':' days');
         }
 
-        if(weeks > 1 && weeks < 5){
+        if(weeks > 1 && weeks < 4){
           return weeks.toFixed(0) + (weeks.toFixed(0) === 1 ? ' week':' weeks');
         }
       };
