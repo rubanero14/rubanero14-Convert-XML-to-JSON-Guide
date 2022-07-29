@@ -40,7 +40,7 @@
                       <a class="title" :href="feed.link.toString()">
                         <h3 class="title text-secondary">{{ feed.title.toString() }}</h3>
                       </a>
-                      <span v-if="date()" class="d-block text-secondary mb-3"><em>Posted: {{ date() }} ago</em></span>
+                      <span v-if="date()" class="time d-block text-secondary mb-3"><em>Posted: {{ date() }} ago</em></span>
                       <a class="btn btn-secondary link" :href="feed.link.toString()">Read More</a>
                     </div>
                     <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
@@ -160,6 +160,7 @@ export default {
   .right {
     border-radius: 0px 4px 4px 0px;
   }
+
   ul {
     list-style: none;
   }
@@ -186,7 +187,11 @@ export default {
 
 @media only screen and (max-width: 600px) {
   h3.title{
-    font-size: 15px;
+    font-size: 18px;
+  }
+
+  span.time {
+    font-size: 14px;
   }
 }
 </style>
