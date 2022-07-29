@@ -129,7 +129,7 @@ export default {
         // Convert UNIX to weeks
         let weeks = (days / 7);
         
-        // Output logic setting
+        // Elapsed Time output logic
         if(seconds > 0 && seconds < 61){
           return seconds.toFixed(0) + (seconds.toFixed(0) === 1 ? ' second':' seconds');
         }
