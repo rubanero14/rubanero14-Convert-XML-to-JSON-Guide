@@ -40,7 +40,7 @@
                       <a class="title" :href="feed.link.toString()">
                         <h3 class="title text-secondary">{{ feed.title.toString() }}</h3>
                       </a>
-                      <span class="d-block text-secondary mb-3">{{date.toString()}}</span>
+                      <span v-if="date()" class="d-block text-secondary mb-3"><em>Posted: {{ date() }} ago</em></span>
                       <a class="btn btn-secondary link" :href="feed.link.toString()">Read More</a>
                     </div>
                     <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
@@ -77,27 +77,22 @@ export default {
       isButton: false,
     };
   },
-  computed: {
-    loadRSS(){
-      return this.getRssFeeds();
-    }
-  },
   methods: {
     async getRssFeeds(){
       this.isError = false;
       this.isButton = false;
       this.isloading = true;
       this.pic = this.url.replace("search","www").replace("feeds","www").split('.com')[0]+`.com/favicon.ico`;
-      console.log(this.pic);
+      // console.log(this.pic);
 
-      let payload = () => {
-        return `https://cors-anywhere.herokuapp.com/${this.url}`;
-      }
+      // Payload for Fetch API setting
+      let payload = `https://cors-anywhere.herokuapp.com/${this.url}`;
       
+      // Fetch API as XML and convert into JSON format
       this.data = await axios
-      .get(payload())
+      .get(payload)
       .then((response) => {
-        console.log(payload())
+        console.log(payload)
         return xml2js.parseStringPromise(response.data);
       })
       .catch(err => {
@@ -108,9 +103,53 @@ export default {
       });
 
       this.feeds = this.data.rss.channel[0].item;
-      this.date = this.feeds[0].pubDate;
-      console.log(new Date(this.date));
-      console.log(this.data);
+
+      // console.log(Date.now() - new Date(this.feeds[0].pubDate).getTime());
+      
+      // Custom show elapsed time algorithm
+      this.date = () => {
+        // get UNIX timestamp of pubDate value
+        let Elapsed = new Date(this.feeds[0].pubDate).getTime();
+
+        // get UNIX timestamp of Present value
+        let Now = Date.now();
+
+        // Convert UNIX to seconds
+        let seconds = ((Now - Elapsed) / 1000);
+
+        // Convert UNIX to minutes
+        let minutes = (seconds / 60);
+
+        // Convert UNIX to hours
+        let hours = (minutes / 60);
+
+        // Convert UNIX to days
+        let days = (hours / 24);
+
+        // Convert UNIX to weeks
+        let weeks = (days / 7);
+        
+        // Output logic setting
+        if(seconds > 0 && seconds < 61){
+          return seconds.toFixed(0) + (seconds.toFixed(0) === 1 ? ' second':' seconds');
+        }
+
+        if(minutes > 1 && minutes < 61){
+          return minutes.toFixed(0) + (minutes.toFixed(0) === 1 ? ' minute':' minutes');
+        }
+
+        if(hours > 1 && hours < 25){
+          return hours.toFixed(0) + (hours.toFixed(0) === 1 ? ' hour':' hours');
+        }
+
+        if(days > 1 && days < 8){
+          return days.toFixed(0) + (days.toFixed(0) === 1 ? ' day':' days');
+        }
+
+        if(weeks > 1 && weeks < 5){
+          return weeks.toFixed(0) + (weeks.toFixed(0) === 1 ? ' week':' weeks');
+        }
+      };
       this.isloading = false;
     },
   },
