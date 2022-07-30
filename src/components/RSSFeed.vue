@@ -4,83 +4,37 @@
       <div class="col-12">
         <h1>RSS Feed</h1>
       </div>
+      <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary">Back</button>
       <div class="col-12 text-center">
         <div class="d-inline-block justify-content-center align-items-center">
-          <div class="row">
-            <div class="col-12">
-              <div class="input-group">
-                <select class="form-select mb-2" v-model="rssSource" name="feeds" required>
-                    <option disabled value="">Select Feed Sources:</option>
-                    <option selected value="1">Investing.com</option>
-                    <option value="2">Finance Asia</option>
-                    <option value="3">Trading Economics</option>
-                    <option value="4">CNBC</option>
-                    <option value="5">Yahoo Finance</option>
-                    <option value="6">MarketWatch</option>
-                    <option value="7">S&P Dow Jones Indices</option>
-                    <option value="8">Nasdaq</option>
-                  </select>
-                  <div v-if="isButton" class="input-group-append">
-                      <button class="btn btn-secondary right" @click="getRssFeeds"><i class="bi bi-arrow-clockwise"></i></button>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-                <select v-if="+rssSource === 1" class="form-select" v-model="url" name="investing" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option selected value="https://www.investing.com/rss/news_14.rss">Economy News</option>
-                  <option value="https://www.investing.com/rss/news_25.rss">Stock Market News</option>
-                  <option value="https://www.investing.com/rss/stock_ETFs.rss">ETF News</option>
-                  <option value="https://www.investing.com/rss/news_1.rss">Foreign Exchange News</option>
-                </select>
-                <select v-if="+rssSource === 2" class="form-select" v-model="url" name="financeasia" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option value="https://www.financeasia.com/rss/category/markets">FinanceAsia - Markets</option>
-                  <option value="https://www.financeasia.com/rss/category/debt">FinanceAsia - Debt</option>
-                  <option value="https://www.financeasia.com/rss/category/equity">FinanceAsia - Equity</option>
-                  <option value="https://www.financeasia.com/rss/category/debt-research">FinanceAsia - Debt Research</option>
-                </select>
-                <select v-if="+rssSource === 3" class="form-select" v-model="url" name="tradingeconomics" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option value="https://tradingeconomics.com/rss/news.aspx?i=consumer+price+index+cpi">Consumer Price Index (CPI)</option>
-                  <option value="https://tradingeconomics.com/rss/news.aspx?i=core+inflation+rate">Core Inflation Rate</option>
-                  <option value="https://tradingeconomics.com/rss/news.aspx?i=unemployment+change">Unemployment Change</option>
-                  <option value="https://tradingeconomics.com/rss/news.aspx?i=retail+sales+mom">Retail Sales (MoM)</option>
-                  <option value="https://tradingeconomics.com/rss/news.aspx?i=nonfarm+payrolls+private">Non-Farm Payroll (US)</option>
-                  <option value="https://tradingeconomics.com/rss/news.aspx?i=interest+rate">Interest Rate</option>
-                  <option value="https://tradingeconomics.com/rss/news.aspx?i=weapons+sales">Weapons Sales</option>
-                </select>
-                <select v-if="+rssSource === 4" class="form-select" v-model="url" name="cnbc" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option selected value="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069">Investing News</option>
-                </select>
-                <select v-if="+rssSource === 5" class="form-select" v-model="url" name="yahoofinance" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option value="https://finance.yahoo.com/news/rssindex">Finance News</option>
-                </select>
-                <select v-if="+rssSource === 6" class="form-select" v-model="url" name="marketwatch" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option value="http://feeds.marketwatch.com/marketwatch/realtimeheadlines/">Real-time Headlines</option>
-                </select>
-                <select v-if="+rssSource === 7" class="form-select" v-model="url" name="feeds" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option value="https://www.spglobal.com/spdji/en/rss/rss-details/?rssFeedName=corporate-news">Corporate News</option>
-                </select>
-                <select v-if="+rssSource === 8" class="form-select" v-model="url" name="feeds" required>
-                  <option disabled selected value="">Select Topic:</option>
-                  <option value="https://www.nasdaq.com/feed/nasdaq-original/rss.xml">Nasdaq Original Feed</option>
-                </select>
+          <div class="row" v-if="tabNav === 0">
+            <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
+              <a class="title" @click="forwardNav(source,source.url)" href="#">
+                <div class="card">
+                  <img :src="source.url" onerror="this.src='https://rss.com/favicon.ico'"/>
+                  <span class="title mb-3">{{ source.name }}</span>
+                </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <hr class="my-3"/>
+      <div class="col-12" v-if="tabNav === 1">
+        <div class="row">
+            <div v-for="topic in topicData" :key="topic.title" class="col-4 mb-3">
+              <a class="title" @click="getRssFeeds(topicNavUrl,topic.url) && forwardNav()" href="#">
+                <div class="card">
+                  <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
+                  <span class="title mb-3">{{ topic.title }}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+      </div>
       <div class="col-12">
         <div v-if="isloading" class="spinner-border text-secondary" role="status">
         </div>
-        <div v-else>
+        <div v-else-if="tabNav === 2">
           <div v-if="!isError">
             <div class="mb-2" :key="feed.link" v-for="feed in feeds">
               <a class="title" :href="feed.link.toString()">
@@ -120,16 +74,148 @@ const xml2js = require('xml2js');
 export default {
   data(){
     return {
-      data: '',
-      url: '',
-      pic: '',
-      feeds: '',
-      date: '',
+      // data: '',
+      // pic: '',
+      // feeds: '',
+      // date: '',
       isloading: false,
       isError: false,
       isButton: false,
       rssSource: '',
       screenWidth: '',
+      tabNav: 0,
+      topicData:'',
+      topicNavUrl: '',
+      sources: {
+        0: {
+          name: 'Investing.com',
+          url: 'https://www.investing.com/favicon.ico',
+          topics: [
+            {
+              title: "Economy News",
+              url: "https://www.investing.com/rss/news_14.rss",
+            },
+            {
+              title: "Stock Market News",
+              url: "https://www.investing.com/rss/news_25.rss",
+            },
+            {
+              title: "ETF News",
+              url: "https://www.investing.com/rss/stock_ETFs.rss",
+            },
+            {
+              title: "Foreign Exchange News",
+              url: "https://www.investing.com/rss/news_1.rss",
+            },
+          ],
+        },
+        1: {
+          name: 'Finance Asia',
+          url: 'https://www.financeasia.com/favicon.ico',
+          topics: [
+            {
+              title: "Markets",
+              url: "https://www.financeasia.com/rss/category/markets",
+            },
+            {
+              title: "Debt",
+              url: "https://www.financeasia.com/rss/category/debt",
+            },
+            {
+              title: "Equity",
+              url: "https://www.financeasia.com/rss/category/equity",
+            },
+            {
+              title: "Debt Research",
+              url: "https://www.financeasia.com/rss/category/debt-research",
+            },
+          ]
+        },
+        2: {
+          name: 'Trading Economics',
+          url: 'https://tradingeconomics.com/favicon.ico',
+          topics: [
+            {
+              title: "Consumer Price Index (CPI)",
+              url: "https://tradingeconomics.com/rss/news.aspx?i=consumer+price+index+cpi",
+            },
+            {
+              title: "Core Inflation Rate",
+              url: "https://tradingeconomics.com/rss/news.aspx?i=core+inflation+rate",
+            },
+            {
+              title: "Unemployment Change",
+              url: "https://tradingeconomics.com/rss/news.aspx?i=unemployment+change",
+            },
+            {
+              title: "Retail Sales (MoM)",
+              url: "https://tradingeconomics.com/rss/news.aspx?i=retail+sales+mom",
+            },
+            {
+              title: "Non-Farm Payroll (US)",
+              url: "https://tradingeconomics.com/rss/news.aspx?i=nonfarm+payrolls+private",
+            },
+            {
+              title: "Interest Rate",
+              url: "https://tradingeconomics.com/rss/news.aspx?i=interest+rate",
+            },
+            {
+              title: "Weapons Sales",
+              url: "https://tradingeconomics.com/rss/news.aspx?i=weapons+sales",
+            },
+          ],
+        },
+        3: {
+          name: 'CNBC',
+          url: 'https://www.cnbc.com/favicon.ico',
+          topics: [
+            {
+              title: "Investing News",
+              url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069",
+            },
+          ],
+        },
+        4: {
+          name: 'Yahoo Finance',
+          url: 'https://finance.yahoo.com/favicon.ico',
+          topics: [
+            {
+              title: "Finance News",
+              url: "https://finance.yahoo.com/news/rssindex",
+            },
+          ],
+        },
+        5: {
+          name: 'MarketWatch',
+          url: 'https://www.marketwatch.com/favicon.ico',
+          topics: [
+            {
+              title: "Real-time Headlines",
+              url: "http://feeds.marketwatch.com/marketwatch/realtimeheadlines",
+            },
+          ],
+        },
+        6: {
+          name: 'SP Global',
+          url: 'https://www.spglobal.com/favicon.ico',
+          topics: [
+            {
+              title: "Corporate News",
+              url: "https://www.spglobal.com/spdji/en/rss/rss-details/?rssFeedName=corporate-news",
+            },
+          ],
+        },
+        7: {
+          name: 'Nasdaq',
+          url: 'https://www.nasdaq.com/favicon.ico',
+          topics: [
+            {
+              title: "Nasdaq Original Feed",
+              url: "https://www.nasdaq.com/feed/nasdaq-original/rss.xml",
+            },
+          ],
+        }
+      },
     };
   },
   watch: {
@@ -145,19 +231,27 @@ export default {
     window.removeEventListener('resize', this.setScreenWidth)
   },
   methods: {
-    setScreenWidth(){
-      this.screenWidth = window.innerWidth;
-      return console.log(this.screenWidth);
+    forwardNav(data, url){
+      if(this.tabNav === 0){
+        this.topicData = data.topics;
+        this.topicNavUrl = url;
+      }
+      return this.tabNav < 3 ? this.tabNav++ : this.tabNav;
     },
-    async getRssFeeds(){
+    backwardNav(){
+      return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
+    },
+    setScreenWidth(){
+      return this.screenWidth = window.innerWidth;
+    },
+    async getRssFeeds(picUrl, payloadUrl){
       this.isError = false;
       this.isButton = false;
       this.isloading = true;
-      this.pic = this.url.replace("search","www").replace("feeds","www").split('.com')[0]+`.com/favicon.ico`;
-      // console.log(this.pic);
+      this.pic = picUrl;
 
       // Payload for Fetch API setting
-      let payload = `https://cors-anywhere.herokuapp.com/${this.url}`;
+      let payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
       
       // Fetch API as XML and convert into JSON format
       this.data = await axios
@@ -174,8 +268,6 @@ export default {
       });
 
       this.feeds = this.data.rss.channel[0].item;
-
-      // console.log(Date.now() - new Date(this.feeds[0].pubDate).getTime());
       
       // Custom show elapsed time algorithm
       this.date = () => {
@@ -251,7 +343,7 @@ export default {
   }
 
   img {
-    margin: 20px auto;
+    margin: 20px auto 10px auto;
     width: 70px;
     border-radius: 4px;
   }
