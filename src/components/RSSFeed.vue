@@ -29,21 +29,21 @@
           <div class="row">
             <div class="col-12">
                 <select v-if="+rssSource === 1" class="form-select" v-model="url" name="investing" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option selected value="https://www.investing.com/rss/news_14.rss">Economy News</option>
                   <option value="https://www.investing.com/rss/news_25.rss">Stock Market News</option>
                   <option value="https://www.investing.com/rss/stock_ETFs.rss">ETF News</option>
                   <option value="https://www.investing.com/rss/news_1.rss">Foreign Exchange News</option>
                 </select>
                 <select v-if="+rssSource === 2" class="form-select" v-model="url" name="financeasia" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option value="https://www.financeasia.com/rss/category/markets">FinanceAsia - Markets</option>
                   <option value="https://www.financeasia.com/rss/category/debt">FinanceAsia - Debt</option>
                   <option value="https://www.financeasia.com/rss/category/equity">FinanceAsia - Equity</option>
                   <option value="https://www.financeasia.com/rss/category/debt-research">FinanceAsia - Debt Research</option>
                 </select>
                 <select v-if="+rssSource === 3" class="form-select" v-model="url" name="tradingeconomics" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option value="https://tradingeconomics.com/rss/news.aspx?i=consumer+price+index+cpi">Consumer Price Index (CPI)</option>
                   <option value="https://tradingeconomics.com/rss/news.aspx?i=core+inflation+rate">Core Inflation Rate</option>
                   <option value="https://tradingeconomics.com/rss/news.aspx?i=unemployment+change">Unemployment Change</option>
@@ -53,23 +53,23 @@
                   <option value="https://tradingeconomics.com/rss/news.aspx?i=weapons+sales">Weapons Sales</option>
                 </select>
                 <select v-if="+rssSource === 4" class="form-select" v-model="url" name="cnbc" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option selected value="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069">Investing News</option>
                 </select>
                 <select v-if="+rssSource === 5" class="form-select" v-model="url" name="yahoofinance" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option value="https://finance.yahoo.com/news/rssindex">Finance News</option>
                 </select>
                 <select v-if="+rssSource === 6" class="form-select" v-model="url" name="marketwatch" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option value="http://feeds.marketwatch.com/marketwatch/realtimeheadlines/">Real-time Headlines</option>
                 </select>
                 <select v-if="+rssSource === 7" class="form-select" v-model="url" name="feeds" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option value="https://www.spglobal.com/spdji/en/rss/rss-details/?rssFeedName=corporate-news">Corporate News</option>
                 </select>
                 <select v-if="+rssSource === 8" class="form-select" v-model="url" name="feeds" required>
-                  <option disabled value="">Select Topic:</option>
+                  <option disabled selected value="">Select Topic:</option>
                   <option value="https://www.nasdaq.com/feed/nasdaq-original/rss.xml">Nasdaq Original Feed</option>
                 </select>
             </div>
@@ -89,9 +89,9 @@
                     <div class="row">
                       <div class="col-9 col-md-11 text-start">
                         <h3 class="title text-secondary">
-                          <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250) + '...' }}</span>
-                          <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150) + '...' }}</span>
-                          <span v-else>{{ feed.title.toString().substr(0, 50) + '...' }}</span>
+                          <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
+                          <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
+                          <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
                         </h3>
                         <span v-if="date()" class="time d-block text-secondary"><em>Updated: {{ date() }} ago</em></span>
                       </div>
@@ -199,26 +199,40 @@ export default {
 
         // Convert UNIX to weeks
         let weeks = (days / 7);
+
+        // Convert UNIX to weeks
+        let months = (weeks / 4);
+
+        // Convert UNIX to weeks
+        let years = (months / 12);
         
         // Elapsed Time output logic
         if(seconds > 0 && seconds < 60){
-          return seconds.toFixed(0) + (seconds.toFixed(0) === 1 ? ' second':' seconds');
+          return seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? ' second':' seconds');
         }
 
         if(minutes > 1 && minutes < 60){
-          return minutes.toFixed(0) + (minutes.toFixed(0) === 1 ? ' minute':' minutes');
+          return minutes.toFixed(0) + (minutes.toFixed(0) < 2 ? ' minute':' minutes');
         }
 
         if(hours > 1 && hours < 24){
-          return hours.toFixed(0) + (hours.toFixed(0) === 1 ? ' hour':' hours');
+          return hours.toFixed(0) + (hours.toFixed(0) < 2 ? ' hour':' hours');
         }
 
         if(days > 1 && days < 7){
-          return days.toFixed(0) + (days.toFixed(0) === 1 ? ' day':' days');
+          return days.toFixed(0) + (days.toFixed(0) < 2 ? ' day':' days');
         }
 
-        if(weeks > 1 && weeks < 4){
-          return weeks.toFixed(0) + (weeks.toFixed(0) === 1 ? ' week':' weeks');
+        if(weeks >= 1 && weeks < 4){
+          return weeks.toFixed(0) + (weeks.toFixed(0) < 2 ? ' week':' weeks');
+        }
+
+        if(months >= 1 && months < 12){
+          return months.toFixed(0) + (months.toFixed(0) < 2 ? ' month':' months');
+        }
+
+        if(years >= 1){
+          return years.toFixed(0) + (years.toFixed(0) < 2 ? ' year':' years');
         }
       };
       this.isloading = false;
