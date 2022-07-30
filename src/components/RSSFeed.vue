@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1>RSS Feed</h1>
+        <h1 class="text-secondary mb-3"><strong>RSS Feed</strong></h1>
       </div>
       <div class="col-12 text-center" v-if="tabNav > 0">
         <div class="row">
@@ -16,11 +16,13 @@
       <div class="col-12 text-center">
         <div class="d-inline-block justify-content-center align-items-center">
           <div class="row" v-if="tabNav === 0">
-            <div v-for="source in sources" :key="source.id" class="col-md-4 mb-3">
+            <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
               <a class="title" @click="forwardNav(source,source.url)">
                 <div class="card">
                   <img :src="source.url" onerror="this.src='https://rss.com/favicon.ico'"/>
-                  <span class="title mb-3">{{ source.name }}</span>
+                  <strong class="mb-3">
+                    <span class="text-secondary title">{{ source.name }}</span>
+                  </strong>
                 </div>
               </a>
             </div>
@@ -29,11 +31,13 @@
       </div>
       <div class="col-12" v-if="tabNav === 1">
         <div class="row">
-            <div v-for="topic in topicData" :key="topic.title" class="col-md-4 mb-3">
+            <div v-for="topic in topicData" :key="topic.title" class="col-4 mb-3">
               <a class="title" @click="getRssFeeds(topicNavUrl,topic.url) && forwardNav()">
                 <div class="card">
                   <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                  <span class="title mb-3">{{ topic.title }}</span>
+                  <strong class="mb-3">
+                    <span class="text-secondary title">{{ topic.title }}</span>
+                  </strong>
                 </div>
               </a>
             </div>
@@ -82,13 +86,8 @@ const xml2js = require('xml2js');
 export default {
   data(){
     return {
-      // data: '',
-      // pic: '',
-      // feeds: '',
-      // date: '',
       isloading: false,
       isError: false,
-      isButton: false,
       rssSource: '',
       screenWidth: '',
       tabNav: 0,
@@ -254,7 +253,6 @@ export default {
     },
     async getRssFeeds(picUrl, payloadUrl){
       this.isError = false;
-      this.isButton = false;
       this.isloading = true;
       this.pic = picUrl;
 
@@ -271,7 +269,6 @@ export default {
       .catch(err => {
         this.isloading = false;
         this.isError = true;
-        this.isButton = true;
         return err.message + ',';
       });
 
@@ -342,6 +339,10 @@ export default {
 </script>
 
 <style scoped>
+  h1 {
+    font-size: 35px;
+  }
+
   .right {
     border-radius: 0px 4px 4px 0px;
   }
@@ -378,4 +379,10 @@ export default {
     bottom: 15px;
     left: 15px;
   }
+
+  @media only screen and (max-width: 600px) {
+  span.title {
+    font-size: 12px;
+  }
+}
 </style>
