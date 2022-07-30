@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="text-danger" v-else>
-            {{ data }}, Try Reloading...
+            {{ data }} Try Reloading...
           </div>
         </div>
       </div>
@@ -94,8 +94,8 @@ export default {
       tabNav: 0,
       topicData:'',
       topicNavUrl: '',
-      sources: {
-        0: {
+      sources: [
+        {
           name: 'Investing.com',
           url: 'https://www.investing.com/favicon.ico',
           topics: [
@@ -117,7 +117,7 @@ export default {
             },
           ],
         },
-        1: {
+        {
           name: 'Finance Asia',
           url: 'https://www.financeasia.com/favicon.ico',
           topics: [
@@ -139,7 +139,7 @@ export default {
             },
           ]
         },
-        2: {
+        {
           name: 'Trading Economics',
           url: 'https://tradingeconomics.com/favicon.ico',
           topics: [
@@ -173,7 +173,7 @@ export default {
             },
           ],
         },
-        3: {
+        {
           name: 'CNBC',
           url: 'https://www.cnbc.com/favicon.ico',
           topics: [
@@ -183,7 +183,7 @@ export default {
             },
           ],
         },
-        4: {
+        {
           name: 'Yahoo Finance',
           url: 'https://finance.yahoo.com/favicon.ico',
           topics: [
@@ -193,7 +193,7 @@ export default {
             },
           ],
         },
-        5: {
+        {
           name: 'MarketWatch',
           url: 'https://www.marketwatch.com/favicon.ico',
           topics: [
@@ -203,9 +203,9 @@ export default {
             },
           ],
         },
-        6: {
+        {
           name: 'SP Global',
-          url: 'https://www.spglobal.com/favicon.ico',
+          url: 'https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico',
           topics: [
             {
               title: "Corporate News",
@@ -213,7 +213,7 @@ export default {
             },
           ],
         },
-        7: {
+        {
           name: 'Nasdaq',
           url: 'https://www.nasdaq.com/favicon.ico',
           topics: [
@@ -223,7 +223,7 @@ export default {
             },
           ],
         }
-      },
+      ],
     };
   },
   watch: {
@@ -272,7 +272,7 @@ export default {
         this.isloading = false;
         this.isError = true;
         this.isButton = true;
-        return err.message;
+        return err.message + ',';
       });
 
       this.feeds = this.data.rss.channel[0].item;
@@ -354,6 +354,8 @@ export default {
     margin: 20px auto 10px auto;
     width: 70px;
     border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 5px;
   }
 
   h3.title{
