@@ -4,7 +4,15 @@
       <div class="col-12">
         <h1>RSS Feed</h1>
       </div>
-      <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary">Back</button>
+      <div class="col-12 text-center" v-if="tabNav > 0">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <button @click="backwardNav()" class="btn btn-secondary w-100">Back</button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+      </div>
       <div class="col-12 text-center">
         <div class="d-inline-block justify-content-center align-items-center">
           <div class="row" v-if="tabNav === 0">
