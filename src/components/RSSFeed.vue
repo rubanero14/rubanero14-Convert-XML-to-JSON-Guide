@@ -8,7 +8,7 @@
       <div class="col-12 text-center">
         <div class="d-inline-block justify-content-center align-items-center">
           <div class="row" v-if="tabNav === 0">
-            <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
+            <div v-for="source in sources" :key="source.id" class="col-md-4 mb-3">
               <a class="title" @click="forwardNav(source,source.url)" href="#">
                 <div class="card">
                   <img :src="source.url" onerror="this.src='https://rss.com/favicon.ico'"/>
@@ -21,7 +21,7 @@
       </div>
       <div class="col-12" v-if="tabNav === 1">
         <div class="row">
-            <div v-for="topic in topicData" :key="topic.title" class="col-4 mb-3">
+            <div v-for="topic in topicData" :key="topic.title" class="col-md-4 mb-3">
               <a class="title" @click="getRssFeeds(topicNavUrl,topic.url) && forwardNav()" href="#">
                 <div class="card">
                   <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
