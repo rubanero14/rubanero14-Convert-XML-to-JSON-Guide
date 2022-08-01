@@ -87,7 +87,7 @@
               <div class="col-lg-4">
                 <a href="https://cors-anywhere.herokuapp.com/corsdemo" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
                   <i class="bi bi-hdd-rack"></i> 
-                  Error 403 - Enable CORS
+                  Enable CORS
                 </a>
               </div>
               <div class="col-lg-4"></div>
@@ -230,8 +230,8 @@ export default {
           url: 'https://edition.cnn.com/favicon.ico',
           topics: [
             {
-              title: "World News",
-              url: 'http://rss.cnn.com/rss/edition.rss'
+              title: "CNN World",
+              url: 'http://rss.cnn.com/rss/cnn_latest.rss'
             },
           ]
         },
@@ -319,7 +319,6 @@ export default {
       }
     },
     backwardNav(){
-      console.log(this.topicData.length)
       if(this.tabNav === 2 && this.topicData.length === 1){
         return this.tabNav = 0;
       }
@@ -342,7 +341,6 @@ export default {
       this.data = await axios
       .get(payload)
       .then((response) => {
-        console.log(payload)
         return xml2js.parseStringPromise(response.data);
       })
       .catch(err => {
