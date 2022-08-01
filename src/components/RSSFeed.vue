@@ -87,8 +87,8 @@
               <div class="col-lg-4">
                 <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
                 <ul class="text-start text-secondary">
-                  <li>Click <span class="text-danger">Enable CORS</span> button above</li>
-                  <li>When new window pops up click <span class="text-success">Request temporary access to the demo server</span> button</li>
+                  <li>Click <span class="text-danger">Enable CORS</span> button below</li>
+                  <li>When new window pops up, click <span class="text-success">Request temporary access to the demo server</span> button</li>
                   <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
                 </ul>
                 <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
