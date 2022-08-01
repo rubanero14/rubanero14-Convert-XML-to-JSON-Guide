@@ -407,7 +407,7 @@ export default {
           return weeks.toFixed(0) + (weeks.toFixed(0) < 2 ? ' week':' weeks');
         }
 
-        if(months >= 1 && months < 11){
+        if(months >= 1 && months < 12){
           return months.toFixed(0) + (months.toFixed(0) < 2 ? ' month':' months');
         }
 
