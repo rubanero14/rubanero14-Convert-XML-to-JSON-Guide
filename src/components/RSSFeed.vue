@@ -226,6 +226,16 @@ export default {
           ]
         },
         {
+          name: "CNN",
+          url: 'https://edition.cnn.com/favicon.ico',
+          topics: [
+            {
+              title: "World News",
+              url: 'http://rss.cnn.com/rss/edition.rss'
+            },
+          ]
+        },
+        {
           name: 'CNBC',
           url: 'https://www.cnbc.com/favicon.ico',
           topics: [
