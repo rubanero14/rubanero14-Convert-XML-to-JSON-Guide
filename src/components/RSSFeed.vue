@@ -6,16 +6,14 @@
       </div>
       <div class="col-12 text-center">
         <div class="row">
-            <div :class="{ 'col-lg-4': tabNav > 0, 'col-lg-3': tabNav === 0 }"></div>
-            <div class="col-lg-6 d-block d-lg-flex" v-if="tabNav === 0">
-              <a href="https://cors-anywhere.herokuapp.com/corsdemo" class="btn btn-outline-secondary w-100 mb-3 me-md-2" target="_blank"><i class="bi bi-hdd-rack"></i> Enable CORS</a>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4 d-block d-lg-flex" v-if="tabNav === 0">
               <a href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
-              <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary w-50"><i class="bi bi-arrow-left"></i> Back</button>
             </div>
             <div class="col-lg-4 d-block d-lg-flex" v-else>
               <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary w-100"><i class="bi bi-arrow-left"></i> Back</button>
             </div>
-            <div :class="{ 'col-lg-4': tabNav > 0, 'col-lg-3': tabNav === 0 }"></div>
+            <div class="col-lg-4"></div>
         </div>
         <hr class="my-3" size="5" noshade/>
       </div>
@@ -83,7 +81,17 @@
             </div>
           </div>
           <div class="text-danger" v-else>
-            {{ data }} Try Reloading...
+            <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
+            <div v-else class="row">
+              <div class="col-lg-4"></div>
+              <div class="col-lg-4">
+                <a href="https://cors-anywhere.herokuapp.com/corsdemo" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
+                  <i class="bi bi-hdd-rack"></i> 
+                  Error 403 - Enable CORS
+                </a>
+              </div>
+              <div class="col-lg-4"></div>
+            </div>
           </div>
         </div>
       </div>
