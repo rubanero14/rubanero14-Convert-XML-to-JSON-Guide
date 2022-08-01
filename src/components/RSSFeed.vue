@@ -4,11 +4,13 @@
       <div class="col-12">
         <h1 class="text-secondary mb-3"><strong>RSS Feed</strong></h1>
       </div>
-      <div class="col-12 text-center" v-if="tabNav > 0">
+      <div class="col-12 text-center">
         <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4">
-              <button @click="backwardNav()" class="btn btn-secondary mb-3 w-100">Back</button>
+            <div class="col-md-4 d-block d-md-flex">
+              <a v-if="tabNav === 0" href="https://cors-anywhere.herokuapp.com/corsdemo" class="btn btn-outline-secondary w-100 mb-3 me-md-2" target="_blank"><i class="bi bi-hdd-rack"></i> Enable CORS</a>
+              <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary w-100 mb-3" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
+              <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary mb-3 w-100"><i class="bi bi-arrow-left"></i> Back</button>
             </div>
             <div class="col-md-4"></div>
         </div>
