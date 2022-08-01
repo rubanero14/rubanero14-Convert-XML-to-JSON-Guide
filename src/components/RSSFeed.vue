@@ -387,27 +387,27 @@ export default {
         let years = (months / 12);
         
         // Elapsed Time output logic
-        if(seconds > 0 && seconds < 60){
+        if(seconds >= 0 && seconds < 59){
           return seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? ' second':' seconds');
         }
 
-        if(minutes > 1 && minutes < 60){
+        if(minutes >= 1 && minutes < 59){
           return minutes.toFixed(0) + (minutes.toFixed(0) < 2 ? ' minute':' minutes');
         }
 
-        if(hours > 1 && hours < 24){
+        if(hours >= 1 && hours < 23){
           return hours.toFixed(0) + (hours.toFixed(0) < 2 ? ' hour':' hours');
         }
 
-        if(days > 1 && days < 7){
+        if(days >= 1 && days < 6){
           return days.toFixed(0) + (days.toFixed(0) < 2 ? ' day':' days');
         }
 
-        if(weeks >= 1 && weeks < 4){
+        if(weeks >= 1 && weeks < 3){
           return weeks.toFixed(0) + (weeks.toFixed(0) < 2 ? ' week':' weeks');
         }
 
-        if(months >= 1 && months < 12){
+        if(months >= 1 && months < 11){
           return months.toFixed(0) + (months.toFixed(0) < 2 ? ' month':' months');
         }
 
