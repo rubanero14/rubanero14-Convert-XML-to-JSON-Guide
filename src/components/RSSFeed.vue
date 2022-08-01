@@ -185,6 +185,36 @@ export default {
           ],
         },
         {
+          name: "Seeking Alpha",
+          url: 'https://seekingalpha.com/samw/static/images/favicon-32x32.png',
+          topics: [
+            {
+              title: 'Breaking News',
+              url: 'https://seekingalpha.com/market_currents.xml'
+            },
+            {
+              title: "Editor's Picks",
+              url: 'https://seekingalpha.com/tag/editors-picks.xml'
+            },
+            {
+              title: "IPO Analysis",
+              url: 'https://seekingalpha.com/tag/ipo-analysis.xml'
+            },
+            {
+              title: "Transcripts",
+              url: 'https://seekingalpha.com/sector/transcripts.xml'
+            },
+            {
+              title: "Wall Street Breakfast",
+              url: 'https://seekingalpha.com/tag/wall-st-breakfast.xml'
+            },
+            {
+              title: "ETFs & Portfolio Strategy",
+              url: 'https://seekingalpha.com/tag/etf-portfolio-strategy.xml'
+            }
+          ]
+        },
+        {
           name: 'CNBC',
           url: 'https://www.cnbc.com/favicon.ico',
           topics: [
