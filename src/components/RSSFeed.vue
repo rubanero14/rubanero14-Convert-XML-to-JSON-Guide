@@ -8,36 +8,42 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-              <button @click="backwardNav()" class="btn btn-secondary w-100">Back</button>
+              <button @click="backwardNav()" class="btn btn-secondary mb-3 w-100">Back</button>
             </div>
             <div class="col-md-4"></div>
         </div>
       </div>
+      <hr size="5" noshade/>
       <div class="col-12 text-center">
-        <div class="d-inline-block justify-content-center align-items-center">
-          <div class="row" v-if="tabNav === 0">
-            <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
-              <a class="title" @click="forwardNav(source,source.url)">
-                <div class="card">
+        <div class="row" v-if="tabNav === 0">
+          <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
+            <a class="title" @click="forwardNav(source)">
+              <div class="card tile">
+                <div class="d-inline-block justify-content-center align-items-center m-auto">
                   <img :src="source.url" onerror="this.src='https://rss.com/favicon.ico'"/>
-                  <strong class="mb-3">
+                  <br/>
+                  <strong class="mb-2">
                     <span class="text-secondary title">{{ source.name }}</span>
                   </strong>
                 </div>
-              </a>
-            </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
       <div class="col-12" v-if="tabNav === 1">
+        <h2 class="text-secondary mb-3">{{ topicTitle }}</h2>
         <div class="row">
             <div v-for="topic in topicData" :key="topic.title" class="col-4 mb-3">
-              <a class="title" @click="getRssFeeds(topicNavUrl,topic.url) && forwardNav()">
-                <div class="card">
-                  <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                  <strong class="mb-3">
-                    <span class="text-secondary title">{{ topic.title }}</span>
-                  </strong>
+              <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
+                <div class="card tile">
+                  <div class="d-inline-block justify-content-center align-items-center m-auto">
+                    <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
+                    <br/>
+                    <strong class="mb-2">
+                      <span class="text-secondary title">{{ topic.title }}</span>
+                    </strong>
+                  </div>
                 </div>
               </a>
             </div>
@@ -48,6 +54,7 @@
         </div>
         <div v-else-if="tabNav === 2">
           <div v-if="!isError">
+            <h2 class="text-secondary mb-3">{{ topicTitle2 }}</h2>
             <div class="mb-2" :key="feed.link" v-for="feed in feeds">
               <a class="title" :href="feed.link.toString()">
                 <div class="card">
@@ -59,10 +66,10 @@
                           <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
                           <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
                         </h3>
-                        <span v-if="date()" class="time d-block text-secondary"><em>Updated: {{ date() }} ago</em></span>
+                        <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
                       </div>
                       <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
-                        <img v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                        <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
                       </div>
                     </div>
                   </div>
@@ -86,6 +93,7 @@ const xml2js = require('xml2js');
 export default {
   data(){
     return {
+      data: '',
       isloading: false,
       isError: false,
       rssSource: '',
@@ -93,6 +101,8 @@ export default {
       tabNav: 0,
       topicData:'',
       topicNavUrl: '',
+      topicTitle: '',
+      topicTitle2:'',
       sources: [
         {
           name: 'Investing.com',
@@ -203,7 +213,7 @@ export default {
           ],
         },
         {
-          name: 'SP Global',
+          name: 'S&P Global',
           url: 'https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico',
           topics: [
             {
@@ -238,23 +248,39 @@ export default {
     window.removeEventListener('resize', this.setScreenWidth)
   },
   methods: {
-    forwardNav(data, url){
-      if(this.tabNav === 0){
+    forwardNav(data){
+      if(this.tabNav === 0 && data.topics.length > 1){
         this.topicData = data.topics;
-        this.topicNavUrl = url;
+        this.topicNavUrl = data.url;
+        this.topicTitle = data.name;
+        return this.tabNav < 3 ? this.tabNav++ : this.tabNav;
       }
-      return this.tabNav < 3 ? this.tabNav++ : this.tabNav;
+
+      if(this.tabNav === 0 && data.topics.length === 1){
+        this.pic = data.url;
+        this.topicData = data.topics;
+        this.topicNavUrl = data.topics[0].url;
+        this.topicTitle2 = data.topics[0].title;
+        this.getRssFeeds(this.pic,this.topicNavUrl,this.topicTitle2);
+        return this.tabNav = 2;
+      }
     },
     backwardNav(){
+      console.log(this.topicData.length)
+      if(this.tabNav === 2 && this.topicData.length === 1){
+        return this.tabNav = 0;
+      }
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
     },
     setScreenWidth(){
       return this.screenWidth = window.innerWidth;
     },
-    async getRssFeeds(picUrl, payloadUrl){
+    async getRssFeeds(picUrl, payloadUrl, title){
+      this.tabNav = 2;
       this.isError = false;
       this.isloading = true;
       this.pic = picUrl;
+      this.topicTitle2 = title;
 
       // Payload for Fetch API setting
       let payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
@@ -343,6 +369,11 @@ export default {
     font-size: 35px;
   }
 
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+  }
+
   .right {
     border-radius: 0px 4px 4px 0px;
   }
@@ -352,11 +383,9 @@ export default {
   }
 
   img {
-    margin: 20px auto 10px auto;
-    width: 70px;
+    margin: 5px auto;
+    width: 35px;
     border-radius: 4px;
-    border: 1px solid rgba(0,0,0,.125);
-    padding: 5px;
   }
 
   h3.title{
@@ -370,14 +399,22 @@ export default {
     color: inherit;
   }
 
-  .wrapper {
-    padding: 0 20px 0 0;
-  }
-
   span.time {
     position: absolute;
     bottom: 15px;
     left: 15px;
+  }
+
+  .card {
+    cursor: pointer;
+  }
+
+  .card:hover {
+    background: rgba(0,0,0,.05);
+  }
+
+  .tile {
+    min-height: 108px;
   }
 
   @media only screen and (max-width: 600px) {
