@@ -85,7 +85,7 @@
             <div v-else class="row">
               <div class="col-lg-4"></div>
               <div class="col-lg-4">
-                <a href="https://cors-anywhere.herokuapp.com/corsdemo" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
+                <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
                   <i class="bi bi-hdd-rack"></i> 
                   Enable CORS
                 </a>
