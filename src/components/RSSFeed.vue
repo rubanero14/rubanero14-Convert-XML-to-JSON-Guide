@@ -385,25 +385,25 @@ export default {
 
         // Convert UNIX to weeks
         let years = (months / 12);
-        
+        console.log(weeks);
         // Elapsed Time output logic
-        if(seconds >= 0 && seconds < 59){
+        if(seconds >= 1 && seconds < 60){
           return seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? ' second':' seconds');
         }
 
-        if(minutes >= 1 && minutes < 59){
+        if(minutes >= 1 && minutes < 60){
           return minutes.toFixed(0) + (minutes.toFixed(0) < 2 ? ' minute':' minutes');
         }
 
-        if(hours >= 1 && hours < 23){
+        if(hours >= 1 && hours < 24){
           return hours.toFixed(0) + (hours.toFixed(0) < 2 ? ' hour':' hours');
         }
 
-        if(days >= 1 && days < 6){
+        if(days >= 1 && days < 7){
           return days.toFixed(0) + (days.toFixed(0) < 2 ? ' day':' days');
         }
 
-        if(weeks >= 1 && weeks < 3){
+        if(weeks >= 1 && weeks < 4){
           return weeks.toFixed(0) + (weeks.toFixed(0) < 2 ? ' week':' weeks');
         }
 
