@@ -85,7 +85,13 @@
             <div v-else class="row">
               <div class="col-lg-4"></div>
               <div class="col-lg-4">
-                <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
+                <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
+                <ul class="text-start text-secondary">
+                  <li>Click <span class="text-danger">Enable CORS</span> button above</li>
+                  <li>When new window pops up click <span class="text-success">Request temporary access to the demo server</span> button</li>
+                  <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
+                </ul>
+                <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
                   <i class="bi bi-hdd-rack"></i> 
                   Enable CORS
                 </a>
@@ -458,6 +464,8 @@ export default {
 
   .card {
     cursor: pointer;
+    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
+    border-radius: 5px;
   }
 
   .card:hover {
@@ -466,6 +474,15 @@ export default {
 
   .tile {
     min-height: 108px;
+  }
+
+  ul {
+    list-style: inherit;
+  }
+
+  .err {
+    width: 100%;
+    border: 1px solid #dc3545;
   }
 
   @media only screen and (max-width: 600px) {
