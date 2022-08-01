@@ -11,7 +11,7 @@
               <a href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
             </div>
             <div class="col-lg-4 d-block d-lg-flex" v-else>
-              <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary w-100"><i class="bi bi-arrow-left"></i> Back</button>
+              <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -319,7 +319,7 @@ export default {
       }
     },
     backwardNav(){
-      if(this.tabNav === 2 && this.topicData.length === 1){
+      if(this.tabNav === 2 && this.topicData.length === 1 || this.isError){
         return this.tabNav = 0;
       }
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
