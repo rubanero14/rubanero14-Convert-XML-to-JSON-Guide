@@ -20,17 +20,15 @@
       <div class="col-12 text-center">
         <div class="row" v-if="tabNav === 0">
           <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
-            <a class="title" @click="forwardNav(source)">
-              <div class="card tile">
-                <div class="d-inline-block justify-content-center align-items-center m-auto">
-                  <img :src="source.url" onerror="this.src='https://rss.com/favicon.ico'"/>
-                  <br/>
-                  <strong class="mb-2">
-                    <span class="text-secondary title">{{ source.name }}</span>
-                  </strong>
+            <center>
+              <a class="title" @click="forwardNav(source)">
+                <div class="card logo p-0">
+                  <div class="d-inline-block justify-content-center align-items-center">
+                    <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+                  </div>
                 </div>
-              </div>
-            </a>
+              </a>
+            </center>
           </div>
         </div>
       </div>
@@ -86,14 +84,15 @@
               <div class="col-lg-4"></div>
               <div class="col-lg-4">
                 <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
+                <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
                 <ul class="text-start text-secondary">
-                  <li>Click <span class="text-danger">Enable CORS</span> button below</li>
-                  <li>When new window pops up, click <span class="text-success">Request temporary access to the demo server</span> button</li>
+                  <li>Click <span class="text-danger">Enable Access</span> button below</li>
+                  <li>When new window pops up, click <span class="text-success">Request temporary access to the demo server</span> button as per figure above.</li>
                   <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
                 </ul>
                 <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
                   <i class="bi bi-hdd-rack"></i> 
-                  Enable CORS
+                  Enable Access
                 </a>
               </div>
               <div class="col-lg-4"></div>
@@ -126,6 +125,7 @@ export default {
         {
           name: 'Investing.com',
           url: 'https://www.investing.com/favicon.ico',
+          logo: 'https://yt3.ggpht.com/ytc/AKedOLS_nSIZMnr1HRa6-Mv4LzRBX5DzaOnO0hbei8cdQw=s900-c-k-c0x00ffffff-no-rj',
           topics: [
             {
               title: "Economy News",
@@ -148,6 +148,7 @@ export default {
         {
           name: 'Finance Asia',
           url: 'https://www.financeasia.com/favicon.ico',
+          logo: 'https://www.quinlanandassociates.com/wp-content/uploads/2018/05/FinanceAsia_logo.jpg',
           topics: [
             {
               title: "Markets",
@@ -170,6 +171,7 @@ export default {
         {
           name: 'Trading Economics',
           url: 'https://tradingeconomics.com/favicon.ico',
+          logo: 'https://media-exp2.licdn.com/dms/image/C4D0BAQG_hy6E3ejXJg/company-logo_200_200/0/1519952139707?e=2147483647&v=beta&t=g9oQV22y2zbTkilrraI2Af4FgOUNLe2YjkdWUw55VUM',
           topics: [
             {
               title: "Consumer Price Index (CPI)",
@@ -204,6 +206,7 @@ export default {
         {
           name: "Seeking Alpha",
           url: 'https://seekingalpha.com/samw/static/images/favicon-32x32.png',
+          logo: 'https://seekingalpha.com/samw/static/images/OrganizationLogo.7f745bcc.png',
           topics: [
             {
               title: 'Breaking News',
@@ -234,6 +237,7 @@ export default {
         {
           name: "CNN",
           url: 'https://edition.cnn.com/favicon.ico',
+          logo: 'https://bankimooncentre.org/wp-content/uploads/2020/06/cnn-logo-square-300x300.png',
           topics: [
             {
               title: "CNN World",
@@ -244,6 +248,7 @@ export default {
         {
           name: 'CNBC',
           url: 'https://www.cnbc.com/favicon.ico',
+          logo: 'https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/052016/untitled-1_240.png?itok=JFho4q51',
           topics: [
             {
               title: "Investing News",
@@ -254,6 +259,7 @@ export default {
         {
           name: 'Yahoo Finance',
           url: 'https://finance.yahoo.com/favicon.ico',
+          logo: 'https://daxsenmedia.com/wp-content/uploads/2021/05/yahoo-finance-article-300x300.jpg',
           topics: [
             {
               title: "Finance News",
@@ -264,6 +270,7 @@ export default {
         {
           name: 'MarketWatch',
           url: 'https://www.marketwatch.com/favicon.ico',
+          logo: 'https://brandlogos.net/wp-content/uploads/2016/07/marketwatch-logo-vector-download.png',
           topics: [
             {
               title: "Real-time Headlines",
@@ -274,6 +281,7 @@ export default {
         {
           name: 'S&P Global',
           url: 'https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico',
+          logo: 'data:image/png;base64,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',
           topics: [
             {
               title: "Corporate News",
@@ -284,6 +292,7 @@ export default {
         {
           name: 'Nasdaq',
           url: 'https://www.nasdaq.com/favicon.ico',
+          logo: 'https://brandlogos.net/wp-content/uploads/2021/04/nasdaq-logo-300x300.png',
           topics: [
             {
               title: "Nasdaq Original Feed",
@@ -445,6 +454,13 @@ export default {
     border-radius: 4px;
   }
 
+  img.logo {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    border-radius: 0px;
+  }
+
   h3.title{
     font-size: 18px;
     font-weight:bold;
@@ -466,6 +482,13 @@ export default {
     cursor: pointer;
     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
     border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .card.logo {
+    height: 250px;
+    width: 250px;
+    border-radius: 16px;
   }
 
   .card:hover {
@@ -485,9 +508,52 @@ export default {
     border: 1px solid #dc3545;
   }
 
-  @media only screen and (max-width: 600px) {
-  span.title {
-    font-size: 12px;
+  @media only screen and (max-width: 992px) {
+    .card.logo {
+      height: 200px;
+      width: 200px;
+      border-radius: 8px;
+    }
   }
-}
+
+  @media only screen and (max-width: 800px) {
+    .card.logo {
+      height: 150px;
+      width: 150px;
+      border-radius: 8px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    span.title {
+      font-size: 12px;
+    }
+    .card.logo {
+      height: 150px;
+      width: 150px;
+      border-radius: 8px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .card.logo {
+      height: 100px;
+      width: 100px;
+      border-radius: 4px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .card.logo {
+      height: 70px;
+      width: 70px;
+    }
+  }
+
+  @media only screen and (max-width: 300px) {
+    .card.logo {
+      height: 60px;
+      width: 60px;
+    }
+  }
 </style>
