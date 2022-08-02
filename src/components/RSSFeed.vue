@@ -563,18 +563,18 @@ export default {
   
   .fade-enter-active,
   .fade-leave-active {
-    transition: all 0.5s ease;
+    transition: all 0.3s ease-out;
   }
 
   .fade-enter-from,
   .fade-leave-to {
     opacity: 0;
-    transform: translateX(-1000px);
+    transform: translateX(-500px);
   }
 
   .fade-enter-to,
   .fade-leave-from {
     opacity: 1;
-    transform: translateX(100px);
+    transform: translateX(10px);
   }
 </style>
