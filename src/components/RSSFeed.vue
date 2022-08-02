@@ -22,8 +22,8 @@
         </div>
       </div>
       <div class="col-12 text-center">
-        <Transition name="fade" appear mode="out-in">
-          <h2 v-if="tabNav === 0" class="text-secondary mb-3">Sources</h2>
+        <Transition  v-if="tabNav === 0" name="fade-articles" appear mode="out-in">
+          <h2 :style="{ '--i': count++ }" class="text-secondary mb-3">Sources</h2>
         </Transition>
         <div :class="{'':screenWidth < 1200, 'row':screenWidth >= 1200}">
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
@@ -45,7 +45,7 @@
             </div>
             <div v-if="!isError && !isloading">
               <Transition name="fade" appear mode="out-in">
-                <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+                <h2 :style="{ '--i': count++ }" v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
               </Transition>
               <div class="mb-2" :key="feed.link" v-for="feed in feeds">
                 <Transition name="fade-articles" appear mode="out-in">
@@ -77,7 +77,7 @@
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
           </div>
           <Transition name="fade" appear mode="out-in">
-            <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+            <h2 :style="{ '--i': count++ }" v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
           </Transition>
           <div v-if="tabNav === 1">
               <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
@@ -358,6 +358,7 @@ export default {
       }
     },
     backwardNav(err){
+      this.count = 0;
       if(this.tabNav === 2 && this.topicData.length === 1){
         return this.tabNav = 0;
       }
@@ -367,7 +368,6 @@ export default {
         console.log('Iserror ',this.isError)
         return this.tabNav = 0;
       }
-      this.count = 0;
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
     },
     setScreenWidth(){
@@ -571,9 +571,14 @@ export default {
     }
   }
   
+  .fade-move,
   .fade-enter-active,
   .fade-leave-active {
     transition: all calc(var(--i) * .001s);
+  }
+  
+  .fade-leave-active {
+    position: absolute;
   }
 
   .fade-enter-from,
@@ -588,8 +593,13 @@ export default {
     transform: translateX(10px);
   }
 
+  .fade-articles-move,
   .fade-articles-enter-active {
     transition: all calc(var(--i) * .001s);
+  }
+
+  .fade-articles-leave-active {
+    position: absolute;
   }
 
   .fade-articles-enter-from,
