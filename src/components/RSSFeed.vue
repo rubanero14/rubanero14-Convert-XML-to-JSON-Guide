@@ -24,7 +24,7 @@
       <div class="col-12 text-center">
         <div v-show="tabNav === 0">
           <div v-for="source in sources" :key="source.id" class="d-inline-block">
-            <Transition name="fade" appear mode="in-out">
+            <Transition name="fade" appear mode="out-in">
               <center v-if="tabNav === 0">
                 <a class="title" @click="forwardNav(source)">
                   <div class="card logo p-0 mb-3 me-2">
@@ -40,7 +40,7 @@
         <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
         <div v-show="tabNav === 1">
             <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
-              <Transition name="fade" appear mode="in-out">
+              <Transition name="fade" appear mode="out-in">
                 <center v-if="tabNav === 1">
                   <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
                     <div class="card tile mb-3 me-2">
@@ -60,7 +60,7 @@
         <div v-if="!isError && !isloading">
           <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
           <div class="mb-2" :key="feed.link" v-for="feed in feeds">
-            <Transition name="fade" appear mode="in-out">
+            <Transition name="fade" appear mode="out-in">
               <center v-if="!isloading && tabNav === 2">
                 <a class="title" :href="feed.link.toString()">
                   <div class="card">
@@ -559,7 +559,6 @@ export default {
   .fade-enter-active,
   .fade-leave-active {
     transition: all 0.5s ease;
-    transition-delay: 0.3s;
   }
 
   .fade-enter-from,
