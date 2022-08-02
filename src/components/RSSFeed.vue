@@ -11,7 +11,7 @@
               <a href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
             </div>
             <div class="col-lg-4 d-block d-lg-flex" v-else>
-              <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
+              <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -22,16 +22,16 @@
         </div>
       </div>
       <div class="col-12 text-center">
-        <Transition  v-if="tabNav === 0" name="fade-articles" appear mode="out-in">
-          <h2 :style="{ '--i': count++ }" class="text-secondary mb-3">Sources</h2>
+        <Transition name="fade" appear mode="out-in">
+          <h2 v-if="tabNav === 0" class="text-secondary mb-3">Sources</h2>
         </Transition>
         <div :class="{'':screenWidth < 1200, 'row':screenWidth >= 1200}">
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
           <div :class="{'':screenWidth < 1200, 'col-8':screenWidth >= 1200}">
-            <div v-if="tabNav === 0">
+            <div v-show="tabNav === 0">
               <div v-for="source in sources" :key="source.id" class="d-inline-block">
                 <Transition name="fade" appear mode="out-in">
-                  <center v-if="tabNav === 0" :style="{ '--i': count++ }">
+                  <center v-if="tabNav === 0">
                     <a class="title" @click="forwardNav(source)">
                       <div class="card logo p-0 mb-3 mx-2">
                         <div class="d-inline-block justify-content-center align-items-center">
@@ -45,11 +45,11 @@
             </div>
             <div v-if="!isError && !isloading">
               <Transition name="fade" appear mode="out-in">
-                <h2 :style="{ '--i': count++ }" v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+                <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
               </Transition>
               <div class="mb-2" :key="feed.link" v-for="feed in feeds">
-                <Transition name="fade-articles" appear mode="out-in">
-                  <center v-if="!isloading && tabNav === 2" :style="{ '--i': count++ }">
+                <Transition name="fade" appear mode="out-in">
+                  <center v-if="!isloading && tabNav === 2">
                     <a class="title" :href="feed.link.toString()">
                       <div class="card">
                         <div class="p-3">
@@ -77,12 +77,12 @@
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
           </div>
           <Transition name="fade" appear mode="out-in">
-            <h2 :style="{ '--i': count++ }" v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+            <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
           </Transition>
-          <div v-if="tabNav === 1">
+          <div v-show="tabNav === 1">
               <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
                 <Transition name="fade" appear mode="out-in">
-                  <center v-if="tabNav === 1" :style="{ '--i': count++ }">
+                  <center v-if="tabNav === 1">
                     <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
                       <div class="card tile mb-3 mx-2">
                         <div class="d-inline-block justify-content-center align-items-center m-auto">
@@ -142,7 +142,6 @@ export default {
       topicNavUrl: '',
       topicTitle: '',
       topicTitle2:'',
-      count: 0,
       sources: [
         {
           name: 'Investing.com',
@@ -340,7 +339,7 @@ export default {
   },
   methods: {
     forwardNav(data){
-      this.count = 0;
+      console.log('Iserror ',this.isError)
       if(this.tabNav === 0 && data.topics.length > 1){
         this.topicData = data.topics;
         this.topicNavUrl = data.url;
@@ -358,7 +357,6 @@ export default {
       }
     },
     backwardNav(err){
-      this.count = 0;
       if(this.tabNav === 2 && this.topicData.length === 1){
         return this.tabNav = 0;
       }
@@ -375,7 +373,6 @@ export default {
       return this.screenWidth = window.innerWidth;
     },
     async getRssFeeds(picUrl, payloadUrl, title){
-      this.count = 0;
       this.tabNav = 2;
       this.isError = false;
       this.isloading = true;
@@ -571,14 +568,9 @@ export default {
     }
   }
   
-  .fade-move,
   .fade-enter-active,
   .fade-leave-active {
-    transition: all calc(var(--i) * .001s);
-  }
-  
-  .fade-leave-active {
-    position: absolute;
+    transition: all 0.3s ease-out;
   }
 
   .fade-enter-from,
@@ -592,27 +584,4 @@ export default {
     opacity: 1;
     transform: translateX(10px);
   }
-
-  .fade-articles-move,
-  .fade-articles-enter-active {
-    transition: all calc(var(--i) * .001s);
-  }
-
-  .fade-articles-leave-active {
-    position: absolute;
-  }
-
-  .fade-articles-enter-from,
-  .fade-articles-leave-to {
-    opacity: 0;
-    transform: translateX(-500px);
-  }
-
-  .fade-articles-enter-to,
-  .fade-articles-leave-from {
-    opacity: 1;
-    transform: translateX(10px);
-  }
-
-  
 </style>
