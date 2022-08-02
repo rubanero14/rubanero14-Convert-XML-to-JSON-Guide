@@ -11,20 +11,20 @@
               <a href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
             </div>
             <div class="col-lg-4 d-block d-lg-flex" v-else>
-              <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
+              <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
             </div>
             <div class="col-lg-4"></div>
         </div>
         <hr class="my-3" size="5" noshade/>
       </div>
-      <div class="col-12 text-center">
-        <div v-if="isloading" class="text-center spinner-border text-secondary" role="status">
+      <div class="col-12 text-center" v-if="isloading">
+        <div class="text-center spinner-border text-secondary" role="status">
         </div>
       </div>
       <div class="col-12 text-center">
-        <div>
+        <div v-show="tabNav === 0">
           <div v-for="source in sources" :key="source.id" class="d-inline-block">
-            <Transition name="fade" appear>
+            <Transition name="fade" appear mode="in-out">
               <center v-if="tabNav === 0">
                 <a class="title" @click="forwardNav(source)">
                   <div class="card logo p-0 mb-3 me-2">
@@ -38,12 +38,12 @@
           </div> 
         </div>
         <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
-        <div class="row">
-            <div v-for="topic in topicData" :key="topic.title" class="col-4">
-              <Transition name="fade" appear>
+        <div v-show="tabNav === 1">
+            <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
+              <Transition name="fade" appear mode="in-out">
                 <center v-if="tabNav === 1">
                   <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                    <div class="card tile mb-3">
+                    <div class="card tile mb-3 me-2">
                       <div class="d-inline-block justify-content-center align-items-center m-auto">
                         <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
                         <br/>
@@ -57,10 +57,10 @@
               </Transition>
             </div>
         </div>
-        <div v-if="!isError">
+        <div v-if="!isError && !isloading">
           <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
           <div class="mb-2" :key="feed.link" v-for="feed in feeds">
-            <Transition name="fade" appear>
+            <Transition name="fade" appear mode="in-out">
               <center v-if="!isloading && tabNav === 2">
                 <a class="title" :href="feed.link.toString()">
                   <div class="card">
@@ -85,18 +85,20 @@
             </Transition>
           </div>
         </div>
-        <div class="text-danger" v-else>
+        <div class="text-danger" v-if="isError && !isloading && tabNav === 2">
           <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
           <div v-else class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
+            <div class="col-12">
               <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
               <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
-              <ul class="text-start text-secondary">
-                <li>Click <span class="text-success">Enable Access</span> button below</li>
-                <li>When new window pops up, click <span class="text-success">Request temporary access to the demo server</span> button as per figure above.</li>
+              <ul class="text-center text-secondary">
+                <li>Click <strong class="text-success">Enable Access</strong> button below</li>
+                <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
                 <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
               </ul>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
               <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
                 <i class="bi bi-hdd-rack"></i> 
                 Enable Access
@@ -323,6 +325,7 @@ export default {
   },
   methods: {
     forwardNav(data){
+      console.log('Iserror ',this.isError)
       if(this.tabNav === 0 && data.topics.length > 1){
         this.topicData = data.topics;
         this.topicNavUrl = data.url;
@@ -339,12 +342,14 @@ export default {
         return this.tabNav = 2;
       }
     },
-    backwardNav(){
+    backwardNav(err){
       if(this.tabNav === 2 && this.topicData.length === 1){
         return this.tabNav = 0;
       }
-      if(this.isError){
-        this.isError = false
+      console.log('Iserror ',err)
+      if(err){
+        this.isError = false;
+        console.log('Iserror ',this.isError)
         return this.tabNav = 0;
       }
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
@@ -442,12 +447,17 @@ export default {
 
 <style scoped>
   h1 {
-    font-size: 35px;
+    font-size: 50px;
   }
 
   h2 {
     font-size: 25px;
     font-weight: bold;
+  }
+
+  .tile {
+    min-height: 115px;
+    min-width: 220px;
   }
 
   .right {
@@ -555,12 +565,12 @@ export default {
   .fade-enter-from,
   .fade-leave-to {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(-1000px);
   }
 
   .fade-enter-to,
   .fade-leave-from {
     opacity: 1;
-    transform: translateX(-100px);
+    transform: translateX(100px);
   }
 </style>
