@@ -30,7 +30,7 @@
                 <Transition name="fade" appear mode="out-in">
                   <center v-if="tabNav === 0">
                     <a class="title" @click="forwardNav(source)">
-                      <div class="card logo p-0 mb-3 me-5">
+                      <div class="card logo p-0 mb-3 me-3 me-lg-5">
                         <div class="d-inline-block justify-content-center align-items-center">
                           <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
                         </div>
@@ -77,7 +77,7 @@
                 <Transition name="fade" appear mode="out-in">
                   <center v-if="tabNav === 1">
                     <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                      <div class="card tile mb-3 me-5">
+                      <div class="card tile mb-3 me-3 me-lg-5">
                         <div class="d-inline-block justify-content-center align-items-center m-auto">
                           <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
                           <br/>
