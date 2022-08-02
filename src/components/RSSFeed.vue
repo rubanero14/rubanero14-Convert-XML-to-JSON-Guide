@@ -22,91 +22,97 @@
         </div>
       </div>
       <div class="col-12 text-center">
-        <div v-show="tabNav === 0">
-          <div v-for="source in sources" :key="source.id" class="d-inline-block">
-            <Transition name="fade" appear mode="out-in">
-              <center v-if="tabNav === 0">
-                <a class="title" @click="forwardNav(source)">
-                  <div class="card logo p-0 mb-3 me-2">
-                    <div class="d-inline-block justify-content-center align-items-center">
-                      <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
-                    </div>
-                  </div>
-                </a>
-              </center>
-            </Transition>
-          </div> 
-        </div>
-        <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
-        <div v-show="tabNav === 1">
-            <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
-              <Transition name="fade" appear mode="out-in">
-                <center v-if="tabNav === 1">
-                  <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                    <div class="card tile mb-3 me-2">
-                      <div class="d-inline-block justify-content-center align-items-center m-auto">
-                        <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                        <br/>
-                        <strong class="mb-2">
-                          <span class="text-secondary title">{{ topic.title }}</span>
-                        </strong>
-                      </div>
-                    </div>
-                  </a>
-                </center>
-              </Transition>
-            </div>
-        </div>
-        <div v-if="!isError && !isloading">
-          <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
-          <div class="mb-2" :key="feed.link" v-for="feed in feeds">
-            <Transition name="fade" appear mode="out-in">
-              <center v-if="!isloading && tabNav === 2">
-                <a class="title" :href="feed.link.toString()">
-                  <div class="card">
-                    <div class="p-3">
-                      <div class="row">
-                        <div class="col-9 col-md-11 text-start">
-                          <h3 class="title text-secondary">
-                            <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
-                            <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
-                            <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
-                          </h3>
-                          <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
-                        </div>
-                        <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
-                          <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+        <div :class="{'':screenWidth < 1200, 'row':screenWidth >= 1200}">
+          <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
+          <div :class="{'':screenWidth < 1200, 'col-8':screenWidth >= 1200}">
+            <div v-show="tabNav === 0">
+              <div v-for="source in sources" :key="source.id" class="d-inline-block">
+                <Transition name="fade" appear mode="out-in">
+                  <center v-if="tabNav === 0">
+                    <a class="title" @click="forwardNav(source)">
+                      <div class="card logo p-0 mb-3 me-5">
+                        <div class="d-inline-block justify-content-center align-items-center">
+                          <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </a>
+                  </center>
+                </Transition>
+              </div> 
+            </div>
+            <div v-if="!isError && !isloading">
+              <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+              <div class="mb-2" :key="feed.link" v-for="feed in feeds">
+                <Transition name="fade" appear mode="out-in">
+                  <center v-if="!isloading && tabNav === 2">
+                    <a class="title" :href="feed.link.toString()">
+                      <div class="card">
+                        <div class="p-3">
+                          <div class="row">
+                            <div class="col-9 col-md-11 text-start">
+                              <h3 class="title text-secondary">
+                                <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
+                                <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
+                                <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
+                              </h3>
+                              <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
+                            </div>
+                            <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
+                              <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </center>
+                </Transition>
+              </div>
+            </div>
+          </div>
+          <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
+          </div>
+          <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+          <div v-show="tabNav === 1">
+              <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
+                <Transition name="fade" appear mode="out-in">
+                  <center v-if="tabNav === 1">
+                    <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
+                      <div class="card tile mb-3 me-5">
+                        <div class="d-inline-block justify-content-center align-items-center m-auto">
+                          <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
+                          <br/>
+                          <strong class="mb-2">
+                            <span class="text-secondary title">{{ topic.title }}</span>
+                          </strong>
+                        </div>
+                      </div>
+                    </a>
+                  </center>
+                </Transition>
+              </div>
+          </div>
+          <div class="text-danger" v-if="isError && !isloading && tabNav === 2">
+            <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
+            <div v-else class="row">
+              <div class="col-12">
+                <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
+                <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
+                <ul class="text-center text-secondary">
+                  <li>Click <strong class="text-success">Enable Access</strong> button below</li>
+                  <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
+                  <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
+                </ul>
+              </div>
+              <div class="col-lg-4"></div>
+              <div class="col-lg-4">
+                <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
+                  <i class="bi bi-hdd-rack"></i> 
+                  Enable Access
                 </a>
-              </center>
-            </Transition>
-          </div>
-        </div>
-        <div class="text-danger" v-if="isError && !isloading && tabNav === 2">
-          <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
-          <div v-else class="row">
-            <div class="col-12">
-              <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
-              <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
-              <ul class="text-center text-secondary">
-                <li>Click <strong class="text-success">Enable Access</strong> button below</li>
-                <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
-                <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
-              </ul>
+              </div>
+              <div class="col-lg-4"></div>
             </div>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
-              <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
-                <i class="bi bi-hdd-rack"></i> 
-                Enable Access
-              </a>
-            </div>
-            <div class="col-lg-4"></div>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -318,7 +324,8 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('resize', this.setScreenWidth)
+    window.addEventListener('resize', this.setScreenWidth);
+    this.setScreenWidth();
   },
   unmounted() {
     window.removeEventListener('resize', this.setScreenWidth)
@@ -355,6 +362,7 @@ export default {
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
     },
     setScreenWidth(){
+      console.log(window.innerWidth);
       return this.screenWidth = window.innerWidth;
     },
     async getRssFeeds(picUrl, payloadUrl, title){
@@ -506,8 +514,8 @@ export default {
   }
 
   .card.logo {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
     border-radius: 16px;
   }
 
@@ -532,12 +540,9 @@ export default {
     span.title {
       font-size: 12px;
     }
-  }
-
-  @media only screen and (max-width: 500px) {
     .card.logo {
-      height: 100px;
-      width: 100px;
+      height: 80px;
+      width: 80px;
       border-radius: 4px;
     }
   }
