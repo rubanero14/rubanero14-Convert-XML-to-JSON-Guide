@@ -344,7 +344,11 @@ export default {
       }
     },
     backwardNav(){
-      if(this.tabNav === 2 && this.topicData.length === 1 || this.isError){
+      if(this.tabNav === 2 && this.topicData.length === 1){
+        return this.tabNav = 0;
+      }
+      if(this.isError){
+        this.isError = false
         return this.tabNav = 0;
       }
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
