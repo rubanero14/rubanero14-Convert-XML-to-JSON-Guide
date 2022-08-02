@@ -22,6 +22,9 @@
         </div>
       </div>
       <div class="col-12 text-center">
+        <Transition name="fade" appear mode="out-in">
+          <h2 v-if="tabNav === 0" class="text-secondary mb-3">Sources</h2>
+        </Transition>
         <div :class="{'':screenWidth < 1200, 'row':screenWidth >= 1200}">
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
           <div :class="{'':screenWidth < 1200, 'col-8':screenWidth >= 1200}">
@@ -30,7 +33,7 @@
                 <Transition name="fade" appear mode="out-in">
                   <center v-if="tabNav === 0">
                     <a class="title" @click="forwardNav(source)">
-                      <div class="card logo p-0 mb-3 me-3 me-lg-5">
+                      <div class="card logo p-0 mb-3 mx-2">
                         <div class="d-inline-block justify-content-center align-items-center">
                           <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
                         </div>
@@ -41,7 +44,9 @@
               </div> 
             </div>
             <div v-if="!isError && !isloading">
-              <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+              <Transition name="fade" appear mode="out-in">
+                <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+              </Transition>
               <div class="mb-2" :key="feed.link" v-for="feed in feeds">
                 <Transition name="fade" appear mode="out-in">
                   <center v-if="!isloading && tabNav === 2">
@@ -71,13 +76,15 @@
           </div>
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
           </div>
-          <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+          <Transition name="fade" appear mode="out-in">
+            <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+          </Transition>
           <div v-show="tabNav === 1">
               <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
                 <Transition name="fade" appear mode="out-in">
                   <center v-if="tabNav === 1">
                     <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                      <div class="card tile mb-3 me-3 me-lg-5">
+                      <div class="card tile mb-3 mx-2">
                         <div class="d-inline-block justify-content-center align-items-center m-auto">
                           <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
                           <br/>
