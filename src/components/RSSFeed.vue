@@ -21,13 +21,15 @@
         <div class="row" v-if="tabNav === 0">
           <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
             <center>
-              <a class="title" @click="forwardNav(source)">
-                <div class="card logo p-0">
-                  <div class="d-inline-block justify-content-center align-items-center">
-                    <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+              <transition>
+                <a class="title" @click="forwardNav(source)">
+                  <div class="card logo p-0">
+                    <div class="d-inline-block justify-content-center align-items-center">
+                      <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </transition> 
             </center>
           </div>
         </div>
@@ -458,7 +460,7 @@ export default {
     height: 100%;
     width: 100%;
     margin: 0;
-    border-radius: 0px;
+    border-radius: 4px;
   }
 
   h3.title{
