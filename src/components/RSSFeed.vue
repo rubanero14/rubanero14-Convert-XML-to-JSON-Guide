@@ -29,9 +29,14 @@
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
           <div :class="{'':screenWidth < 1200, 'col-8':screenWidth >= 1200}">
             <div v-show="tabNav === 0">
-              <div v-for="source in sources" :key="source.id" class="d-inline-block">
-                <Transition name="fade" appear mode="out-in">
-                  <center v-if="tabNav === 0">
+              <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
+                <Transition 
+                  :key="index"
+                  name="fade" 
+                  appear 
+                  mode="out-in"
+                >
+                  <center v-if="tabNav === 0" :style="{ '--i':index+1 }">
                     <a class="title" @click="forwardNav(source)">
                       <div class="card logo p-0 mb-3 mx-2">
                         <div class="d-inline-block justify-content-center align-items-center">
@@ -47,9 +52,14 @@
               <Transition name="fade" appear mode="out-in">
                 <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
               </Transition>
-              <div class="mb-2" :key="feed.link" v-for="feed in feeds">
-                <Transition name="fade" appear mode="out-in">
-                  <center v-if="!isloading && tabNav === 2">
+              <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
+                <Transition
+                  :key="index"
+                  name="fade-articles" 
+                  appear 
+                  mode="out-in"
+                >
+                  <center v-if="!isloading && tabNav === 2" :style="{ '--j':index+1 }">
                     <a class="title" :href="feed.link.toString()">
                       <div class="card">
                         <div class="p-3">
@@ -80,9 +90,14 @@
             <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
           </Transition>
           <div v-show="tabNav === 1">
-              <div v-for="topic in topicData" :key="topic.title" class="d-inline-block">
-                <Transition name="fade" appear mode="out-in">
-                  <center v-if="tabNav === 1">
+              <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
+                <Transition
+                 :key="index"
+                  name="fade"
+                  appear 
+                  mode="out-in"
+                >
+                  <center v-if="tabNav === 1" :style="{ '--i':index }">
                     <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
                       <div class="card tile mb-3 mx-2">
                         <div class="d-inline-block justify-content-center align-items-center m-auto">
@@ -360,12 +375,13 @@ export default {
       if(this.tabNav === 2 && this.topicData.length === 1){
         return this.tabNav = 0;
       }
-      console.log('Iserror ',err)
+
       if(err){
         this.isError = false;
         console.log('Iserror ',this.isError)
         return this.tabNav = 0;
       }
+
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
     },
     setScreenWidth(){
@@ -424,7 +440,7 @@ export default {
 
         // Convert UNIX to weeks
         let years = (months / 12);
-        console.log(weeks);
+
         // Elapsed Time output logic
         if(seconds >= 1 && seconds < 60){
           return seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? ' second':' seconds');
@@ -570,7 +586,7 @@ export default {
   
   .fade-enter-active,
   .fade-leave-active {
-    transition: all 0.3s ease-out;
+    transition: all calc(var(--i) * .08s) ease-out;
   }
 
   .fade-enter-from,
@@ -581,6 +597,22 @@ export default {
 
   .fade-enter-to,
   .fade-leave-from {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+
+  .fade-articles-enter-active {
+    transition: all calc(var(--j) * .1s) ease-out;
+  }
+
+  .fade-articles-enter-from,
+  .fade-articles-leave-to {
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+
+  .fade-articles-enter-to,
+  .fade-articles-leave-from {
     opacity: 1;
     transform: translateX(10px);
   }
