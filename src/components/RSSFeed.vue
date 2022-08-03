@@ -1,147 +1,142 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12">
+      <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
+      <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
+        <!-- Header Section -->
         <h1 class="text-secondary mb-3"><strong>RSS Feed</strong></h1>
-      </div>
-      <div class="col-12 text-center">
-        <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4 d-block d-lg-flex" v-if="tabNav === 0">
-              <a href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
-            </div>
-            <div class="col-lg-4 d-block d-lg-flex" v-else>
-              <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
-            </div>
-            <div class="col-lg-4"></div>
-        </div>
+
+        <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
+        
+        <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
+        
         <hr class="my-3" size="5" noshade/>
-      </div>
-      <div class="col-12 text-center" v-if="isloading">
-        <div class="text-center spinner-border text-secondary" role="status">
+        
+        <!-- Loading Spinner Section -->
+        <div v-if="isloading" class="text-center spinner-border text-secondary" role="status">
         </div>
-      </div>
-      <div class="col-12 text-center">
+        
+        <!-- Sources Tiles Section -->
         <Transition name="fade" appear mode="out-in">
           <h2 v-if="tabNav === 0" class="text-secondary mb-3">Sources</h2>
         </Transition>
-        <div :class="{'':screenWidth < 1200, 'row':screenWidth >= 1200}">
-          <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
-          <div :class="{'':screenWidth < 1200, 'col-8':screenWidth >= 1200}">
-            <div v-show="tabNav === 0">
-              <!-- Declaring and assigning index using v-for and use it to assign as key -->
-              <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
-                <Transition 
-                  :key="index"
-                  name="fade" 
-                  appear 
-                  mode="out-in"
-                >
-                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                  <center v-if="tabNav === 0" :style="{ '--i':index+1 }">
-                    <a class="title" @click="forwardNav(source)">
-                      <div class="card logo p-0 mb-3 mx-2">
-                        <div class="d-inline-block justify-content-center align-items-center">
-                          <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
-                        </div>
-                      </div>
-                    </a>
-                  </center>
-                </Transition>
-              </div> 
-            </div>
-            <div v-if="!isError && !isloading">
-              <Transition name="fade" appear mode="out-in">
-                <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
-              </Transition>
-              <!-- Declaring and assigning index using v-for and use it to assign as key -->
-              <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-                <Transition
-                  :key="index"
-                  name="fade-articles" 
-                  appear 
-                  mode="out-in"
-                >
-                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                  <center v-if="!isloading && tabNav === 2" :style="{ '--j':index }">
-                    <a class="title" :href="feed.link.toString()">
-                      <div class="card">
-                        <div class="p-3">
-                          <div class="row">
-                            <div class="col-9 col-md-11 text-start">
-                              <h3 class="title text-secondary">
-                                <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
-                                <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
-                                <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
-                              </h3>
-                              <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
-                            </div>
-                            <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
-                              <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </center>
-                </Transition>
-              </div>
-            </div>
-          </div>
-          <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
-          </div>
-          <Transition name="fade" appear mode="out-in">
-            <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
-          </Transition>
-          <div v-show="tabNav === 1">
-              <!-- Declaring and assigning index using v-for and use it to assign as key -->
-              <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
-                <Transition
-                 :key="index"
-                  name="fade"
-                  appear 
-                  mode="out-in"
-                >
-                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                  <center v-if="tabNav === 1" :style="{ '--i':index }">
-                    <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                      <div class="card tile mb-3 mx-2">
-                        <div class="d-inline-block justify-content-center align-items-center m-auto">
-                          <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                          <br/>
-                          <strong class="mb-2">
-                            <span class="text-secondary title">{{ topic.title }}</span>
-                          </strong>
-                        </div>
-                      </div>
-                    </a>
-                  </center>
-                </Transition>
-              </div>
-          </div>
-          <div class="text-danger" v-if="isError && !isloading && tabNav === 2">
-            <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
-            <div v-else class="row">
-              <div class="col-12">
-                <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
-                <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
-                <ul class="text-center text-secondary">
-                  <li>Click <strong class="text-success">Enable Access</strong> button below</li>
-                  <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
-                  <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
-                </ul>
-              </div>
-              <div class="col-lg-4"></div>
-              <div class="col-lg-4">
-                <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
-                  <i class="bi bi-hdd-rack"></i> 
-                  Enable Access
+        <div v-if="tabNav === 0">
+          <!-- Declaring and assigning index using v-for and use it to assign as key -->
+          <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
+            <Transition 
+              :key="index"
+              name="fade" 
+              mode="out-in"
+            >
+              <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+              <center v-if="tabNav === 0" :style="{ '--i':index+1 }">
+                <a class="title" @click="forwardNav(source)">
+                  <div class="card logo p-0 mb-3 mx-2">
+                    <div class="d-inline-block justify-content-center align-items-center">
+                      <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+                    </div>
+                  </div>
                 </a>
-              </div>
-              <div class="col-lg-4"></div>
-            </div>
+              </center>
+            </Transition>
+          </div> 
+        </div>
+        
+        <!-- Aticles Section -->
+        <div v-if="!isError && !isloading">
+          <Transition name="fade" appear mode="out-in">
+            <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+          </Transition>
+          <!-- Declaring and assigning index using v-for and use it to assign as key -->
+          <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
+            <Transition
+              :key="index"
+              appear
+              name="fade-articles"
+              mode="out-in"
+            >
+              <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+              <center v-if="!isloading && tabNav === 2" :style="{ '--j':index }">
+                <a class="title" :href="feed.link.toString()">
+                  <div class="card">
+                    <div class="p-3">
+                      <div class="row">
+                        <div class="col-9 col-md-11 text-start">
+                          <h3 class="title text-secondary">
+                            <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
+                            <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
+                            <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
+                          </h3>
+                          <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
+                        </div>
+                        <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
+                          <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </center>
+            </Transition>
           </div>
+        </div>
+        
+        <!-- Topic Tiles Section -->
+        <Transition name="fade" appear mode="out-in">
+          <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+        </Transition>
+        <div v-if="tabNav === 1">
+            <!-- Declaring and assigning index using v-for and use it to assign as key -->
+            <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
+              <Transition
+                :key="index"
+                appear
+                name="fade"
+                mode="out-in"
+              >
+                <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+                <center v-if="tabNav === 1" :style="{ '--i':index }">
+                  <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
+                    <div class="card tile mb-3 mx-2">
+                      <div class="d-inline-block justify-content-center align-items-center m-auto">
+                        <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
+                        <br/>
+                        <strong class="mb-2">
+                          <span class="text-secondary title">{{ topic.title }}</span>
+                        </strong>
+                      </div>
+                    </div>
+                  </a>
+                </center>
+              </Transition>
+            </div>
+        </div>
+
+        <!-- Error Output Section -->
+        <div class="text-danger" v-if="isError && !isloading && tabNav === 2">
+          <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
+          <div v-else class="row">
+            <div class="col-12">
+              <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
+              <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
+              <ul class="text-center text-secondary">
+                <li>Click <strong class="text-success">Enable Access</strong> button below</li>
+                <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
+                <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
+              </ul>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+              <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
+                <i class="bi bi-hdd-rack"></i> 
+                Enable Access
+              </a>
+            </div>
+            <div class="col-lg-4"></div>
+          </div>
+        </div>
       </div>
+      <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
   </div>
 </template>
@@ -415,7 +410,7 @@ export default {
   /* Declared variable --i is used to dynamically calculate transition time */
   .fade-enter-active,
   .fade-leave-active {
-    transition: all calc(var(--i) * .25s) ease-out;
+    transition: all calc(var(--i) * .3s) ease-out;
   }
 
   .fade-enter-from,
@@ -432,7 +427,11 @@ export default {
 
   /* Declared variable --j is used to dynamically calculate transition time */
   .fade-articles-enter-active {
-    transition: all calc(var(--j) * .25s) ease-out;
+    transition: all calc(var(--j) * .3s) ease-out;
+  }
+
+  .fade-articles-leave-active {
+    transition: all calc(var(--j) * .07s) ease-out;
   }
 
   .fade-articles-enter-from,
