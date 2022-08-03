@@ -29,6 +29,7 @@
           <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
           <div :class="{'':screenWidth < 1200, 'col-8':screenWidth >= 1200}">
             <div v-show="tabNav === 0">
+              <!-- Declaring and assigning index using v-for and use it to assign as key -->
               <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
                 <Transition 
                   :key="index"
@@ -36,6 +37,7 @@
                   appear 
                   mode="out-in"
                 >
+                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
                   <center v-if="tabNav === 0" :style="{ '--i':index+1 }">
                     <a class="title" @click="forwardNav(source)">
                       <div class="card logo p-0 mb-3 mx-2">
@@ -52,6 +54,7 @@
               <Transition name="fade" appear mode="out-in">
                 <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
               </Transition>
+              <!-- Declaring and assigning index using v-for and use it to assign as key -->
               <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
                 <Transition
                   :key="index"
@@ -59,6 +62,7 @@
                   appear 
                   mode="out-in"
                 >
+                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
                   <center v-if="!isloading && tabNav === 2" :style="{ '--j':index+1 }">
                     <a class="title" :href="feed.link.toString()">
                       <div class="card">
@@ -90,6 +94,7 @@
             <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
           </Transition>
           <div v-show="tabNav === 1">
+              <!-- Declaring and assigning index using v-for and use it to assign as key -->
               <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
                 <Transition
                  :key="index"
@@ -97,6 +102,7 @@
                   appear 
                   mode="out-in"
                 >
+                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
                   <center v-if="tabNav === 1" :style="{ '--i':index }">
                     <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
                       <div class="card tile mb-3 mx-2">
@@ -406,6 +412,7 @@ export default {
     }
   }
   
+  /* Declared variable --i is used to dynamically calculate transition time */
   .fade-enter-active,
   .fade-leave-active {
     transition: all calc(var(--i) * .08s) ease-out;
@@ -423,6 +430,7 @@ export default {
     transform: translateX(10px);
   }
 
+  /* Declared variable --j is used to dynamically calculate transition time */
   .fade-articles-enter-active {
     transition: all calc(var(--j) * .1s) ease-out;
   }
