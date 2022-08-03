@@ -1,112 +1,151 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <h1 class="text-secondary mb-3"><strong>RSS Feed</strong></h1>
-      </div>
-      <div class="col-12 text-center">
-        <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4 d-block d-lg-flex" v-if="tabNav === 0">
-              <a href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
-            </div>
-            <div class="col-lg-4 d-block d-lg-flex" v-else>
-              <button v-if="tabNav > 0" @click="backwardNav()" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
-            </div>
-            <div class="col-lg-4"></div>
-        </div>
+      <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
+      <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
+        <!-- Header Section -->
+        <h1 class="text-secondary mb-3"><strong>RSS Feed - Vue 3</strong></h1>
+
+        <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
+        
+        <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
+        
         <hr class="my-3" size="5" noshade/>
-      </div>
-      <div class="col-12 text-center">
-        <div class="row" v-if="tabNav === 0">
-          <div v-for="source in sources" :key="source.id" class="col-4 mb-3">
-            <a class="title" @click="forwardNav(source)">
-              <div class="card tile">
-                <div class="d-inline-block justify-content-center align-items-center m-auto">
-                  <img :src="source.url" onerror="this.src='https://rss.com/favicon.ico'"/>
-                  <br/>
-                  <strong class="mb-2">
-                    <span class="text-secondary title">{{ source.name }}</span>
-                  </strong>
-                </div>
-              </div>
-            </a>
-          </div>
+        
+        <!-- Loading Spinner Section -->
+        <div v-if="isloading" class="text-center spinner-border text-secondary" role="status">
         </div>
-      </div>
-      <div class="col-12" v-if="tabNav === 1">
-        <h2 class="text-secondary mb-3">{{ topicTitle }}</h2>
-        <div class="row">
-            <div v-for="topic in topicData" :key="topic.title" class="col-4 mb-3">
-              <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                <div class="card tile">
-                  <div class="d-inline-block justify-content-center align-items-center m-auto">
-                    <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                    <br/>
-                    <strong class="mb-2">
-                      <span class="text-secondary title">{{ topic.title }}</span>
-                    </strong>
+        
+        <!-- Sources Tiles Section -->
+        <Transition name="fade" appear mode="out-in">
+          <h2 v-if="tabNav === 0" class="text-secondary mb-3">Sources</h2>
+        </Transition>
+        <div v-if="tabNav === 0">
+          <!-- Declaring and assigning index using v-for and use it to assign as key -->
+          <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
+            <Transition 
+              appear
+              :key="index"
+              name="fade" 
+              mode="out-in"
+            >
+              <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+              <center v-if="tabNav === 0" :style="{ '--i':index }">
+                <a class="title" @click="forwardNav(source)">
+                  <div class="card logo p-0 mb-3 mx-2">
+                    <div class="d-inline-block justify-content-center align-items-center">
+                      <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </div>
-          </div>
-      </div>
-      <div class="col-12">
-        <div v-if="isloading" class="spinner-border text-secondary" role="status">
+                </a>
+              </center>
+            </Transition>
+          </div> 
         </div>
-        <div v-else-if="tabNav === 2">
-          <div v-if="!isError">
-            <h2 class="text-secondary mb-3">{{ topicTitle2 }}</h2>
-            <div class="mb-2" :key="feed.link" v-for="feed in feeds">
-              <a class="title" :href="feed.link.toString()">
-                <div class="card">
-                  <div class="p-3">
-                    <div class="row">
-                      <div class="col-9 col-md-11 text-start">
-                        <h3 class="title text-secondary">
-                          <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
-                          <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
-                          <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
-                        </h3>
-                        <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
-                      </div>
-                      <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
-                        <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+        
+        <!-- Aticles Section -->
+        <div v-if="!isError && !isloading">
+          <Transition name="fade" appear mode="out-in">
+            <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+          </Transition>
+          <!-- Declaring and assigning index using v-for and use it to assign as key -->
+          <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
+            <Transition
+              :key="index"
+              appear
+              name="fade-articles"
+              mode="out-in"
+            >
+              <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+              <center v-if="!isloading && tabNav === 2" :style="{ '--j':index }">
+                <a class="title" :href="feed.link.toString()">
+                  <div class="card">
+                    <div class="p-3">
+                      <div class="row">
+                        <div class="col-9 col-md-11 text-start">
+                          <h3 class="title text-secondary">
+                            <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
+                            <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
+                            <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
+                          </h3>
+                          <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
+                        </div>
+                        <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
+                          <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </center>
+            </Transition>
+          </div>
+        </div>
+        
+        <!-- Topic Tiles Section -->
+        <Transition name="fade" appear mode="out-in">
+          <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+        </Transition>
+        <div v-if="tabNav === 1">
+            <!-- Declaring and assigning index using v-for and use it to assign as key -->
+            <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
+              <Transition
+                :key="index"
+                appear
+                name="fade"
+                mode="out-in"
+              >
+                <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+                <center v-if="tabNav === 1" :style="{ '--i':index }">
+                  <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
+                    <div class="card tile mb-3 mx-2">
+                      <div class="d-inline-block justify-content-center align-items-center m-auto">
+                        <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
+                        <br/>
+                        <strong class="mb-2">
+                          <span class="text-secondary title">{{ topic.title }}</span>
+                        </strong>
+                      </div>
+                    </div>
+                  </a>
+                </center>
+              </Transition>
+            </div>
+        </div>
+
+        <!-- Error Output Section -->
+        <div class="text-danger" v-if="isError && !isloading && tabNav === 2">
+          <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
+          <div v-else class="row">
+            <div class="col-12">
+              <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
+              <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
+              <ul class="text-center text-secondary">
+                <li>Click <strong class="text-success">Enable Access</strong> button below</li>
+                <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
+                <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
+              </ul>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+              <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
+                <i class="bi bi-hdd-rack"></i> 
+                Enable Access
               </a>
             </div>
-          </div>
-          <div class="text-danger" v-else>
-            <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
-            <div v-else class="row">
-              <div class="col-lg-4"></div>
-              <div class="col-lg-4">
-                <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
-                <ul class="text-start text-secondary">
-                  <li>Click <span class="text-danger">Enable CORS</span> button below</li>
-                  <li>When new window pops up, click <span class="text-success">Request temporary access to the demo server</span> button</li>
-                  <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
-                </ul>
-                <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-danger w-100 mb-3 me-md-2" target="_blank">
-                  <i class="bi bi-hdd-rack"></i> 
-                  Enable CORS
-                </a>
-              </div>
-              <div class="col-lg-4"></div>
-            </div>
+            <div class="col-lg-4"></div>
           </div>
         </div>
       </div>
+      <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import sources from '@/assets/sources.js';
+
 const xml2js = require('xml2js');
 
 export default {
@@ -122,176 +161,7 @@ export default {
       topicNavUrl: '',
       topicTitle: '',
       topicTitle2:'',
-      sources: [
-        {
-          name: 'Investing.com',
-          url: 'https://www.investing.com/favicon.ico',
-          topics: [
-            {
-              title: "Economy News",
-              url: "https://www.investing.com/rss/news_14.rss",
-            },
-            {
-              title: "Stock Market News",
-              url: "https://www.investing.com/rss/news_25.rss",
-            },
-            {
-              title: "ETF News",
-              url: "https://www.investing.com/rss/stock_ETFs.rss",
-            },
-            {
-              title: "Foreign Exchange News",
-              url: "https://www.investing.com/rss/news_1.rss",
-            },
-          ],
-        },
-        {
-          name: 'Finance Asia',
-          url: 'https://www.financeasia.com/favicon.ico',
-          topics: [
-            {
-              title: "Markets",
-              url: "https://www.financeasia.com/rss/category/markets",
-            },
-            {
-              title: "Debt",
-              url: "https://www.financeasia.com/rss/category/debt",
-            },
-            {
-              title: "Equity",
-              url: "https://www.financeasia.com/rss/category/equity",
-            },
-            {
-              title: "Debt Research",
-              url: "https://www.financeasia.com/rss/category/debt-research",
-            },
-          ]
-        },
-        {
-          name: 'Trading Economics',
-          url: 'https://tradingeconomics.com/favicon.ico',
-          topics: [
-            {
-              title: "Consumer Price Index (CPI)",
-              url: "https://tradingeconomics.com/rss/news.aspx?i=consumer+price+index+cpi",
-            },
-            {
-              title: "Core Inflation Rate",
-              url: "https://tradingeconomics.com/rss/news.aspx?i=core+inflation+rate",
-            },
-            {
-              title: "Unemployment Change",
-              url: "https://tradingeconomics.com/rss/news.aspx?i=unemployment+change",
-            },
-            {
-              title: "Retail Sales (MoM)",
-              url: "https://tradingeconomics.com/rss/news.aspx?i=retail+sales+mom",
-            },
-            {
-              title: "Non-Farm Payroll (US)",
-              url: "https://tradingeconomics.com/rss/news.aspx?i=nonfarm+payrolls+private",
-            },
-            {
-              title: "Interest Rate",
-              url: "https://tradingeconomics.com/rss/news.aspx?i=interest+rate",
-            },
-            {
-              title: "Weapons Sales",
-              url: "https://tradingeconomics.com/rss/news.aspx?i=weapons+sales",
-            },
-          ],
-        },
-        {
-          name: "Seeking Alpha",
-          url: 'https://seekingalpha.com/samw/static/images/favicon-32x32.png',
-          topics: [
-            {
-              title: 'Breaking News',
-              url: 'https://seekingalpha.com/market_currents.xml'
-            },
-            {
-              title: "Editor's Picks",
-              url: 'https://seekingalpha.com/tag/editors-picks.xml'
-            },
-            {
-              title: "IPO Analysis",
-              url: 'https://seekingalpha.com/tag/ipo-analysis.xml'
-            },
-            {
-              title: "Transcripts",
-              url: 'https://seekingalpha.com/sector/transcripts.xml'
-            },
-            {
-              title: "Wall Street Breakfast",
-              url: 'https://seekingalpha.com/tag/wall-st-breakfast.xml'
-            },
-            {
-              title: "ETFs & Portfolio Strategy",
-              url: 'https://seekingalpha.com/tag/etf-portfolio-strategy.xml'
-            }
-          ]
-        },
-        {
-          name: "CNN",
-          url: 'https://edition.cnn.com/favicon.ico',
-          topics: [
-            {
-              title: "CNN World",
-              url: 'http://rss.cnn.com/rss/cnn_latest.rss'
-            },
-          ]
-        },
-        {
-          name: 'CNBC',
-          url: 'https://www.cnbc.com/favicon.ico',
-          topics: [
-            {
-              title: "Investing News",
-              url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069",
-            },
-          ],
-        },
-        {
-          name: 'Yahoo Finance',
-          url: 'https://finance.yahoo.com/favicon.ico',
-          topics: [
-            {
-              title: "Finance News",
-              url: "https://finance.yahoo.com/news/rssindex",
-            },
-          ],
-        },
-        {
-          name: 'MarketWatch',
-          url: 'https://www.marketwatch.com/favicon.ico',
-          topics: [
-            {
-              title: "Real-time Headlines",
-              url: "http://feeds.marketwatch.com/marketwatch/realtimeheadlines",
-            },
-          ],
-        },
-        {
-          name: 'S&P Global',
-          url: 'https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico',
-          topics: [
-            {
-              title: "Corporate News",
-              url: "https://www.spglobal.com/spdji/en/rss/rss-details/?rssFeedName=corporate-news",
-            },
-          ],
-        },
-        {
-          name: 'Nasdaq',
-          url: 'https://www.nasdaq.com/favicon.ico',
-          topics: [
-            {
-              title: "Nasdaq Original Feed",
-              url: "https://www.nasdaq.com/feed/nasdaq-original/rss.xml",
-            },
-          ],
-        }
-      ],
+      sources: sources,
     };
   },
   watch: {
@@ -301,7 +171,8 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('resize', this.setScreenWidth)
+    window.addEventListener('resize', this.setScreenWidth);
+    this.setScreenWidth();
   },
   unmounted() {
     window.removeEventListener('resize', this.setScreenWidth)
@@ -324,13 +195,21 @@ export default {
         return this.tabNav = 2;
       }
     },
-    backwardNav(){
-      if(this.tabNav === 2 && this.topicData.length === 1 || this.isError){
+    backwardNav(err){
+      if(this.tabNav === 2 && this.topicData.length === 1){
         return this.tabNav = 0;
       }
+
+      if(err){
+        this.isError = false;
+        console.log('Iserror ',this.isError)
+        return this.tabNav = 0;
+      }
+
       return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
     },
     setScreenWidth(){
+      console.log(window.innerWidth);
       return this.screenWidth = window.innerWidth;
     },
     async getRssFeeds(picUrl, payloadUrl, title){
@@ -385,7 +264,7 @@ export default {
 
         // Convert UNIX to weeks
         let years = (months / 12);
-        console.log(weeks);
+
         // Elapsed Time output logic
         if(seconds >= 1 && seconds < 60){
           return seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? ' second':' seconds');
@@ -423,12 +302,17 @@ export default {
 
 <style scoped>
   h1 {
-    font-size: 35px;
+    font-size: 50px;
   }
 
   h2 {
     font-size: 25px;
     font-weight: bold;
+  }
+
+  .tile {
+    min-height: 115px;
+    min-width: 220px;
   }
 
   .right {
@@ -442,6 +326,13 @@ export default {
   img {
     margin: 5px auto;
     width: 35px;
+    border-radius: 4px;
+  }
+
+  img.logo {
+    height: 100%;
+    width: 100%;
+    margin: 0;
     border-radius: 4px;
   }
 
@@ -466,18 +357,25 @@ export default {
     cursor: pointer;
     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
     border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .card.logo {
+    height: 120px;
+    width: 120px;
+    border-radius: 8px;
   }
 
   .card:hover {
     background: rgba(0,0,0,.05);
   }
 
-  .tile {
-    min-height: 108px;
+  .card.logo:hover {
+    box-shadow: 0px 2px 8px 8px rgb(0 0 0 / 20%)
   }
 
-  ul {
-    list-style: inherit;
+  .tile {
+    min-height: 108px;
   }
 
   .err {
@@ -486,8 +384,73 @@ export default {
   }
 
   @media only screen and (max-width: 600px) {
-  span.title {
-    font-size: 12px;
+    span.title {
+      font-size: 12px;
+    }
+    .card.logo {
+      height: 80px;
+      width: 80px;
+      border-radius: 4px;
+    }
   }
-}
+
+  @media only screen and (max-width: 400px) {
+    .card.logo {
+      height: 70px;
+      width: 70px;
+    }
+  }
+
+  @media only screen and (max-width: 300px) {
+    .card.logo {
+      height: 60px;
+      width: 60px;
+    }
+  }
+  
+  /* Declared variable --i is used to dynamically calculate transition time */
+  .fade-enter-active {
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--i) * 0.08s);
+  }
+
+  .fade-leave-active {
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--i) * 0.08s);
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+
+  .fade-enter-to,
+  .fade-leave-from {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+
+  /* Declared variable --j is used to dynamically calculate transition time */
+  .fade-articles-enter-active {
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--j) * 0.12s);
+  }
+
+  .fade-articles-leave-active {
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--j) * 0.1s);
+  }
+
+  .fade-articles-enter-from,
+  .fade-articles-leave-to {
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+
+  .fade-articles-enter-to,
+  .fade-articles-leave-from {
+    opacity: 1;
+    transform: translateX(10px);
+  }
 </style>
