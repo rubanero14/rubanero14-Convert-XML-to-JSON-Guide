@@ -30,7 +30,7 @@
               mode="out-in"
             >
               <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-              <center v-if="tabNav === 0" :style="{ '--i':index+1 }">
+              <center v-if="tabNav === 0" :style="{ '--i':index }">
                 <a class="title" @click="forwardNav(source)">
                   <div class="card logo p-0 mb-3 mx-2">
                     <div class="d-inline-block justify-content-center align-items-center">
