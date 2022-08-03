@@ -4,7 +4,7 @@
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
         <!-- Header Section -->
-        <h1 class="text-secondary mb-3"><strong>RSS Feed</strong></h1>
+        <h1 class="text-secondary mb-3"><strong>RSS Feed - Vue 3</strong></h1>
 
         <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
         
