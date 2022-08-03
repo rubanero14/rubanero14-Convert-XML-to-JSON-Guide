@@ -2,7 +2,7 @@ const sources = [
     {
       name: 'Investing.com',
       url: 'https://www.investing.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/in-logo.jpg',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/in-logo.jpg',
       topics: [
         {
           title: "Economy News",
@@ -25,7 +25,7 @@ const sources = [
     {
       name: 'Finance Asia',
       url: 'https://www.financeasia.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/fa-logo.jpg',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/fa-logo.jpg',
       topics: [
         {
           title: "Markets",
@@ -48,7 +48,7 @@ const sources = [
     {
       name: 'Trading Economics',
       url: 'https://tradingeconomics.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/te-logo.jfif',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/te-logo.jfif',
       topics: [
         {
           title: "Consumer Price Index (CPI)",
@@ -83,7 +83,7 @@ const sources = [
     {
       name: "Seeking Alpha",
       url: 'https://seekingalpha.com/samw/static/images/favicon-32x32.png',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/sa-logo.webp',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/sa-logo.webp',
       topics: [
         {
           title: 'Breaking News',
@@ -114,7 +114,7 @@ const sources = [
     {
       name: "CNN",
       url: 'https://edition.cnn.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/cnn-logo.png',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/cnn-logo.png',
       topics: [
         {
           title: "CNN World",
@@ -125,7 +125,7 @@ const sources = [
     {
       name: 'CNBC',
       url: 'https://www.cnbc.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/cnbc-logo.png',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/cnbc-logo.png',
       topics: [
         {
           title: "Investing News",
@@ -136,7 +136,7 @@ const sources = [
     {
       name: 'Yahoo Finance',
       url: 'https://finance.yahoo.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/yf-logo.jpg',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/yf-logo.jpg',
       topics: [
         {
           title: "Finance News",
@@ -147,7 +147,7 @@ const sources = [
     {
       name: 'MarketWatch',
       url: 'https://www.marketwatch.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/mw-logo.png',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/mw-logo.png',
       topics: [
         {
           title: "Real-time Headlines",
@@ -158,7 +158,7 @@ const sources = [
     {
       name: 'S&P Global',
       url: 'https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/sp-logo.png',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/sp-logo.png',
       topics: [
         {
           title: "Corporate News",
@@ -169,7 +169,7 @@ const sources = [
     {
       name: 'Nasdaq',
       url: 'https://www.nasdaq.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype/nq-logo.png',
+      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/nq-logo.png',
       topics: [
         {
           title: "Nasdaq Original Feed",
