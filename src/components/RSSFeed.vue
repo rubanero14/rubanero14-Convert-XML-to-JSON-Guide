@@ -63,7 +63,7 @@
                   mode="out-in"
                 >
                   <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                  <center v-if="!isloading && tabNav === 2" :style="{ '--j':index+1 }">
+                  <center v-if="!isloading && tabNav === 2" :style="{ '--j':index }">
                     <a class="title" :href="feed.link.toString()">
                       <div class="card">
                         <div class="p-3">
@@ -415,7 +415,7 @@ export default {
   /* Declared variable --i is used to dynamically calculate transition time */
   .fade-enter-active,
   .fade-leave-active {
-    transition: all calc(var(--i) * .08s) ease-out;
+    transition: all calc(var(--i) * .25s) ease-out;
   }
 
   .fade-enter-from,
@@ -432,7 +432,7 @@ export default {
 
   /* Declared variable --j is used to dynamically calculate transition time */
   .fade-articles-enter-active {
-    transition: all calc(var(--j) * .1s) ease-out;
+    transition: all calc(var(--j) * .25s) ease-out;
   }
 
   .fade-articles-enter-from,
