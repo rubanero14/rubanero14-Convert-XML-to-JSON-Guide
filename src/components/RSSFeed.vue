@@ -354,7 +354,6 @@ export default {
   },
   methods: {
     forwardNav(data){
-      console.log('Iserror ',this.isError)
       if(this.tabNav === 0 && data.topics.length > 1){
         this.topicData = data.topics;
         this.topicNavUrl = data.url;
