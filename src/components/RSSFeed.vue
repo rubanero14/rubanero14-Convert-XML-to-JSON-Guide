@@ -17,34 +17,36 @@
         </div>
         
         <!-- Sources Tiles Section -->
-        <Transition name="fade" appear mode="out-in">
-          <h2 v-if="tabNav === 0" class="text-secondary mb-3">Sources</h2>
-        </Transition>
-        <div v-if="tabNav === 0">
-          <!-- Declaring and assigning index using v-for and use it to assign as key -->
-          <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
-            <Transition 
-              appear
-              :key="index"
-              name="fade" 
-              mode="out-in"
-            >
-              <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-              <center v-if="tabNav === 0" :style="{ '--i':index }">
-                <a class="title" @click="forwardNav(source)">
-                  <div class="card logo p-0 mb-3 mx-2">
-                    <div class="d-inline-block justify-content-center align-items-center">
-                      <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+        <div>
+          <Transition name="fade" appear mode="out-in">
+            <h2  v-if="!isloading && tabNav === 0" class="text-secondary mb-3">Sources</h2>
+          </Transition>
+          <div>
+            <!-- Declaring and assigning index using v-for and use it to assign as key -->
+            <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
+              <Transition 
+                appear
+                :key="index"
+                name="fade" 
+                mode="out-in"
+              >
+                <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+                <center  v-if="!isloading && tabNav === 0" :style="{ '--i':index }">
+                  <a class="title" @click="forwardNav(source)">
+                    <div class="card logo p-0 mb-3 mx-2">
+                      <div class="d-inline-block justify-content-center align-items-center">
+                        <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </center>
-            </Transition>
-          </div> 
+                  </a>
+                </center>
+              </Transition>
+            </div> 
+          </div>
         </div>
         
-        <!-- Aticles Section -->
-        <div v-if="!isError && !isloading">
+        <!-- Articles Section -->
+        <div>
           <Transition name="fade" appear mode="out-in">
             <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
           </Transition>
@@ -83,34 +85,36 @@
         </div>
         
         <!-- Topic Tiles Section -->
-        <Transition name="fade" appear mode="out-in">
-          <h2 v-if="tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
-        </Transition>
-        <div v-if="tabNav === 1">
-            <!-- Declaring and assigning index using v-for and use it to assign as key -->
-            <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
-              <Transition
-                :key="index"
-                appear
-                name="fade"
-                mode="out-in"
-              >
-                <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                <center v-if="tabNav === 1" :style="{ '--i':index }">
-                  <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                    <div class="card tile mb-3 mx-2">
-                      <div class="d-inline-block justify-content-center align-items-center m-auto">
-                        <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                        <br/>
-                        <strong class="mb-2">
-                          <span class="text-secondary title">{{ topic.title }}</span>
-                        </strong>
+        <div>
+          <Transition name="fade" appear mode="out-in">
+            <h2 v-if="!isloading && tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+          </Transition>
+          <div>
+              <!-- Declaring and assigning index using v-for and use it to assign as key -->
+              <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
+                <Transition
+                  :key="index"
+                  appear
+                  name="fade"
+                  mode="out-in"
+                >
+                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+                  <center v-if="!isloading && tabNav === 1" :style="{ '--i':index }">
+                    <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
+                      <div class="card tile mb-3 mx-2">
+                        <div class="d-inline-block justify-content-center align-items-center m-auto">
+                          <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
+                          <br/>
+                          <strong class="mb-2">
+                            <span class="text-secondary title">{{ topic.title }}</span>
+                          </strong>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </center>
-              </Transition>
-            </div>
+                    </a>
+                  </center>
+                </Transition>
+              </div>
+          </div>
         </div>
 
         <!-- Error Output Section -->
@@ -411,18 +415,22 @@ export default {
   /* Declared variable --i is used to dynamically calculate transition time */
   .fade-enter-active {
     transition: all 0.2s ease-out;
-    transition-delay: calc(var(--i) * 0.08s);
+    transition-delay: calc(var(--i) * 0.02s);
   }
 
   .fade-leave-active {
     transition: all 0.2s ease-out;
-    transition-delay: calc(var(--i) * 0.08s);
+    transition-delay: calc(var(--i) * 0.01s);
   }
 
-  .fade-enter-from,
+  .fade-enter-from {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+
   .fade-leave-to {
     opacity: 0;
-    transform: translateX(-500px);
+    transform: translateX(1000px);
   }
 
   .fade-enter-to,
@@ -434,18 +442,22 @@ export default {
   /* Declared variable --j is used to dynamically calculate transition time */
   .fade-articles-enter-active {
     transition: all 0.2s ease-out;
-    transition-delay: calc(var(--j) * 0.12s);
+    transition-delay: calc(var(--j) * 0.02s);
   }
 
   .fade-articles-leave-active {
     transition: all 0.2s ease-out;
-    transition-delay: calc(var(--j) * 0.1s);
+    transition-delay: calc(var(--j) * 0.01s);
   }
 
-  .fade-articles-enter-from,
+  .fade-articles-enter-from {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+
   .fade-articles-leave-to {
     opacity: 0;
-    transform: translateX(-500px);
+    transform: translateX(1000px);
   }
 
   .fade-articles-enter-to,
