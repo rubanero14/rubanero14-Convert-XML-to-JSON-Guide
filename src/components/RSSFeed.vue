@@ -361,7 +361,7 @@ export default {
   .card.logo {
     height: 120px;
     width: 120px;
-    border-radius: 16px;
+    border-radius: 8px;
   }
 
   .card:hover {
