@@ -24,6 +24,7 @@
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
             <Transition 
+              appear
               :key="index"
               name="fade" 
               mode="out-in"
@@ -408,9 +409,14 @@ export default {
   }
   
   /* Declared variable --i is used to dynamically calculate transition time */
-  .fade-enter-active,
+  .fade-enter-active {
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--i) * 0.12s);
+  }
+
   .fade-leave-active {
-    transition: all calc(var(--i) * .3s) ease-out;
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--i) * 0.1s);
   }
 
   .fade-enter-from,
@@ -427,11 +433,13 @@ export default {
 
   /* Declared variable --j is used to dynamically calculate transition time */
   .fade-articles-enter-active {
-    transition: all calc(var(--j) * .3s) ease-out;
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--j) * 0.12s);
   }
 
   .fade-articles-leave-active {
-    transition: all calc(var(--j) * .07s) ease-out;
+    transition: all 0.2s ease-out;
+    transition-delay: calc(var(--j) * 0.1s);
   }
 
   .fade-articles-enter-from,
