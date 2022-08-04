@@ -17,33 +17,36 @@
         </div>
         
         <!-- Sources Tiles Section -->
-        <div>
-          <Transition name="fade" appear mode="out-in">
-            <h2  v-if="!isloading && tabNav === 0" class="text-secondary mb-3">Sources</h2>
-          </Transition>
+        <Transition name="card-fade" appear mode="out-in">
           <div>
-            <!-- Declaring and assigning index using v-for and use it to assign as key -->
-            <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
-              <Transition 
-                appear
-                :key="index"
-                name="fade" 
-                mode="out-in"
-              >
-                <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                <center  v-if="!isloading && tabNav === 0" :style="{ '--i':index }">
-                  <a class="title" @click="forwardNav(source)">
-                    <div class="card logo p-0 mb-3 mx-2">
-                      <div class="d-inline-block justify-content-center align-items-center">
-                        <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+            <Transition name="fade" appear mode="out-in">
+              <h2  v-if="!isloading && tabNav === 0" class="text-secondary mb-3">Sources</h2>
+            </Transition>
+            <div>
+              <!-- Declaring and assigning index using v-for and use it to assign as key -->
+              <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
+                <Transition 
+                  appear
+                  :key="index"
+                  name="fade" 
+                  mode="out-in"
+                >
+                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+                  <center  v-if="!isloading && tabNav === 0" :style="{ '--i':index }">
+                    <a class="title" @click="forwardNav(source)">
+                      <div class="card logo p-0 mb-3 mx-2">
+                        <div class="d-inline-block justify-content-center align-items-center">
+                          <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </center>
-              </Transition>
-            </div> 
+                    </a>
+                  </center>
+                </Transition>
+              </div> 
+            </div>
           </div>
-        </div>
+        </Transition>
+        
         
         <!-- Articles Section -->
         <div style="margin-top: -20px;">
@@ -85,38 +88,40 @@
         </div>
         
         <!-- Topic Tiles Section -->
-        <div style="margin-top: -20px;">
-          <Transition name="fade" appear mode="out-in">
-            <h2 v-if="!isloading && tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
-          </Transition>
-          <div>
-              <!-- Declaring and assigning index using v-for and use it to assign as key -->
-              <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
-                <Transition
-                  :key="index"
-                  appear
-                  name="fade"
-                  mode="out-in"
-                >
-                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                  <center v-if="!isloading && tabNav === 1" :style="{ '--i':index }">
-                    <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                      <div class="card tile mb-3 mx-2">
-                        <div class="d-inline-block justify-content-center align-items-center m-auto">
-                          <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                          <br/>
-                          <strong class="mb-2">
-                            <span class="text-secondary title">{{ topic.title }}</span>
-                          </strong>
-                        </div>
-                      </div>
-                    </a>
-                  </center>
-                </Transition>
+        <Transition name="card-fade" appear mode="out-in">
+            <div style="margin-top: -20px;">
+              <Transition name="fade" appear mode="out-in">
+                <h2 v-if="!isloading && tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
+              </Transition>
+              <div>
+                  <!-- Declaring and assigning index using v-for and use it to assign as key -->
+                  <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
+                    <Transition
+                      :key="index"
+                      appear
+                      name="fade"
+                      mode="out-in"
+                    >
+                      <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+                      <center v-if="!isloading && tabNav === 1" :style="{ '--i':index }">
+                        <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
+                          <div class="card tile mb-3 mx-2">
+                            <div class="d-inline-block justify-content-center align-items-center m-auto">
+                              <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
+                              <br/>
+                              <strong class="mb-2">
+                                <span class="text-secondary title">{{ topic.title }}</span>
+                              </strong>
+                            </div>
+                          </div>
+                        </a>
+                      </center>
+                    </Transition>
+                  </div>
               </div>
-          </div>
-        </div>
-
+            </div>
+        </Transition>
+        
         <!-- Error Output Section -->
         <div style="margin-top: -30px;" class="text-danger" v-if="isError && tabNav === 2">
           <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
@@ -414,10 +419,27 @@ export default {
     }
   }
   
+  .card-fade-enter-active {
+    transition: all 0.02s ease-in;
+  }
+
+  .card-fade-leave-active {
+    transition: all 0.02s ease-out;
+  }
+
+  .card-fade-enter-from,
+  .card-fade-leave-to {
+    opacity: 0;
+  }
+
+  .card-fade-enter-to, .card-fade-leave-from {
+    opacity: 0.5;
+  }
+  
   /* Declared variable --i is used to dynamically calculate transition time */
   .fade-enter-active {
-    transition: all 0.2s ease-out;
-    transition-delay: calc(var(--i) * 0.1s);
+    transition: all 0.2s ease-in;
+    transition-delay: calc(var(--i) * 0.05s);
   }
 
   .fade-leave-active {
@@ -427,39 +449,39 @@ export default {
 
   .fade-enter-from {
     opacity: 0;
-    transform: translateX(-1000px);
+    transform: translateX(15px);
   }
 
   .fade-leave-to {
     opacity: 0;
-    transform: translateX(1000px);
+    transform: translateX(-15px);
   }
 
   .fade-enter-to,
   .fade-leave-from {
-    opacity: 1;
+    opacity: 0.5;
     transform: translateX(10px);
   }
 
   /* Declared variable --j is used to dynamically calculate transition time */
   .fade-articles-enter-active {
-    transition: all 0.2s ease-out;
+    transition: all 0.2s ease-in-out;
     transition-delay: calc(var(--j) * 0.02s);
   }
 
   .fade-articles-leave-active {
-    transition: all 0.2s ease-out;
+    transition: all 0.2s ease-in-out;
     transition-delay: calc(var(--j) * 0.01s);
   }
 
   .fade-articles-enter-from {
     opacity: 0;
-    transform: translateX(-1000px);
+    transform: translateX(-15px);
   }
 
   .fade-articles-leave-to {
     opacity: 0;
-    transform: translateX(1000px);
+    transform: translateX(15px);
   }
 
   .fade-articles-enter-to,
