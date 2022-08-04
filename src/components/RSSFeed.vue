@@ -46,9 +46,9 @@
         </div>
         
         <!-- Articles Section -->
-        <div>
+        <div style="margin-top: -20px;">
           <Transition name="fade" appear mode="out-in">
-            <h2 v-if="!isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+            <h2 v-if="!isError && !isloading && tabNav === 2" class="text-secondary mb-3">{{ topicTitle2 }}</h2>
           </Transition>
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
@@ -59,7 +59,7 @@
               mode="out-in"
             >
               <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-              <center v-if="!isloading && tabNav === 2" :style="{ '--j':index }">
+              <center v-if="!isError && !isloading && tabNav === 2" :style="{ '--j':index }">
                 <a class="title" :href="feed.link.toString()">
                   <div class="card">
                     <div class="p-3">
@@ -85,7 +85,7 @@
         </div>
         
         <!-- Topic Tiles Section -->
-        <div>
+        <div style="margin-top: -20px;">
           <Transition name="fade" appear mode="out-in">
             <h2 v-if="!isloading && tabNav === 1" class="text-secondary mb-3">{{ topicTitle }}</h2>
           </Transition>
@@ -118,11 +118,12 @@
         </div>
 
         <!-- Error Output Section -->
-        <div class="text-danger" v-if="isError && !isloading && tabNav === 2">
+        <div style="margin-top: -30px;" class="text-danger" v-if="isError && tabNav === 2">
           <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
           <div v-else class="row">
             <div class="col-12">
-              <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype/err.png"/>
+              {{ data.replace(',','') }}
+              <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/err.png"/>
               <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
               <ul class="text-center text-secondary">
                 <li>Click <strong class="text-success">Enable Access</strong> button below</li>
@@ -235,6 +236,7 @@ export default {
       .catch(err => {
         this.isloading = false;
         this.isError = true;
+        console.log(err);
         return err.message + ',';
       });
 
