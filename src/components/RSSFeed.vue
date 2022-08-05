@@ -420,11 +420,11 @@ export default {
   }
   
   .card-fade-enter-active {
-    transition: all 0.02s ease-in;
+    transition: all 0.5s ease-in-out;
   }
 
   .card-fade-leave-active {
-    transition: all 0.02s ease-out;
+    transition: all 0.5s ease-in-out;
   }
 
   .card-fade-enter-from,
@@ -438,40 +438,39 @@ export default {
   
   /* Declared variable --i is used to dynamically calculate transition time */
   .fade-enter-active {
-    transition: all 0.5s ease-in;
-    transition-delay: calc(var(--i) * 0.05s);
+    transition: all 0.5s ease-in-out;
+    transition-delay: calc(var(--i) * 0.15s);
   }
 
   .fade-leave-active {
-    transition: all 0.5s ease-out;
-    transition-delay: calc(var(--i) * 0.05s);
+    transition: all 0.5s ease-in-out;
+    transition-delay: calc(var(--i) * 0.15s);
     
   }
 
   .fade-enter-from {
     opacity: 0;
-    transform: translateX(15px);
+    transform: translateX(-15px);
   }
 
   .fade-leave-to {
     opacity: 0;
-    transform: translateX(-15px);
+    transform: translateX(15px);
   }
 
   .fade-enter-to,
   .fade-leave-from {
     opacity: 1;
-    transform: translateX(10px);
   }
 
   /* Declared variable --j is used to dynamically calculate transition time */
   .fade-articles-enter-active {
-    transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in-out;
     transition-delay: calc(var(--j) * 0.05s);
   }
 
   .fade-articles-leave-active {
-    transition: all 0.3s ease-out;
+    transition: all 0.3s ease-in-out;
     transition-delay: calc(var(--j) * 0.01s);
   }
 
@@ -488,10 +487,5 @@ export default {
   .fade-articles-enter-to,
   .fade-articles-leave-from {
     opacity: 1;
-    transform: translateX(10px);
-  }
-
-  .fade-articles-move, .fade-move, .card-fade-move {
-    position: absolute;
   }
 </style>
