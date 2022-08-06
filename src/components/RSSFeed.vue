@@ -4,7 +4,9 @@
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
         <!-- Header Section -->
-        <h1 class="text-secondary mb-3"><strong>RSS Feed - Vue 3</strong></h1>
+        <h1 class="text-secondary mb-3">
+          <strong>RSS Feed - Vue</strong>
+        </h1>
 
         <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
         
@@ -13,9 +15,10 @@
         <hr class="my-3" size="5" noshade/>
         
         <!-- Loading Spinner Section -->
-        <div v-if="isloading" class="text-center spinner-border text-secondary" role="status">
-        </div>
-        
+        <Transition name="card-fade" appear mode="out-in">
+          <div v-if="isloading && !isError" class="text-center spinner-border text-secondary" role="status">
+          </div>
+        </Transition>
         <!-- Sources Tiles Section -->
         <Transition name="card-fade" appear mode="out-in">
           <div v-if="!isloading && tabNav === 0">
@@ -46,7 +49,6 @@
             </div>
           </div>
         </Transition>
-        
         
         <!-- Articles Section -->
         <div v-if="!isError && !isloading && tabNav === 2">
@@ -123,29 +125,31 @@
         </Transition>
         
         <!-- Error Output Section -->
-        <div class="text-danger" v-if="isError && tabNav === 2">
-          <p v-if="!data.includes('403')">{{ data }} Try Reloading...</p>
-          <div v-else class="row">
-            <div class="col-12">
-              {{ data.replace(',','') }}
-              <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/err.png"/>
-              <figcaption>Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
-              <ul class="text-center text-secondary">
-                <li>Click <strong class="text-success">Enable Access</strong> button below</li>
-                <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
-                <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
-              </ul>
-            </div>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
-              <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
-                <i class="bi bi-hdd-rack"></i> 
-                Enable Access
-              </a>
-            </div>
-            <div class="col-lg-4"></div>
+        <Transition name="card-fade" appear mode="out-in">
+          <div class="text-danger" v-if="isError && tabNav === 2">
+            <Transition name="fade" appear mode="out-in">
+              <p v-if="data.includes('403')">{{ data }} Try reloading again...</p>
+              <div v-else class="row">
+                <div class="col-12">
+                  <h2 class="text-danger mb-3">{{ data.replace(',','!') }}</h2>
+                  <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/err.png"/>
+                  <figcaption class="mb-3">Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
+                  <ol type="1" class="text-start text-secondary">
+                    <li>Click <strong class="text-success">Enable Access</strong> button below</li>
+                    <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
+                    <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
+                  </ol>
+                </div>
+                <div class="col-12">
+                  <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
+                    <i class="bi bi-hdd-rack"></i> 
+                    Enable Access
+                  </a>
+                </div>
+              </div>
+            </Transition>
           </div>
-        </div>
+        </Transition>
       </div>
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
@@ -244,6 +248,10 @@ export default {
         console.log(err);
         return err.message + ',';
       });
+      
+      if(this.isError){
+        return;
+      }
 
       this.feeds = this.data.rss.channel[0].item;
       
@@ -395,9 +403,14 @@ export default {
   }
 
   @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 40px;
+    }
+
     span.title {
       font-size: 12px;
     }
+
     .card.logo {
       height: 80px;
       width: 80px;
@@ -406,6 +419,10 @@ export default {
   }
 
   @media only screen and (max-width: 400px) {
+    h1 {
+      font-size: 30px;
+    }
+
     .card.logo {
       height: 70px;
       width: 70px;
