@@ -128,7 +128,7 @@
         <Transition name="card-fade" appear mode="out-in">
           <div class="text-danger" v-if="isError && tabNav === 2">
             <Transition name="fade" appear mode="out-in">
-              <p v-if="data.includes('403')">{{ data }} Try reloading again...</p>
+              <p v-if="!data.includes('403')">{{ data }} Try reloading again...</p>
               <div v-else class="row">
                 <div class="col-12">
                   <h2 class="text-danger mb-3">{{ data.replace(',','!') }}</h2>
