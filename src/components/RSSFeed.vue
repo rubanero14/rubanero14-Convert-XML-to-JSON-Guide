@@ -258,31 +258,31 @@ export default {
       // Custom show elapsed time algorithm
       this.date = () => {
         // get UNIX timestamp of pubDate value
-        let Elapsed = new Date(this.feeds[0].pubDate).getTime();
+        const Elapsed = new Date(this.feeds[0].pubDate).getTime();
 
         // get UNIX timestamp of Present value
-        let Now = Date.now();
+        const Now = Date.now();
 
         // Convert UNIX to seconds
-        let seconds = ((Now - Elapsed) / 1000);
+        const seconds = ((Now - Elapsed) / 1000);
 
         // Convert UNIX to minutes
-        let minutes = (seconds / 60);
+        const minutes = (seconds / 60);
 
         // Convert UNIX to hours
-        let hours = (minutes / 60);
+        const hours = (minutes / 60);
 
         // Convert UNIX to days
-        let days = (hours / 24);
+        const days = (hours / 24);
 
         // Convert UNIX to weeks
-        let weeks = (days / 7);
+        const weeks = (days / 7);
 
         // Convert UNIX to weeks
-        let months = (weeks / 4);
+        const months = (weeks / 4);
 
         // Convert UNIX to weeks
-        let years = (months / 12);
+        const years = (months / 12);
 
         // Elapsed Time output logic
         if(seconds >= 1 && seconds < 60){
