@@ -9,6 +9,10 @@ const sources = [
           url: "https://www.investing.com/rss/news_14.rss",
         },
         {
+          title: "Economic Indicators News",
+          url: "https://www.investing.com/rss/news_95.rss",
+        },
+        {
           title: "Stock Market News",
           url: "https://www.investing.com/rss/news_25.rss",
         },
@@ -53,6 +57,10 @@ const sources = [
         {
           title: "Consumer Price Index (CPI)",
           url: "https://tradingeconomics.com/rss/news.aspx?i=consumer+price+index+cpi",
+        },
+        {
+          title: "GDP Annual Growth Rate",
+          url: "https://tradingeconomics.com/rss/news.aspx?i=gdp+annual+growth+rate",
         },
         {
           title: "Core Inflation Rate",
