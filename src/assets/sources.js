@@ -2,7 +2,7 @@ const sources = [
     {
       name: 'Investing.com',
       url: 'https://www.investing.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/in-logo.jpg',
+      logo: 'in-logo.jpg',
       topics: [
         {
           title: "Economy News",
@@ -27,9 +27,60 @@ const sources = [
       ],
     },
     {
+      name: 'GlobeNewswire',
+      url: 'https://www.globenewswire.com/favicon.ico',
+      logo: 'gnw.jpg',
+      topics: [
+        {
+          title: "Dividend Reports",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/12-Dividend%20Reports%20and%20Estimates/feedTitle/GlobeNewswire%20-%20Dividend%20Reports%20and%20Estimates",
+        },
+        {
+          title: "Company Announcement",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/9-Company%20Announcement/feedTitle/GlobeNewswire%20-%20Company%20Announcement",
+        },
+        {
+          title: "Conference Calls",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/89-Conference%20Calls%202f%20Webcasts/feedTitle/GlobeNewswire%20-%20Conference%20Calls,%20Webcasts",
+        },
+        {
+          title: "Initial Public Offerings",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/21-Initial%20Public%20Offerings/feedTitle/GlobeNewswire%20-%20Initial%20Public%20Offerings",
+        },
+        {
+          title: "Earnings Releases",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/13-Earnings%20Releases%20And%20Operating%20Results/feedTitle/GlobeNewswire%20-%20Earnings%20Releases%20And%20Operating%20Results",
+        },
+        {
+          title: "Directors And Officers",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/11-Directors%20And%20Officers/feedTitle/GlobeNewswire%20-%20Directors%20And%20Officers",
+        },
+        {
+          title: "Insider's Buy & Sell",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/22-Insider%2027s%20Buy%202fSell/feedTitle/GlobeNewswire%20-%20Insider%20s%20Buy,%20Sell",
+        },
+        {
+          title: "Interim Information",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/66-Interim%20Information/feedTitle/GlobeNewswire%20-%20Interim%20Information",
+        },
+        {
+          title: "Funds Information",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/80-Investment%20Fund%20Information/feedTitle/GlobeNewswire%20-%20Investment%20Fund%20Information",
+        },
+        {
+          title: "Net Asset Value",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/62-Net%20Asset%20Value/feedTitle/GlobeNewswire%20-%20Net%20Asset%20Value",
+        },
+        {
+          title: "Press Releases",
+          url: "https://www.globenewswire.com/RssFeed/subjectcode/72-Press%20Releases/feedTitle/GlobeNewswire%20-%20Press%20Releases",
+        },
+      ],
+    },
+    {
       name: 'Finance Asia',
       url: 'https://www.financeasia.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/fa-logo.jpg',
+      logo: 'fa-logo.jpg',
       topics: [
         {
           title: "Markets",
@@ -52,7 +103,7 @@ const sources = [
     {
       name: 'Trading Economics',
       url: 'https://tradingeconomics.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/te-logo.jfif',
+      logo: 'te-logo.jfif',
       topics: [
         {
           title: "Consumer Price Index (CPI)",
@@ -91,7 +142,7 @@ const sources = [
     {
       name: "Seeking Alpha",
       url: 'https://seekingalpha.com/samw/static/images/favicon-32x32.png',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/sa-logo.webp',
+      logo: 'sa-logo.webp',
       topics: [
         {
           title: 'Breaking News',
@@ -122,7 +173,7 @@ const sources = [
     {
       name: "CNN",
       url: 'https://edition.cnn.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/cnn-logo.png',
+      logo: 'cnn-logo.png',
       topics: [
         {
           title: "CNN World",
@@ -133,7 +184,7 @@ const sources = [
     {
       name: 'CNBC',
       url: 'https://www.cnbc.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/cnbc-logo.png',
+      logo: 'cnbc-logo.png',
       topics: [
         {
           title: "Investing News",
@@ -144,7 +195,7 @@ const sources = [
     {
       name: 'Yahoo Finance',
       url: 'https://finance.yahoo.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/yf-logo.jpg',
+      logo: 'yf-logo.jpg',
       topics: [
         {
           title: "Finance News",
@@ -155,7 +206,7 @@ const sources = [
     {
       name: 'MarketWatch',
       url: 'https://www.marketwatch.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/mw-logo.png',
+      logo: 'mw-logo.png',
       topics: [
         {
           title: "Real-time Headlines",
@@ -166,7 +217,7 @@ const sources = [
     {
       name: 'S&P Global',
       url: 'https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/sp-logo.png',
+      logo: 'sp-logo.png',
       topics: [
         {
           title: "Corporate News",
@@ -177,7 +228,7 @@ const sources = [
     {
       name: 'Nasdaq',
       url: 'https://www.nasdaq.com/favicon.ico',
-      logo: 'https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/nq-logo.png',
+      logo: 'nq-logo.png',
       topics: [
         {
           title: "Nasdaq Original Feed",
