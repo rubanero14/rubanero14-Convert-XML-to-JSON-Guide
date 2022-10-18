@@ -189,9 +189,9 @@ const sources = [
     ],
   },
   {
-    name: "Trading Economics",
+    name: "Seeking Alpha",
     url: favicon(
-      "Trading Economics",
+      "Seeking Alpha",
       "https://seekingalpha.com/samw/static/images/favicon-32x32.png"
     ),
     logo: "sa-logo.webp",
