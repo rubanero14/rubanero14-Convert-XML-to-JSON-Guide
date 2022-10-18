@@ -278,10 +278,10 @@ export default {
         // Convert UNIX to weeks
         const weeks = (days / 7);
 
-        // Convert UNIX to weeks
+        // Convert UNIX to months
         const months = (weeks / 4);
 
-        // Convert UNIX to weeks
+        // Convert UNIX to years
         const years = (months / 12);
 
         // Elapsed Time output logic
