@@ -56,36 +56,43 @@
             <h2 class="text-secondary mb-3">{{ topicTitle2 }}</h2>
           </Transition>
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
-          <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-            <Transition
-              :key="index"
-              appear
-              name="fade-articles"
-              mode="out-in"
-            >
-              <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-              <center :style="{ '--j':index }">
-                <a class="title" :href="feed.link.toString()">
-                  <div class="card">
-                    <div class="p-3">
-                      <div class="row">
-                        <div class="col-9 col-md-11 text-start">
-                          <h3 class="title text-secondary">
-                            <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
-                            <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
-                            <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
-                          </h3>
-                          <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
-                        </div>
-                        <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
-                          <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+          <div class="articles-wrapper" v-if="this.feedHasArticles">
+            <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
+              <Transition
+                :key="index"
+                appear
+                name="fade-articles"
+                mode="out-in"
+              >
+                <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
+                <center :style="{ '--j':index }">
+                  <a class="title" :href="feed.link.toString()">
+                    <div class="card">
+                      <div class="p-3">
+                        <div class="row">
+                          <div class="col-9 col-md-11 text-start">
+                            <h3 class="title text-secondary">
+                              <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
+                              <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
+                              <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
+                            </h3>
+                            <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
+                          </div>
+                          <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
+                            <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </center>
-            </Transition>
+                  </a>
+                </center>
+              </Transition>
+            </div>
+          </div>
+          <div v-else>
+            <div  @click="backwardNav(isError)" class="card d-flex justify-content-center align-content-center p-4">
+              <span class="text-danger mb-0"><strong><em>No articles found here!</em></strong></span>
+            </div> 
           </div>
         </div>
         
@@ -254,6 +261,7 @@ export default {
       }
 
       this.feeds = this.data.rss.channel[0].item;
+      this.feedHasArticles = Object.keys(this.data.rss.channel[0]).includes('item');
       
       // Custom show elapsed time algorithm
       this.date = () => {
