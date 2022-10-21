@@ -4,11 +4,14 @@
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
         <!-- Header Section -->
-        <h1 class="text-secondary mb-3">
-          <strong>RSS Feed - Vue</strong>
+        <h1 class="text-secondary mb-1">
+          <strong>Latest News Articles</strong>
         </h1>
+        <label class="text-secondary mb-3">
+          <strong>Powered by Vue</strong>
+        </label>
 
-        <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src/components/RSSFeed.vue" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
+        <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
         
         <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
         

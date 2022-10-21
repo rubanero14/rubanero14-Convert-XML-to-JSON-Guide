@@ -151,7 +151,7 @@ const sources = [
   },
   {
     name: "Trading Economics",
-    url: "https://tradingeconomics.com/favicon.ico",
+    url: favicon("Trading Economics"),
     logo: "te-logo.jfif",
     topics: [
       {
