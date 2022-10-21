@@ -286,8 +286,58 @@ const sources = [
     logo: "nq-logo.png",
     topics: [
       {
-        title: "Nasdaq Original Feed",
-        url: "https://www.nasdaq.com/feed/nasdaq-original/rss.xml",
+        title: "All News Releases",
+        url: "https://ir.nasdaq.com/rss/news-releases.xml?items=15",
+      },
+      {
+        title: "Financial Releases",
+        url: "https://ir.nasdaq.com/rss/news-releases.xml?items=15&category=Financial",
+      },
+      {
+        title: "All SEC Filings",
+        url: "https://ir.nasdaq.com/rss/sec-filings.xml?items=15",
+      },
+      {
+        title: "Form 4 SEC Filings",
+        url: "https://ir.nasdaq.com/rss/sec-filings.xml?items=15&sub_group=4",
+      },
+    ],
+  },
+  {
+    name: "Reuters",
+    url: favicon("Reuters"),
+    logo: "reuters-logo.png",
+    topics: [
+      {
+        title: "Market Impact",
+        url: "https://www.reutersagency.com/feed/?best-customer-impacts=market-impact&post_type=best",
+      },
+      {
+        title: "Energy & Commodities",
+        url: "https://www.reutersagency.com/feed/?best-sectors=commodities-energy&post_type=best",
+      },
+      {
+        title: "Economy",
+        url: "https://www.reutersagency.com/feed/?best-sectors=economy&post_type=best",
+      },
+      {
+        title: "Equities",
+        url: "https://www.reutersagency.com/feed/?best-sectors=equities&post_type=best",
+      },
+      {
+        title: "FX & Fixed Income",
+        url: "https://www.reutersagency.com/feed/?best-sectors=foreign-exchange-fixed-income&post_type=best",
+      },
+    ],
+  },
+  {
+    name: "WSJ",
+    url: favicon("WSJ"),
+    logo: "wsj-logo.png",
+    topics: [
+      {
+        title: "Markets",
+        url: "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
       },
     ],
   },
