@@ -11,7 +11,7 @@
           <strong>Powered by Vue</strong>
         </label>
 
-        <a v-if="tabNav === 0" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
+        <a v-if="tabNav === 0 && showSourceCode" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
         
         <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
         
@@ -26,7 +26,7 @@
         <Transition name="card-fade" appear mode="out-in">
           <div v-if="!isloading && tabNav === 0">
             <Transition name="fade" appear mode="out-in">
-              <h2 class="text-secondary mb-3">Sources</h2>
+              <h2 @click="devMode()" class="text-secondary mb-3">Sources</h2>
             </Transition>
             <div>
               <!-- Declaring and assigning index using v-for and use it to assign as key -->
@@ -59,7 +59,7 @@
             <h2 class="text-secondary mb-3">{{ topicTitle2 }}</h2>
           </Transition>
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
-          <div class="articles-wrapper" v-if="this.feedHasArticles">
+          <div class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
               <Transition
                 :key="index"
@@ -160,6 +160,10 @@
             </Transition>
           </div>
         </Transition>
+
+        <hr class="my-3" size="5" noshade/>
+        
+        <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
       </div>
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
@@ -186,6 +190,8 @@ export default {
       topicTitle: '',
       topicTitle2:'',
       sources: sources,
+      showSourceCode: false,
+      devActivationCount: 0,
     };
   },
   watch: {
@@ -202,6 +208,12 @@ export default {
     window.removeEventListener('resize', this.setScreenWidth)
   },
   methods: {
+    devMode(){
+      this.devActivationCount++;
+      if(this.devActivationCount === 7){
+        this.showSourceCode = true
+      }
+    },
     forwardNav(data){
       if(this.tabNav === 0 && data.topics.length > 1){
         this.topicData = data.topics;
