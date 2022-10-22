@@ -191,7 +191,7 @@ const sources = [
   {
     name: "Seeking Alpha",
     url: favicon(
-      "Seeking Alpha",
+      null,
       "https://seekingalpha.com/samw/static/images/favicon-32x32.png"
     ),
     logo: "sa-logo.webp",
@@ -219,64 +219,6 @@ const sources = [
       {
         title: "ETFs & Portfolio Strategy",
         url: "https://seekingalpha.com/tag/etf-portfolio-strategy.xml",
-      },
-    ],
-  },
-  {
-    name: "CNN",
-    url: favicon("CNN"),
-    logo: "cnn-logo.png",
-    topics: [
-      {
-        title: "CNN World",
-        url: "http://rss.cnn.com/rss/cnn_latest.rss",
-      },
-    ],
-  },
-  {
-    name: "CNBC",
-    url: favicon("CNBC"),
-    logo: "cnbc-logo.png",
-    topics: [
-      {
-        title: "Investing News",
-        url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069",
-      },
-    ],
-  },
-  {
-    name: "Yahoo Finance",
-    url: favicon("Yahoo Finance"),
-    logo: "yf-logo.jpg",
-    topics: [
-      {
-        title: "Finance News",
-        url: "https://finance.yahoo.com/news/rssindex",
-      },
-    ],
-  },
-  {
-    name: "MarketWatch",
-    url: favicon("MarketWatch"),
-    logo: "mw-logo.png",
-    topics: [
-      {
-        title: "Real-time Headlines",
-        url: "http://feeds.marketwatch.com/marketwatch/realtimeheadlines",
-      },
-    ],
-  },
-  {
-    name: "S&P Global",
-    url: favicon(
-      "S&P Global",
-      "https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico"
-    ),
-    logo: "sp-logo.png",
-    topics: [
-      {
-        title: "Corporate News",
-        url: "https://www.spglobal.com/spdji/en/rss/rss-details/?rssFeedName=corporate-news",
       },
     ],
   },
@@ -331,6 +273,64 @@ const sources = [
     ],
   },
   {
+    name: "CNN",
+    url: favicon("CNN"),
+    logo: "cnn-logo.png",
+    topics: [
+      {
+        title: "CNN World",
+        url: "http://rss.cnn.com/rss/cnn_latest.rss",
+      },
+    ],
+  },
+  {
+    name: "CNBC",
+    url: favicon("CNBC"),
+    logo: "cnbc-logo.png",
+    topics: [
+      {
+        title: "Investing News",
+        url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069",
+      },
+    ],
+  },
+  {
+    name: "Yahoo Finance",
+    url: favicon("Yahoo Finance"),
+    logo: "yf-logo.jpg",
+    topics: [
+      {
+        title: "Finance News",
+        url: "https://finance.yahoo.com/news/rssindex",
+      },
+    ],
+  },
+  {
+    name: "MarketWatch",
+    url: favicon("MarketWatch"),
+    logo: "mw-logo.png",
+    topics: [
+      {
+        title: "Real-time Headlines",
+        url: "http://feeds.marketwatch.com/marketwatch/realtimeheadlines",
+      },
+    ],
+  },
+  {
+    name: "S&P Global",
+    url: favicon(
+      null,
+      "https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico"
+    ),
+    logo: "sp-logo.png",
+    topics: [
+      {
+        title: "Corporate News",
+        url: "https://www.spglobal.com/spdji/en/rss/rss-details/?rssFeedName=corporate-news",
+      },
+    ],
+  },
+  {
     name: "WSJ",
     url: favicon("WSJ"),
     logo: "wsj-logo.png",
@@ -338,6 +338,70 @@ const sources = [
       {
         title: "Markets",
         url: "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
+      },
+    ],
+  },
+  {
+    name: "GlobalSecurity.org",
+    url: favicon(null, "https://www.globalsecurity.org/favicon.ico"),
+    logo: "gs-logo.png",
+    topics: [
+      {
+        title: "Defence News",
+        url: "https://www.globalsecurity.org/globalsecurity-org.xml",
+      },
+    ],
+  },
+  {
+    name: "The Diplomat",
+    url: favicon("The Diplomat"),
+    logo: "td-logo.png",
+    topics: [
+      {
+        title: "Current Affairs",
+        url: "https://thediplomat.com/feed/",
+      },
+    ],
+  },
+  {
+    name: "DefenseNews",
+    url: favicon(
+      null,
+      "https://www.defensenews.com/pf/resources/img/favicons/def/favicon-32x32.png?d=104"
+    ),
+    logo: "dn-logo.jpg",
+    topics: [
+      {
+        title: "Home Page",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/global/?outputType=xml",
+      },
+      {
+        title: "Global",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/global/?outputType=xml",
+      },
+      {
+        title: "Air",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/air/?outputType=xml",
+      },
+      {
+        title: "Land",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/land/?outputType=xml",
+      },
+      {
+        title: "Naval",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/naval/?outputType=xml",
+      },
+      {
+        title: "Space",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/space/?outputType=xml",
+      },
+      {
+        title: "Unmanned",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/unmanned/?outputType=xml",
+      },
+      {
+        title: "Industry",
+        url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/industry/?outputType=xml",
       },
     ],
   },

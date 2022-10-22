@@ -79,7 +79,7 @@
                               <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
                               <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
                             </h3>
-                            <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date() }} ago</em></p>
+                            <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date(index) }} ago</em></p>
                           </div>
                           <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
                             <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
@@ -258,18 +258,22 @@ export default {
         console.log(err);
         return err.message + ',';
       });
-      
-      if(this.isError){
-        return;
-      }
 
-      this.feeds = this.data.rss.channel[0].item;
-      this.feedHasArticles = Object.keys(this.data.rss.channel[0]).includes('item');
+      if(this.isError) return;
+
+      this.feeds = Object.keys(this.data).includes('rss') ? this.data.rss.channel[0].item : this.data["rdf:RDF"].item;
       
+      this.feedHasArticles = () => {
+        if(Object.keys(this.data).includes("rss")) return Object.keys(this.data.rss.channel[0]).includes('item');
+        if(Object.keys(this.data).includes("rdf:RDF")) return Object.keys( this.data["rdf:RDF"]).includes('item');
+      }
+      
+      this.rssMode = Object.keys(this.data).includes("rss") ? 'pubDate' : 'dc:date';
+
       // Custom show elapsed time algorithm
       this.date = () => {
         // get UNIX timestamp of pubDate value
-        const Elapsed = new Date(this.feeds[0].pubDate).getTime();
+        const Elapsed = new Date(this.feeds[0][this.rssMode]).getTime();
 
         // get UNIX timestamp of Present value
         const Now = Date.now();
@@ -401,7 +405,7 @@ export default {
   }
 
   .card.logo:hover {
-    box-shadow: 0px 2px 8px 8px rgb(0 0 0 / 20%)
+    box-shadow: 0px 2px 8px 8px rgb(0 0 0 / 20%);
   }
 
   .tile {
