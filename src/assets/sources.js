@@ -342,28 +342,6 @@ const sources = [
     ],
   },
   {
-    name: "GlobalSecurity.org",
-    url: favicon(null, "https://www.globalsecurity.org/favicon.ico"),
-    logo: "gs-logo.png",
-    topics: [
-      {
-        title: "Defence News",
-        url: "https://www.globalsecurity.org/globalsecurity-org.xml",
-      },
-    ],
-  },
-  {
-    name: "The Diplomat",
-    url: favicon("The Diplomat"),
-    logo: "td-logo.png",
-    topics: [
-      {
-        title: "Current Affairs",
-        url: "https://thediplomat.com/feed/",
-      },
-    ],
-  },
-  {
     name: "DefenseNews",
     url: favicon(
       null,
@@ -402,6 +380,151 @@ const sources = [
       {
         title: "Industry",
         url: "https://www.defensenews.com/arc/outboundfeeds/rss/category/industry/?outputType=xml",
+      },
+    ],
+  },
+  {
+    name: "DefenseTalk",
+    url: favicon('feedburner'),
+    logo: "df-logo.jpeg",
+    topics: [
+      {
+        title: "Defense",
+        url: "https://feeds2.feedburner.com/defensenews",
+      },
+      {
+        title: "Army",
+        url: "https://feeds2.feedburner.com/army-news",
+      },
+      {
+        title: "Defense & Security",
+        url: "https://feeds2.feedburner.com/defense-security",
+      },
+      {
+        title: "Defense Technology",
+        url: "https://feeds2.feedburner.com/defense-technology",
+      },
+      {
+        title: "Missiles & Bombs",
+        url: "https://feeds2.feedburner.com/missiles-bombs",
+      },
+      {
+        title: "Nuclear & WMD",
+        url: "https://feeds2.feedburner.com/wmd-news",
+      },
+      {
+        title: "Navy",
+        url: "https://feeds2.feedburner.com/navynews",
+      },
+      {
+        title: "Drones ",
+        url: "https://feeds.feedburner.com/dronesnews",
+      },
+    ],
+  },
+  {
+    name: "Shephard Media",
+    url: favicon("Shephard Media"),
+    logo: "sm-logo.png",
+    topics: [
+      {
+        title: "Latest Articles",
+        url: "https://www.shephardmedia.com/news/feed/",
+      },
+      {
+        title: "Naval Warfare",
+        url: "https://www.shephardmedia.com/news/naval-warfare/feed/",
+      },
+      {
+        title: "Land Warfare",
+        url: "https://www.shephardmedia.com/news/landwarfareintl/feed/",
+      },
+      {
+        title: "Air Warfare",
+        url: "https://www.shephardmedia.com/news/air-warfare/feed/",
+      },
+      {
+        title: "Defence Notes",
+        url: "https://www.shephardmedia.com/news/defence-notes/feed/",
+      },
+      {
+        title: "Defence Helicopter",
+        url: "https://www.shephardmedia.com/news/defence-helicopter/feed/",
+      },
+      {
+        title: "Military Logistics",
+        url: "https://www.shephardmedia.com/news/mil-log/feed/",
+      },
+      {
+        title: "Special Operations",
+        url: "https://www.shephardmedia.com/news/special-operations/feed/",
+      },
+      {
+        title: "Uncrewed Vehicles",
+        url: "https://www.shephardmedia.com/news/uv-online/feed/",
+      },
+    ],
+  },
+  {
+    name: "Janes",
+    url: favicon('Janes'),
+    logo: "janes-logo.png",
+    topics: [
+      {
+        title: "Janes News",
+        url: "https://www.janes.com/feeds/news",
+      },
+    ],
+  },
+  {
+    name: "GlobalSecurity.org",
+    url: favicon(null, "https://www.globalsecurity.org/favicon.ico"),
+    logo: "gs-logo.png",
+    topics: [
+      {
+        title: "Defence News",
+        url: "https://www.globalsecurity.org/globalsecurity-org.xml",
+      },
+    ],
+  },
+  {
+    name: "The Diplomat",
+    url: favicon("The Diplomat"),
+    logo: "td-logo.png",
+    topics: [
+      {
+        title: "Current Affairs",
+        url: "https://thediplomat.com/feed/",
+      },
+    ],
+  },
+  {
+    name: "Science Daily",
+    url: favicon("Science Daily"),
+    logo: "scd-logo.jpg",
+    topics: [
+      {
+        title: "All News",
+        url: "https://www.sciencedaily.com/rss/all.xml",
+      },
+      {
+        title: "Top Science",
+        url: "https://www.sciencedaily.com/rss/top/science.xml",
+      },
+      {
+        title: "Top Technology",
+        url: "https://www.sciencedaily.com/rss/top/technology.xml",
+      },
+    ],
+  },
+  {
+    name: "SpaceNews",
+    url: favicon(null, 'https://spacenews.com/wp-content/themes/spacenews/favicon-32x32.png'),
+    logo: "spn-logo.png",
+    topics: [
+      {
+        title: "SpaceNews",
+        url: "https://spacenews.com/feed/",
       },
     ],
   },

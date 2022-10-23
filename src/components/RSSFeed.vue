@@ -41,7 +41,7 @@
                   <center :style="{ '--i':index }">
                     <a class="title" @click="forwardNav(source)">
                       <div class="card logo p-0 mb-3 mx-2">
-                        <div class="d-inline-block justify-content-center align-items-center">
+                        <div class="d-contents">
                           <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
                         </div>
                       </div>
@@ -380,6 +380,11 @@ export default {
     width: 100%;
     margin: 0;
     border-radius: 4px;
+
+  }
+
+  .d-contents {
+    display: contents;
   }
 
   h3.title{
