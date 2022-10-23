@@ -386,7 +386,7 @@ const sources = [
   {
     name: "DefenseTalk",
     url: favicon('feedburner'),
-    logo: "df-logo.jpeg",
+    logo: "dt-logo.jpeg",
     topics: [
       {
         title: "Defense",
