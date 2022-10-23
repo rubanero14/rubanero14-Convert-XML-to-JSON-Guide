@@ -12,7 +12,7 @@ const sources = [
   {
     name: "Investing.com",
     url: favicon("Investing.com"),
-    logo: "in-logo.jpg",
+    logo: "in-logo.png",
     topics: [
       {
         title: "Economy News",
@@ -78,7 +78,7 @@ const sources = [
   {
     name: "GlobeNewswire",
     url: favicon("GlobeNewswire"),
-    logo: "gnw.jpg",
+    logo: "gnw-logo.png",
     topics: [
       {
         title: "Dividend Reports",
@@ -129,7 +129,7 @@ const sources = [
   {
     name: "Finance Asia",
     url: favicon("Finance Asia"),
-    logo: "fa-logo.jpg",
+    logo: "fa-logo.png",
     topics: [
       {
         title: "Markets",
@@ -152,7 +152,7 @@ const sources = [
   {
     name: "Trading Economics",
     url: favicon("Trading Economics"),
-    logo: "te-logo.jfif",
+    logo: "te-logo.png",
     topics: [
       {
         title: "Consumer Price Index (CPI)",
@@ -194,7 +194,7 @@ const sources = [
       null,
       "https://seekingalpha.com/samw/static/images/favicon-32x32.png"
     ),
-    logo: "sa-logo.webp",
+    logo: "sa-logo.png",
     topics: [
       {
         title: "Breaking News",
@@ -297,7 +297,7 @@ const sources = [
   {
     name: "Yahoo Finance",
     url: favicon("Yahoo Finance"),
-    logo: "yf-logo.jpg",
+    logo: "yf-logo.png",
     topics: [
       {
         title: "Finance News",
@@ -369,7 +369,7 @@ const sources = [
       null,
       "https://www.defensenews.com/pf/resources/img/favicons/def/favicon-32x32.png?d=104"
     ),
-    logo: "dn-logo.jpg",
+    logo: "dn-logo.png",
     topics: [
       {
         title: "Home Page",
