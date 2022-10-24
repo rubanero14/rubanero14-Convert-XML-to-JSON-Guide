@@ -2,34 +2,18 @@
 const sources = [];
 
 // Constructor function to add new source
-function NewSource(Name, Url, Logo, Topics) {
+const NewSource = (Name, Url, Logo, Topics) => {
   const topics = []; 
-  const name = Name;
-  const url = Url;
-  const logo = Logo;
+  const [name , url, logo] = [Name, Url, Logo];
   Topics.map(item => {
-    const title = item[0];
-    const url = item[1];
+    const [title, url] = [item[0], item[1]];
     topics.push({title, url});
   })
-  sources.push({
-    name,
-    url,
-    logo,
-    topics,
-  })
+  return sources.push({name, url, logo, topics})
 }
 
 // Favicon url generator
-function favicon(title, sub) {
-  return (
-    sub ||
-    `https://${title
-      .toLowerCase()
-      .replaceAll(" ", "")
-      .replaceAll(".com", "")}.com/favicon.ico`
-  );
-}
+const favicon = (title, sub) => sub || `https://${title.toLowerCase().replaceAll(" ", "").replaceAll(".com", "")}.com/favicon.ico`;
 
 // Constructing and adding new source into sources array by calling the NewSource function by passing relevant params within it
 
@@ -165,7 +149,7 @@ NewSource("DefenseNews", favicon(null, "https://www.defensenews.com/pf/resources
   ]
 );
 
-NewSource("DefenseTalk", favicon('DefenseTalk'), "dt-logo.jpeg", [
+NewSource("DefenseTalk", favicon('feedburner'), "dt-logo.jpeg", [
     ["Defense", "https://feeds2.feedburner.com/defensenews"],
     ["Army", "https://feeds2.feedburner.com/army-news"],
     ["Defense & Security", "https://feeds2.feedburner.com/defense-security"],
