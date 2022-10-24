@@ -163,7 +163,7 @@
 
         <hr class="my-3" size="5" noshade/>
         
-        <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
+        <button v-if="tabNav > 0 && showLowerBackBtn()" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
       </div>
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
@@ -341,6 +341,14 @@ export default {
         }
       };
       this.isloading = false;
+    },
+    showLowerBackBtn(){
+      if(this.tabNav === 1) {
+        return this.topicData !== undefined && this.topicData.length > 4;
+      }
+      if(this.tabNav === 2) {
+        return this.feeds !== undefined && this.feeds.length > 4;
+      }
     },
   },
 }

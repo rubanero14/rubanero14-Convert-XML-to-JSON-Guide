@@ -317,6 +317,17 @@ const sources = [
     ],
   },
   {
+    name: "Zacks",
+    url: favicon("Zacks"),
+    logo: "zk-logo.png",
+    topics: [
+      {
+        title: "Press Release",
+        url: "https://scr.zacks.com/rss/pressrelease.aspx",
+      },
+    ],
+  },
+  {
     name: "S&P Global",
     url: favicon(
       null,
