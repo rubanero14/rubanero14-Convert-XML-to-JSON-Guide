@@ -2,9 +2,10 @@
 const sources = [];
 
 // Constructor function to add new source
-const NewSource = (Name, Url, Logo, Topics) => {
-  const topics = []; 
-  const [name , url, logo] = [Name, Url, Logo];
+const NewSource = (Name, sub, Logo, Topics) => {
+  const topics = [];
+  const Url = () => sub || `https://${Name.toLowerCase().replaceAll(" ", "").replaceAll(".com", "")}.com/favicon.ico`;
+  const [name , url, logo] = [Name, Url(), Logo];
   Topics.map(item => {
     const [title, url] = [item[0], item[1]];
     topics.push({title, url});
@@ -12,12 +13,8 @@ const NewSource = (Name, Url, Logo, Topics) => {
   return sources.push({name, url, logo, topics})
 }
 
-// Favicon url generator
-const favicon = (title, sub) => sub || `https://${title.toLowerCase().replaceAll(" ", "").replaceAll(".com", "")}.com/favicon.ico`;
-
 // Constructing and adding new source into sources array by calling the NewSource function by passing relevant params within it
-
-NewSource("Investing.com", favicon("Investing.com"), "in-logo.jpg", [
+NewSource("Investing.com", null, "in-logo.jpg", [
     ["Economy News", "https://www.investing.com/rss/news_14.rss"],
     ["Economic Indicators News", "https://www.investing.com/rss/news_95.rss"],
     ["Stock Market News", "https://www.investing.com/rss/news_25.rss"],
@@ -26,7 +23,7 @@ NewSource("Investing.com", favicon("Investing.com"), "in-logo.jpg", [
   ]
 );
 
-NewSource("Business Wire", favicon("Business Wire"),"bw-logo.png", [
+NewSource("Business Wire", null, "bw-logo.png", [
     ["Dividend News","https://feed.businesswire.com/rss/home/?rss=G1QFDERJXkJeEF9ZVA==&_gl=1*z96yy4*_ga*OTYwNTQzODE4LjE2NjYwNzU0MTM.*_ga_ZQWF70T3FK*MTY2NjA4MTU2My4yLjEuMTY2NjA4MjAxOS4wLjAuMA.."],
     ["IPO News","https://feed.businesswire.com/rss/home/?rss=G1QFDERJXkJeEF9YXQ==&_gl=1*oudbjk*_ga*OTYwNTQzODE4LjE2NjYwNzU0MTM.*_ga_ZQWF70T3FK*MTY2NjA4MTU2My4yLjAuMTY2NjA4MTU2My4wLjAuMA.."],
     ["Merger/Acquisition News","https://feed.businesswire.com/rss/home/?rss=G1QFDERJXkJeEFtRWA==&_gl=1*ewsir6*_ga*OTYwNTQzODE4LjE2NjYwNzU0MTM.*_ga_ZQWF70T3FK*MTY2NjA3NDIwOS4xLjEuMTY2NjA3NTQxMi4wLjAuMA.."],
@@ -38,7 +35,7 @@ NewSource("Business Wire", favicon("Business Wire"),"bw-logo.png", [
   ]
 );
 
-NewSource("GlobeNewswire", favicon("GlobeNewswire"), "gnw.jpg", [
+NewSource("GlobeNewswire", null, "gnw.jpg", [
     ["Dividend Reports", "https://www.globenewswire.com/RssFeed/subjectcode/12-Dividend%20Reports%20and%20Estimates/feedTitle/GlobeNewswire%20-%20Dividend%20Reports%20and%20Estimates"],
     ["Company Announcement", "https://www.globenewswire.com/RssFeed/subjectcode/9-Company%20Announcement/feedTitle/GlobeNewswire%20-%20Company%20Announcement"],
     ["Conference Calls", "https://www.globenewswire.com/RssFeed/subjectcode/89-Conference%20Calls%202f%20Webcasts/feedTitle/GlobeNewswire%20-%20Conference%20Calls,%20Webcasts"],
@@ -53,7 +50,7 @@ NewSource("GlobeNewswire", favicon("GlobeNewswire"), "gnw.jpg", [
   ]
 );
 
-NewSource("Finance Asia", favicon("Finance Asia"), "fa-logo.jpg", [
+NewSource("Finance Asia", null, "fa-logo.jpg", [
     ["Markets", "https://www.financeasia.com/rss/category/markets"],
     ["Debt", "https://www.financeasia.com/rss/category/debt"],
     ["Equity", "https://www.financeasia.com/rss/category/equity"],
@@ -61,7 +58,7 @@ NewSource("Finance Asia", favicon("Finance Asia"), "fa-logo.jpg", [
   ]
 );
 
-NewSource("Trading Economics", favicon("Trading Economics"), "te-logo.jfif", [
+NewSource("Trading Economics", null, "te-logo.jfif", [
     ["Consumer Price Index (CPI)", "https://tradingeconomics.com/rss/news.aspx?i=consumer+price+index+cpi"],
     ["GDP Annual Growth Rate", "https://tradingeconomics.com/rss/news.aspx?i=gdp+annual+growth+rate"],
     ["Core Inflation Rate", "https://tradingeconomics.com/rss/news.aspx?i=core+inflation+rate"],
@@ -73,7 +70,7 @@ NewSource("Trading Economics", favicon("Trading Economics"), "te-logo.jfif", [
   ]
 );
 
-NewSource("Seeking Alpha", favicon(null, "https://seekingalpha.com/samw/static/images/favicon-32x32.png"), "sa-logo.webp", [
+NewSource("Seeking Alpha", "https://seekingalpha.com/samw/static/images/favicon-32x32.png", "sa-logo.webp", [
     ["Breaking News", "https://seekingalpha.com/market_currents.xml"],
     ["Editor's Picks", "https://seekingalpha.com/tag/editors-picks.xml"],
     ["IPO Analysis", "https://seekingalpha.com/tag/ipo-analysis.xml"],
@@ -83,12 +80,12 @@ NewSource("Seeking Alpha", favicon(null, "https://seekingalpha.com/samw/static/i
   ]
 );
 
-NewSource("CSS-Tricks", favicon("CSS-Tricks"), "csst-logo.jpg", [
+NewSource("CSS-Tricks", null, "csst-logo.jpg", [
     ["CSS-Tricks", "https://css-tricks.com/feed/"],
   ]
 );
 
-NewSource("Reuters", favicon("Reuters"), "reuters-logo.png", [
+NewSource("Reuters", null, "reuters-logo.png", [
     ["Market Impact", "https://www.reutersagency.com/feed/?best-customer-impacts=market-impact&post_type=best"],
     ["Energy & Commodities", "https://www.reutersagency.com/feed/?best-sectors=commodities-energy&post_type=best"],
     ["Economy", "https://www.reutersagency.com/feed/?best-sectors=economy&post_type=best"],
@@ -97,47 +94,47 @@ NewSource("Reuters", favicon("Reuters"), "reuters-logo.png", [
   ]
 );
 
-NewSource("CNN", favicon("CNN"), "cnn-logo.png", [
+NewSource("CNN", null, "cnn-logo.png", [
     ["CNN World", "http://rss.cnn.com/rss/cnn_latest.rss"],
   ]
 );
 
-NewSource("CNBC", favicon("CNBC"), "cnbc-logo.png", [
+NewSource("CNBC", null, "cnbc-logo.png", [
     ["Investing News", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069"],
   ]
 );
 
-NewSource("Yahoo Finance", favicon("Yahoo Finance"), "yf-logo.jpg", [
+NewSource("Yahoo Finance", null, "yf-logo.jpg", [
     ["Finance News", "https://finance.yahoo.com/news/rssindex"],
   ]
 );
 
-NewSource("MarketWatch", favicon("MarketWatch"), "mw-logo.png", [
+NewSource("MarketWatch", null, "mw-logo.png", [
     ["Real-time Headlines", "http://feeds.marketwatch.com/marketwatch/realtimeheadlines"],
   ]
 );
 
-NewSource("Zacks", favicon("Zacks"), "zk-logo.png", [
+NewSource("Zacks", null, "zk-logo.png", [
     ["Press Release", "https://scr.zacks.com/rss/pressrelease.aspx"],
   ]
 );
 
-NewSource("S&P Global", favicon(null, "https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico"), "sp-logo.png", [
+NewSource("S&P Global", "https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico", "sp-logo.png", [
     ["Corporate News", "https://www.spglobal.com/spdji/en/rss/rss-details/?rssFeedName=corporate-news"],
   ]
 );
 
-NewSource("WSJ", favicon("WSJ"), "wsj-logo.png", [
+NewSource("WSJ", null, "wsj-logo.png", [
     ["Markets", "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"],
   ]
 );
 
-NewSource("The EurAsian Times", favicon("EurAsian Times"), "eat-logo.png", [
-    ["Feeds", "https://eurasiantimes.com/feed/"],
+NewSource("The EurAsian Times", null, "eat-logo.png", [
+    ["Latest News", "https://eurasiantimes.com/feed/"],
   ]
 );
 
-NewSource("DefenseNews", favicon(null, "https://www.defensenews.com/pf/resources/img/favicons/def/favicon-32x32.png?d=104"), "dn-logo.jpg", [
+NewSource("DefenseNews", "https://www.defensenews.com/pf/resources/img/favicons/def/favicon-32x32.png?d=104", "dn-logo.jpg", [
     ["Home Page", "https://www.defensenews.com/arc/outboundfeeds/rss/category/global/?outputType=xml"],
     ["Global", "https://www.defensenews.com/arc/outboundfeeds/rss/category/global/?outputType=xml"],
     ["Air", "https://www.defensenews.com/arc/outboundfeeds/rss/category/air/?outputType=xml"],
@@ -149,7 +146,7 @@ NewSource("DefenseNews", favicon(null, "https://www.defensenews.com/pf/resources
   ]
 );
 
-NewSource("DefenseTalk", favicon('feedburner'), "dt-logo.jpeg", [
+NewSource("DefenseTalk", null, "dt-logo.jpeg", [
     ["Defense", "https://feeds2.feedburner.com/defensenews"],
     ["Army", "https://feeds2.feedburner.com/army-news"],
     ["Defense & Security", "https://feeds2.feedburner.com/defense-security"],
@@ -161,7 +158,7 @@ NewSource("DefenseTalk", favicon('feedburner'), "dt-logo.jpeg", [
   ]
 );
 
-NewSource("Shephard Media", favicon("Shephard Media"), "sm-logo.png", [
+NewSource("Shephard Media", null, "sm-logo.png", [
     ["Latest Articles", "https://www.shephardmedia.com/news/feed/"],
     ["Naval Warfare", "https://www.shephardmedia.com/news/naval-warfare/feed/"],
     ["Land Warfare", "https://www.shephardmedia.com/news/landwarfareintl/feed/"],
@@ -174,29 +171,29 @@ NewSource("Shephard Media", favicon("Shephard Media"), "sm-logo.png", [
   ]
 );
 
-NewSource("Janes", favicon('Janes'), "janes-logo.png", [
+NewSource("Janes", null, "janes-logo.png", [
     ["Janes News", "https://www.janes.com/feeds/news"],
   ]
 );
 
-NewSource("GlobalSecurity.org", favicon(null, "https://www.globalsecurity.org/favicon.ico"), "gs-logo.png", [
+NewSource("GlobalSecurity.org", "https://www.globalsecurity.org/favicon.ico", "gs-logo.png", [
     ["Defence News", "https://www.globalsecurity.org/globalsecurity-org.xml"],
   ]
 );
 
-NewSource("The Diplomat", favicon("The Diplomat"), "td-logo.png", [
+NewSource("The Diplomat", null, "td-logo.png", [
     ["Current Affairs", "https://thediplomat.com/feed/"],
   ]
 );
 
-NewSource("Science Daily", favicon("Science Daily"), "scd-logo.jpg", [
+NewSource("Science Daily", null, "scd-logo.jpg", [
     ["All News","https://www.sciencedaily.com/rss/all.xml"],
     ["Top Science","https://www.sciencedaily.com/rss/top/science.xml"],
     ["Top Technology", "https://www.sciencedaily.com/rss/top/technology.xml"],
   ]
 );
 
-NewSource("SpaceNews", favicon(null, 'https://spacenews.com/wp-content/themes/spacenews/favicon-32x32.png'), "spn-logo.png", [
+NewSource("SpaceNews", 'https://spacenews.com/wp-content/themes/spacenews/favicon-32x32.png', "spn-logo.png", [
     ["SpaceNews", "https://spacenews.com/feed/"],
   ]
 );

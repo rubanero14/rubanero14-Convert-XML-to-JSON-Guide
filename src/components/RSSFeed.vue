@@ -8,7 +8,7 @@
           <strong>Latest News Feeds</strong>
         </h1>
         <label class="text-secondary mb-3">
-          <strong>Powered by <i class="fa-brands fa-vuejs"></i>  <i class="fa-solid fa-rss"></i></strong> and built with <i class="fa-solid fa-heart"></i> by <strong><a class="text-secondary" style="text-decoration: none;" href="https://github.com/rubanero14">Raj</a></strong>
+          <strong>Powered by <i class="fa-brands fa-vuejs"></i>  <i class="fa-solid fa-rss"></i></strong> and built by <strong><a class="text-secondary" style="text-decoration: none;" href="https://github.com/rubanero14">Raj</a></strong>
         </label>
 
         <a v-if="tabNav === 0 && showSourceCode" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
