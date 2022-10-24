@@ -146,7 +146,7 @@ NewSource("DefenseNews", "https://www.defensenews.com/pf/resources/img/favicons/
   ]
 );
 
-NewSource("DefenseTalk", null, "dt-logo.jpeg", [
+NewSource("DefenseTalk", "https://feedburner.com/favicon.ico", "dt-logo.jpeg", [
     ["Defense", "https://feeds2.feedburner.com/defensenews"],
     ["Army", "https://feeds2.feedburner.com/army-news"],
     ["Defense & Security", "https://feeds2.feedburner.com/defense-security"],
