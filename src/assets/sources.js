@@ -353,6 +353,17 @@ const sources = [
     ],
   },
   {
+    name: "The EurAsian Times",
+    url: favicon("EurAsian Times"),
+    logo: "eat-logo.png",
+    topics: [
+      {
+        title: "Feeds",
+        url: "https://eurasiantimes.com/feed/",
+      },
+    ],
+  },
+  {
     name: "DefenseNews",
     url: favicon(
       null,
