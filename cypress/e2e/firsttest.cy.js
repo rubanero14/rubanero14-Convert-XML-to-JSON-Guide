@@ -3,7 +3,7 @@ describe("Visit RSS Feed Home Page", () => {
     cy.visit("https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/");
   });
 
-  it("Open first Source", () => {
+  it("Open First Source", () => {
     cy.wait(5000);
     cy.get("img.logo[src='bw-logo.png'")
       .should("be.visible")
