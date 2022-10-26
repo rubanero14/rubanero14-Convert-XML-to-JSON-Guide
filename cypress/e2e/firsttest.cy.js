@@ -9,16 +9,16 @@ const TEST_ENV = (env = 0) =>
 /* Dynamically driven Cypress test suite */
 // Random number generator for sources level test subject
 const randomSourceSelection = () => {
-  return Math.ceil(Math.random() * sources.length);
+  return Math.ceil(Math.random() * sources.length - 1);
 };
-let firstSource = randomSourceSelection();
+let sourcesIndex = randomSourceSelection();
 
 // Random number generator for topics level test subject
 const randomSecondSourceSelection = () => {
-  if (sources[firstSource].topics.length === undefined) {
+  if (sources[sourcesIndex].topics.length === undefined) {
     return console.log("No Topics Found!");
   }
-  return Math.ceil(Math.random() * sources[firstSource].topics.length - 1);
+  return Math.floor(Math.random() * sources[sourcesIndex].topics.length);
 };
 
 // E2E Test Suite
@@ -29,10 +29,10 @@ describe("Visit RSS Feed Home Page", () => {
   });
 
   it("Open Random RSS Source", () => {
-    cy.get(`[data-cy="actions-source-${firstSource}"]`).click();
+    cy.get(`[data-cy="actions-source-${sourcesIndex}"]`).click();
   });
 
-  if (sources[firstSource].topics.length > 1) {
+  if (sources[sourcesIndex].topics.length > 1) {
     it("Open Random Topic", () => {
       cy.get(
         `[data-cy="actions-topic-${randomSecondSourceSelection()}"]`
