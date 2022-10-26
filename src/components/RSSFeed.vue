@@ -3,14 +3,14 @@
     <div class="row">
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
-        <HeaderComponent @backward-nav="backwardNav(isError)" :tabNav="tabNav" :isloading="isloading" :isError="isError" :showSourceCode="showSourceCode" />
+        <HeaderComponent @backward-nav="backwardNav(isError)" :tabNav="tabNav" :isloading="isloading" :isError="isError" :showSourceCode="showSourceCode" :devActivationCount="devActivationCount"/>
         <loading-spinner :isloading="isloading" :isError="isError" />
         
         <!-- Sources Tiles Section -->
         <Transition name="card-fade" appear mode="out-in">
             <div v-if="!isloading && tabNav === 0">
               <Transition name="fade" appear mode="out-in">
-                  <h2 @click="$emit('devMode')" class="text-secondary mb-3">Sources</h2>
+                  <h2 @click="devMode()" class="text-secondary mb-3">Sources</h2>
               </Transition>
               <div>
                   <!-- Declaring and assigning index using v-for and use it to assign as key -->
@@ -91,7 +91,6 @@ export default {
             topicTitle: "",
             topicTitle2: "",
             sources: sources,
-            showSourceCode: false,
             devActivationCount: 0,
         };
     },
@@ -109,12 +108,6 @@ export default {
         window.removeEventListener("resize", this.setScreenWidth);
     },
     methods: {
-        devMode() {
-            this.devActivationCount++;
-            if (this.devActivationCount === 7) {
-                this.showSourceCode = true;
-            }
-        },
         forwardNav(data) {
             if (this.tabNav === 0 && data.topics.length > 1) {
                 this.topicData = data.topics;
@@ -176,6 +169,12 @@ export default {
                     return Object.keys(this.data["rdf:RDF"]).includes("item");
             };
             this.isloading = false;
+        },
+        devMode() {
+          this.devActivationCount++;
+          if (this.devActivationCount === 7) {
+              this.showSourceCode = true;
+          }
         },
     },
 }
