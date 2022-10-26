@@ -1,4 +1,4 @@
-describe("example to-do app", () => {
+describe("Visit RSS Feed Home Page", () => {
   it("Visit the page", () => {
     cy.visit("https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/");
   });
@@ -7,7 +7,7 @@ describe("example to-do app", () => {
     cy.wait(5000);
     cy.get("img.logo[src='bw-logo.png'")
       .should("be.visible")
-      .click({ multiple: true });
+      .click({ multiple: false });
   });
 
   it("Open Second Source", () => {
@@ -15,7 +15,7 @@ describe("example to-do app", () => {
     cy.get("span.text-secondary.title")
       .contains("Dividend News")
       .should("be.visible")
-      .click({ multiple: true });
+      .click({ multiple: false });
   });
 
   it("Back to Home Page", () => {
