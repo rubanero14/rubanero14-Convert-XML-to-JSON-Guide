@@ -24,3 +24,8 @@ export default {
     components: { CardComponent },
 }
 </script>
+<style scoped>
+.d-contents {
+    display: contents;
+}
+</style>

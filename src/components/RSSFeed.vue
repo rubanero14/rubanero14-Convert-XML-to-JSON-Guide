@@ -72,7 +72,15 @@ import ArticlesTiles from './ArticlesTiles.vue';
 import TopicTiles from './TopicTiles.vue';
 
 export default {
-    components: { HeaderComponent, ErrorComponent, FooterComponent, SourcesTiles, LoadingSpinner, ArticlesTiles, TopicTiles },
+    components: { 
+      HeaderComponent, 
+      ErrorComponent, 
+      FooterComponent, 
+      SourcesTiles, 
+      LoadingSpinner, 
+      ArticlesTiles, 
+      TopicTiles 
+    },
     data() {
         return {
             data: "",
@@ -185,15 +193,6 @@ export default {
     font-weight: bold;
   }
 
-  .tile {
-    min-height: 115px;
-    min-width: 220px;
-  }
-
-  .right {
-    border-radius: 0px 4px 4px 0px;
-  }
-
   ul {
     list-style: none;
   }
@@ -209,17 +208,6 @@ export default {
     width: 100%;
     margin: 0;
     border-radius: 4px;
-
-  }
-
-  .d-contents {
-    display: contents;
-  }
-
-  h3.title{
-    font-size: 18px;
-    font-weight:bold;
-    margin-bottom: 15px;
   }
 
   a.title {
@@ -227,73 +215,15 @@ export default {
     color: inherit;
   }
 
-  span.time {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-  }
-
-  .card {
-    cursor: pointer;
-    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  .card.logo {
-    height: 120px;
-    width: 120px;
-    border-radius: 8px;
-  }
-
-  .card:hover {
-    background: rgba(0,0,0,.05);
-  }
-
-  .card.logo:hover {
-    box-shadow: 0px 2px 8px 8px rgb(0 0 0 / 20%);
-  }
-
-  .tile {
-    min-height: 108px;
-  }
-
-  .err {
-    width: 100%;
-    border: 1px solid #dc3545;
-  }
-
   @media only screen and (max-width: 600px) {
     h1 {
       font-size: 40px;
-    }
-
-    span.title {
-      font-size: 12px;
-    }
-
-    .card.logo {
-      height: 80px;
-      width: 80px;
-      border-radius: 4px;
     }
   }
 
   @media only screen and (max-width: 400px) {
     h1 {
       font-size: 30px;
-    }
-
-    .card.logo {
-      height: 70px;
-      width: 70px;
-    }
-  }
-
-  @media only screen and (max-width: 300px) {
-    .card.logo {
-      height: 60px;
-      width: 60px;
     }
   }
   
@@ -338,32 +268,6 @@ export default {
 
   .fade-enter-to,
   .fade-leave-from {
-    opacity: 1;
-  }
-
-  /* Declared variable --j is used to dynamically calculate transition time */
-  .fade-articles-enter-active {
-    transition: all 0.5s ease-in-out;
-    transition-delay: calc(var(--j) * 0.05s);
-  }
-
-  .fade-articles-leave-active {
-    transition: all 0.3s ease-in-out;
-    transition-delay: calc(var(--j) * 0.01s);
-  }
-
-  .fade-articles-enter-from {
-    opacity: 0;
-    transform: translateX(-15px);
-  }
-
-  .fade-articles-leave-to {
-    opacity: 0;
-    transform: translateX(15px);
-  }
-
-  .fade-articles-enter-to,
-  .fade-articles-leave-from {
     opacity: 1;
   }
 </style>

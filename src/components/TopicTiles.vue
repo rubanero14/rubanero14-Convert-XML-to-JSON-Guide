@@ -13,7 +13,7 @@
                     <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
                     <br/>
                     <strong class="mb-2">
-                    <span class="text-secondary title">{{ topic.title }}</span>
+                        <span class="text-secondary title">{{ topic.title }}</span>
                     </strong>
                 </div>
             </CardComponent>
@@ -28,3 +28,22 @@ export default {
     components: { CardComponent },
 }
 </script>
+<style scoped>
+.tile {
+    min-height: 108px;
+    min-height: 115px;
+    min-width: 220px;
+}
+
+h3.title{
+    font-size: 18px;
+    font-weight:bold;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+    span.title {
+        font-size: 12px;
+    }
+}
+</style>

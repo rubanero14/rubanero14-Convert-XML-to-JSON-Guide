@@ -82,3 +82,43 @@ export default {
     }
 }
 </script>
+<style scoped>
+span.time {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+h3.title{
+    font-size: 18px;
+    font-weight:bold;
+    margin-bottom: 15px;
+}
+
+
+  /* Declared variable --j is used to dynamically calculate transition time */
+  .fade-articles-enter-active {
+    transition: all 0.5s ease-in-out;
+    transition-delay: calc(var(--j) * 0.05s);
+  }
+
+  .fade-articles-leave-active {
+    transition: all 0.3s ease-in-out;
+    transition-delay: calc(var(--j) * 0.01s);
+  }
+
+  .fade-articles-enter-from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+
+  .fade-articles-leave-to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+
+  .fade-articles-enter-to,
+  .fade-articles-leave-from {
+    opacity: 1;
+  }
+</style>

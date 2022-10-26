@@ -10,15 +10,15 @@
                 <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/err.png"/>
                 <figcaption class="mb-3">Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
                 <ol type="1" class="text-start text-secondary">
-                <li>Click <strong class="text-success">Enable Access</strong> button below</li>
-                <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
-                <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
+                    <li>Click <strong class="text-success">Enable Access</strong> button below</li>
+                    <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
+                    <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
                 </ol>
             </div>
             <div class="col-12">
                 <a @click="$emit('backwardNav')" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
                 <i class="bi bi-hdd-rack"></i> 
-                Enable Access
+                    Enable Access
                 </a>
             </div>
             </div>
@@ -31,3 +31,9 @@ export default {
     props: ["data", "tabNav", "isError"]
 }
 </script>
+<style scoped>
+  .err {
+    width: 100%;
+    border: 1px solid #dc3545;
+  }
+</style>
