@@ -1,39 +1,45 @@
 import sources from "../../src/assets/sources";
 
+// Test Env Variables
+const TEST_ENV = (env = 0) =>
+  env !== 0
+    ? "https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/"
+    : "http://localhost:8080/";
+
 /* Dynamically driven Cypress test suite */
 // Random number generator for sources level test subject
 const randomSourceSelection = () => {
-  return Math.ceil(Math.random() * sources.length + 1);
+  return Math.ceil(Math.random() * sources.length);
 };
 let firstSource = randomSourceSelection();
 
 // Random number generator for topics level test subject
 const randomSecondSourceSelection = () => {
-  return Math.ceil(
-    Math.random() *
-      (sources[firstSource].topics.length !== undefined
-        ? sources[firstSource].topics.length - 1
-        : 1)
-  );
+  if (sources[firstSource].topics.length === undefined) {
+    return console.log("No Topics Found!");
+  }
+  return Math.ceil(Math.random() * sources[firstSource].topics.length - 1);
 };
-let secondSource = randomSecondSourceSelection();
 
 // E2E Test Suite
 describe("Visit RSS Feed Home Page", () => {
   it("Visit the page", () => {
-    cy.visit("http://localhost:8080/");
+    // enter param 1 into TEST_ENV to test prod, leave it empty to test development
+    cy.visit(TEST_ENV());
   });
 
-  it("Open First Source Nav", () => {
+  it("Open Random RSS Source", () => {
     cy.get(`[data-cy="actions-source-${firstSource}"]`).click();
   });
 
   if (sources[firstSource].topics.length > 1) {
-    it("Open Second Source Nav", () => {
-      cy.get(`[data-cy="actions-topic-${secondSource}"]`).click();
+    it("Open Random Topic", () => {
+      cy.get(
+        `[data-cy="actions-topic-${randomSecondSourceSelection()}"]`
+      ).click();
     });
 
-    it("Click Intended Article", () => {
+    it("Click Random Article", () => {
       let articleLength = Cypress.$(
         '[data-cy="actions-article-wrapper"]'
       ).children().length;
@@ -41,8 +47,12 @@ describe("Visit RSS Feed Home Page", () => {
         Math.floor(Math.random() * articleLength) > 1
           ? Math.floor(Math.random() * articleLength)
           : 1;
-      cy.wait(3000);
-      cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
+      cy.wait(5000);
+      cy.get(
+        `[data-cy="actions-article-${
+          randomArticle === 1 ? randomArticle-- : randomArticle
+        }"]`
+      ).click();
     });
 
     it("Back to Second Nav", () => {
@@ -53,7 +63,7 @@ describe("Visit RSS Feed Home Page", () => {
       cy.get('[data-cy ="actions-back-button"]').click();
     });
   } else {
-    it("Click Intended Article", () => {
+    it("Click Random Article", () => {
       let articleLength = Cypress.$(
         '[data-cy="actions-article-wrapper"]'
       ).children().length;
@@ -61,8 +71,12 @@ describe("Visit RSS Feed Home Page", () => {
         Math.floor(Math.random() * articleLength) > 1
           ? Math.floor(Math.random() * articleLength)
           : 1;
-      cy.wait(3000);
-      cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
+      cy.wait(5000);
+      cy.get(
+        `[data-cy="actions-article-${
+          randomArticle === 1 ? randomArticle-- : randomArticle
+        }"]`
+      ).click();
     });
 
     it("Back to Home Page", () => {
