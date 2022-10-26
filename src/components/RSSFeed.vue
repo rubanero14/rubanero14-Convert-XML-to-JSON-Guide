@@ -3,56 +3,24 @@
     <div class="row">
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
-        <!-- Header Section -->
-        <h1 class="text-secondary mb-1">
-          <strong>Latest News Feeds</strong>
-        </h1>
-        <label class="text-secondary mb-3">
-          <strong>Powered by <i class="fa-brands fa-vuejs"></i>  <i class="fa-solid fa-rss"></i></strong> and built by <strong><a class="text-secondary" style="text-decoration: none;" href="https://github.com/rubanero14">Raj</a></strong>
-        </label>
-
-        <a v-if="tabNav === 0 && showSourceCode" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
+        <HeaderComponent @backward-nav="backwardNav(isError)" :tabNav="tabNav" :isloading="isloading" :isError="isError" :showSourceCode="showSourceCode" />
+        <loading-spinner :isloading="isloading" :isError="isError" />
         
-        <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
-        
-        <hr class="my-3" size="5" noshade/>
-        
-        <!-- Loading Spinner Section -->
-        <Transition name="card-fade" appear mode="out-in">
-          <div v-if="isloading && !isError" class="text-center spinner-border text-secondary" role="status">
-          </div>
-        </Transition>
         <!-- Sources Tiles Section -->
         <Transition name="card-fade" appear mode="out-in">
-          <div v-if="!isloading && tabNav === 0">
-            <Transition name="fade" appear mode="out-in">
-              <h2 @click="devMode()" class="text-secondary mb-3">Sources</h2>
-            </Transition>
-            <div>
-              <!-- Declaring and assigning index using v-for and use it to assign as key -->
-              <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
-                <Transition
-                  appear
-                  :key="index"
-                  name="fade" 
-                  mode="out-in"
-                >
-                  <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                  <center :style="{ '--i':index }">
-                    <a class="title" @click="forwardNav(source)">
-                      <div class="card logo p-0 mb-3 mx-2">
-                        <div class="d-contents">
-                          <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
-                        </div>
-                      </div>
-                    </a>
-                  </center>
-                </Transition>
-              </div> 
+            <div v-if="!isloading && tabNav === 0">
+              <Transition name="fade" appear mode="out-in">
+                  <h2 @click="$emit('devMode')" class="text-secondary mb-3">Sources</h2>
+              </Transition>
+              <div>
+                  <!-- Declaring and assigning index using v-for and use it to assign as key -->
+                  <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
+                    <sources-tiles :source="source" :topics="topics" :isloading="isloading" :tabNav="tabNav" @forward-nav="forwardNav(source)"/>
+                  </div> 
+              </div>
             </div>
-          </div>
         </Transition>
-        
+       
         <!-- Articles Section -->
         <div v-if="!isError && !isloading && tabNav === 2">
           <Transition name="fade" appear mode="out-in">
@@ -61,35 +29,7 @@
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-              <Transition
-                :key="index"
-                appear
-                name="fade-articles"
-                mode="out-in"
-              >
-                <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                <center :style="{ '--j':index }">
-                  <a class="title" :href="feed.link.toString()">
-                    <div class="card">
-                      <div class="p-3">
-                        <div class="row">
-                          <div class="col-9 col-md-11 text-start">
-                            <h3 class="title text-secondary">
-                              <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
-                              <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
-                              <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
-                            </h3>
-                            <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date(index) }} ago</em></p>
-                          </div>
-                          <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
-                            <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </center>
-              </Transition>
+              <articles-component :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
             </div>
           </div>
           <div v-else>
@@ -108,62 +48,15 @@
               <div>
                   <!-- Declaring and assigning index using v-for and use it to assign as key -->
                   <div v-for="(topic,index) in topicData" :key="index" class="d-inline-block">
-                    <Transition
-                      :key="index"
-                      appear
-                      name="fade"
-                      mode="out-in"
-                    >
-                      <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-                      <center :style="{ '--i':index }">
-                        <a class="title" @click="getRssFeeds(topicNavUrl,topic.url,topic.title) && forwardNav()">
-                          <div class="card tile mb-3 mx-2">
-                            <div class="d-inline-block justify-content-center align-items-center m-auto">
-                              <img :src="topicNavUrl" onerror="this.src='https://rss.com/favicon.ico'"/>
-                              <br/>
-                              <strong class="mb-2">
-                                <span class="text-secondary title">{{ topic.title }}</span>
-                              </strong>
-                            </div>
-                          </div>
-                        </a>
-                      </center>
-                    </Transition>
+                    <topic-tiles :index="index" :topic="topic" :topicNavUrl="topicNavUrl" @get-rss-feeds="getRssFeeds(topicNavUrl,topic.url,topic.title)" @forward-nav="forwardNav()"/>
                   </div>
               </div>
             </div>
         </Transition>
         
-        <!-- Error Output Section -->
-        <Transition name="card-fade" appear mode="out-in">
-          <div class="text-danger" v-if="isError && tabNav === 2">
-            <Transition name="fade" appear mode="out-in">
-              <p v-if="!data.includes('403')">{{ data }} Try reloading again...</p>
-              <div v-else class="row">
-                <div class="col-12">
-                  <h2 class="text-danger mb-3">{{ data.replace(',','!') }}</h2>
-                  <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/err.png"/>
-                  <figcaption class="mb-3">Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
-                  <ol type="1" class="text-start text-secondary">
-                    <li>Click <strong class="text-success">Enable Access</strong> button below</li>
-                    <li>When new window pops up, click <strong class="text-success">Request temporary access to the demo server</strong> button as per figure above.</li>
-                    <li>Close that window and back to <span class="text-secondary"><strong>RSS Feed</strong></span> page and start browsing for articles</li>
-                  </ol>
-                </div>
-                <div class="col-12">
-                  <a @click="backwardNav()" href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7" class="btn btn-outline-success w-100" target="_blank">
-                    <i class="bi bi-hdd-rack"></i> 
-                    Enable Access
-                  </a>
-                </div>
-              </div>
-            </Transition>
-          </div>
-        </Transition>
-
-        <hr class="my-3" size="5" noshade/>
+        <error-component @backward-nav="backwardNav()" :data="data" :tabNav="tabNav" :isError="isError"/>
+        <footer-component @backward-nav="backwardNav(isError)" :data="data" :tabNav="tabNav" :isError="isError" :topicData="topicData || []" :feeds="feeds || []" />
         
-        <button v-if="tabNav > 0 && showLowerBackBtn()" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
       </div>
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
@@ -172,189 +65,123 @@
 
 <script>
 import axios from 'axios';
-import sources from '@/assets/sources.js';
-
 const xml2js = require('xml2js');
 
+import sources from '@/assets/sources.js';
+import HeaderComponent from './HeaderComponent.vue';
+import ErrorComponent from './ErrorComponent.vue';
+import FooterComponent from './FooterComponent.vue';
+import SourcesTiles from './SourcesTiles.vue';
+import LoadingSpinner from './UI/LoadingSpinner.vue';
+import ArticlesComponent from './ArticlesComponent.vue';
+import TopicTiles from './TopicTiles.vue';
+
 export default {
-  data(){
-    return {
-      data: '',
-      isloading: false,
-      isError: false,
-      rssSource: '',
-      screenWidth: '',
-      tabNav: 0,
-      topicData:'',
-      topicNavUrl: '',
-      topicTitle: '',
-      topicTitle2:'',
-      sources: sources,
-      showSourceCode: false,
-      devActivationCount: 0,
-    };
-  },
-  watch: {
-    url(){
-      this.getRssFeeds();
-      this.setScreenWidth();
+    components: { HeaderComponent, ErrorComponent, FooterComponent, SourcesTiles, LoadingSpinner, ArticlesComponent, TopicTiles },
+    data() {
+        return {
+            data: "",
+            isloading: false,
+            isError: false,
+            rssSource: "",
+            screenWidth: "",
+            tabNav: 0,
+            topicData: "",
+            topicNavUrl: "",
+            topicTitle: "",
+            topicTitle2: "",
+            sources: sources,
+            showSourceCode: false,
+            devActivationCount: 0,
+        };
     },
-  },
-  mounted() {
-    window.addEventListener('resize', this.setScreenWidth);
-    this.setScreenWidth();
-  },
-  unmounted() {
-    window.removeEventListener('resize', this.setScreenWidth)
-  },
-  methods: {
-    devMode(){
-      this.devActivationCount++;
-      if(this.devActivationCount === 7){
-        this.showSourceCode = true
-      }
+    watch: {
+        url() {
+            this.getRssFeeds();
+            this.setScreenWidth();
+        },
     },
-    forwardNav(data){
-      if(this.tabNav === 0 && data.topics.length > 1){
-        this.topicData = data.topics;
-        this.topicNavUrl = data.url;
-        this.topicTitle = data.name;
-        return this.tabNav < 3 ? this.tabNav++ : this.tabNav;
-      }
-
-      if(this.tabNav === 0 && data.topics.length === 1){
-        this.pic = data.url;
-        this.topicData = data.topics;
-        this.topicNavUrl = data.topics[0].url;
-        this.topicTitle2 = data.topics[0].title;
-        this.getRssFeeds(this.pic,this.topicNavUrl,this.topicTitle2);
-        return this.tabNav = 2;
-      }
+    mounted() {
+        window.addEventListener("resize", this.setScreenWidth);
+        this.setScreenWidth();
     },
-    backwardNav(err){
-      if(this.tabNav === 2 && this.topicData.length === 1){
-        return this.tabNav = 0;
-      }
-
-      if(err){
-        this.isError = false;
-        console.log('Iserror ',this.isError)
-        return this.tabNav = 0;
-      }
-
-      return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
+    unmounted() {
+        window.removeEventListener("resize", this.setScreenWidth);
     },
-    setScreenWidth(){
-      console.log(window.innerWidth);
-      return this.screenWidth = window.innerWidth;
+    methods: {
+        devMode() {
+            this.devActivationCount++;
+            if (this.devActivationCount === 7) {
+                this.showSourceCode = true;
+            }
+        },
+        forwardNav(data) {
+            if (this.tabNav === 0 && data.topics.length > 1) {
+                this.topicData = data.topics;
+                this.topicNavUrl = data.url;
+                this.topicTitle = data.name;
+                return this.tabNav < 3 ? this.tabNav++ : this.tabNav;
+            }
+            if (this.tabNav === 0 && data.topics.length === 1) {
+                this.pic = data.url;
+                this.topicData = data.topics;
+                this.topicNavUrl = data.topics[0].url;
+                this.topicTitle2 = data.topics[0].title;
+                this.getRssFeeds(this.pic, this.topicNavUrl, this.topicTitle2);
+                return this.tabNav = 2;
+            }
+        },
+        backwardNav(err) {
+            if (this.tabNav === 2 && this.topicData.length === 1) {
+                return this.tabNav = 0;
+            }
+            if (err) {
+                this.isError = false;
+                console.log("Iserror ", this.isError);
+                return this.tabNav = 0;
+            }
+            return this.tabNav > -1 ? this.tabNav-- : this.tabNav;
+        },
+        setScreenWidth() {
+            console.log(window.innerWidth);
+            return this.screenWidth = window.innerWidth;
+        },
+        async getRssFeeds(picUrl, payloadUrl, title) {
+            this.tabNav = 2;
+            this.isError = false;
+            this.isloading = true;
+            this.pic = picUrl;
+            this.topicTitle2 = title;
+            // Payload for Fetch API setting
+            let payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
+            // Fetch API as XML and convert into JSON format
+            this.data = await axios
+                .get(payload)
+                .then((response) => {
+                return xml2js.parseStringPromise(response.data);
+            })
+                .catch(err => {
+                this.isloading = false;
+                this.isError = true;
+                console.log(err);
+                return err.message + ",";
+            });
+            if (this.isError)
+                return;
+            this.feeds = Object.keys(this.data).includes("rss") ? this.data.rss.channel[0].item : this.data["rdf:RDF"].item;
+            this.feedHasArticles = () => {
+                if (Object.keys(this.data).includes("rss"))
+                    return Object.keys(this.data.rss.channel[0]).includes("item");
+                if (Object.keys(this.data).includes("rdf:RDF"))
+                    return Object.keys(this.data["rdf:RDF"]).includes("item");
+            };
+            this.isloading = false;
+        },
     },
-    async getRssFeeds(picUrl, payloadUrl, title){
-      this.tabNav = 2;
-      this.isError = false;
-      this.isloading = true;
-      this.pic = picUrl;
-      this.topicTitle2 = title;
-
-      // Payload for Fetch API setting
-      let payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
-      
-      // Fetch API as XML and convert into JSON format
-      this.data = await axios
-      .get(payload)
-      .then((response) => {
-        return xml2js.parseStringPromise(response.data);
-      })
-      .catch(err => {
-        this.isloading = false;
-        this.isError = true;
-        console.log(err);
-        return err.message + ',';
-      });
-
-      if(this.isError) return;
-
-      this.feeds = Object.keys(this.data).includes('rss') ? this.data.rss.channel[0].item : this.data["rdf:RDF"].item;
-      
-      this.feedHasArticles = () => {
-        if(Object.keys(this.data).includes("rss")) return Object.keys(this.data.rss.channel[0]).includes('item');
-        if(Object.keys(this.data).includes("rdf:RDF")) return Object.keys( this.data["rdf:RDF"]).includes('item');
-      }
-      
-      this.rssMode = Object.keys(this.data).includes("rss") ? 'pubDate' : 'dc:date';
-
-      // Custom show elapsed time algorithm
-      this.date = () => {
-        // get UNIX timestamp of pubDate value
-        const Elapsed = new Date(this.feeds[0][this.rssMode]).getTime();
-
-        // get UNIX timestamp of Present value
-        const Now = Date.now();
-
-        // Convert UNIX to seconds
-        const seconds = ((Now - Elapsed) / 1000);
-
-        // Convert UNIX to minutes
-        const minutes = (seconds / 60);
-
-        // Convert UNIX to hours
-        const hours = (minutes / 60);
-
-        // Convert UNIX to days
-        const days = (hours / 24);
-
-        // Convert UNIX to weeks
-        const weeks = (days / 7);
-
-        // Convert UNIX to months
-        const months = (weeks / 4);
-
-        // Convert UNIX to years
-        const years = (months / 12);
-
-        // Elapsed Time output logic
-        if(seconds >= 1 && seconds < 60){
-          return seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? ' second':' seconds');
-        }
-
-        if(minutes >= 1 && minutes < 60){
-          return minutes.toFixed(0) + (minutes.toFixed(0) < 2 ? ' minute':' minutes');
-        }
-
-        if(hours >= 1 && hours < 24){
-          return hours.toFixed(0) + (hours.toFixed(0) < 2 ? ' hour':' hours');
-        }
-
-        if(days >= 1 && days < 7){
-          return days.toFixed(0) + (days.toFixed(0) < 2 ? ' day':' days');
-        }
-
-        if(weeks >= 1 && weeks < 4){
-          return weeks.toFixed(0) + (weeks.toFixed(0) < 2 ? ' week':' weeks');
-        }
-
-        if(months >= 1 && months < 12){
-          return months.toFixed(0) + (months.toFixed(0) < 2 ? ' month':' months');
-        }
-
-        if(years >= 1){
-          return years.toFixed(0) + (years.toFixed(0) < 2 ? ' year':' years');
-        }
-      };
-      this.isloading = false;
-    },
-    showLowerBackBtn(){
-      if(this.tabNav === 1) {
-        return this.topicData !== undefined && this.topicData.length > 4;
-      }
-      if(this.tabNav === 2) {
-        return this.feeds !== undefined && this.feeds.length > 4;
-      }
-    },
-  },
 }
 </script>
 
-<style scoped>
+<style>
   h1 {
     font-size: 50px;
   }
