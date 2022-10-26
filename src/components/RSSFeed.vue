@@ -14,7 +14,7 @@
               <div>
                   <!-- Declaring and assigning index using v-for and use it to assign as key -->
                   <div v-for="(source, index) in sources" :key="index" class="d-inline-block">
-                    <sources-tiles :source="source" :topics="topics" :isloading="isloading" :tabNav="tabNav" @forward-nav="forwardNav(source)"/>
+                    <sources-tiles :index="index" :source="source" :topics="topics" :isloading="isloading" :tabNav="tabNav" @forward-nav="forwardNav(source)"/>
                   </div> 
               </div>
             </div>

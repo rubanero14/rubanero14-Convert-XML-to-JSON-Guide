@@ -1,12 +1,12 @@
 <template>
     <Transition
-        :key="index"
+        :key="this.index"
         appear
         name="fade"
         mode="out-in"
     >
         <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-        <center :style="{ '--i':index }">
+        <center :style="{ '--i': this.index }">
         <a class="title" @click="$emit('getRssFeeds', topicNavUrl,topic.url,topic.title ), $emit('forwardNav')">
             <CardComponent class="tile mb-3 mx-2">
                 <div class="d-inline-block justify-content-center align-items-center m-auto">
