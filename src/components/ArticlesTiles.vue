@@ -7,7 +7,7 @@
         >
         <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
         <center :style="{ '--j': this.index }">
-            <a class="title" :href="feed.link.toString()" target="_blank">
+            <a :data-cy="`actions-article-${index}`" class="title" :href="feed.link.toString()" target="_blank">
                 <card-component>
                     <div class="p-3">
                         <div class="row">

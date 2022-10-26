@@ -25,7 +25,7 @@
             <h2 class="text-secondary mb-3">{{ topicTitle2 }}</h2>
           </Transition>
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
-          <div class="articles-wrapper" v-if="this.feedHasArticles()">
+          <div data-cy="actions-article-wrapper" class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
               <articles-tiles :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
             </div>

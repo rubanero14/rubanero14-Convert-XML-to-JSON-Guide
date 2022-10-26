@@ -7,7 +7,7 @@
     >
         <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
         <center :style="{ '--i': this.index }">
-        <a class="title" @click="$emit(`forwardNav`,source)">
+        <a :data-cy="`actions-source-${index}`" class="title" @click="$emit(`forwardNav`,source)">
             <card-component class="logo p-0 mb-3 mx-2">
                 <div class="d-contents">
                     <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
