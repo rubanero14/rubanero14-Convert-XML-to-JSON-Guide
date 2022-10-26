@@ -5,7 +5,6 @@
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
         <HeaderComponent @backward-nav="backwardNav(isError)" :tabNav="tabNav" :isloading="isloading" :isError="isError" :showSourceCode="showSourceCode" :devActivationCount="devActivationCount"/>
         <loading-spinner :isloading="isloading" :isError="isError" />
-        
         <!-- Sources Tiles Section -->
         <Transition name="card-fade" appear mode="out-in">
             <div v-if="!isloading && tabNav === 0">
@@ -20,7 +19,6 @@
               </div>
             </div>
         </Transition>
-       
         <!-- Articles Section -->
         <div v-if="!isError && !isloading && tabNav === 2">
           <Transition name="fade" appear mode="out-in">
@@ -29,7 +27,7 @@
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-              <articles-component :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
+              <articles-tiles :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
             </div>
           </div>
           <div v-else>
@@ -38,7 +36,6 @@
             </div> 
           </div>
         </div>
-        
         <!-- Topic Tiles Section -->
         <Transition name="card-fade" appear mode="out-in">
             <div v-if="!isloading && tabNav === 1">
@@ -53,10 +50,8 @@
               </div>
             </div>
         </Transition>
-        
         <error-component @backward-nav="backwardNav()" :data="data" :tabNav="tabNav" :isError="isError"/>
-        <footer-component @backward-nav="backwardNav(isError)" :data="data" :tabNav="tabNav" :isError="isError" :topicData="topicData || []" :feeds="feeds || []" />
-        
+        <footer-component @backward-nav="backwardNav(isError)" :data="data" :tabNav="tabNav" :isloading="isloading" :isError="isError" :topicData="topicData || []" :feeds="feeds || []" />
       </div>
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
@@ -73,11 +68,11 @@ import ErrorComponent from './ErrorComponent.vue';
 import FooterComponent from './FooterComponent.vue';
 import SourcesTiles from './SourcesTiles.vue';
 import LoadingSpinner from './UI/LoadingSpinner.vue';
-import ArticlesComponent from './ArticlesComponent.vue';
+import ArticlesTiles from './ArticlesTiles.vue';
 import TopicTiles from './TopicTiles.vue';
 
 export default {
-    components: { HeaderComponent, ErrorComponent, FooterComponent, SourcesTiles, LoadingSpinner, ArticlesComponent, TopicTiles },
+    components: { HeaderComponent, ErrorComponent, FooterComponent, SourcesTiles, LoadingSpinner, ArticlesTiles, TopicTiles },
     data() {
         return {
             data: "",
