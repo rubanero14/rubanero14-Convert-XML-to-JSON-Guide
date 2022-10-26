@@ -5,10 +5,10 @@
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
         <!-- Header Section -->
         <h1 class="text-secondary mb-1">
-          <strong>Latest News Articles</strong>
+          <strong>Latest News Feeds</strong>
         </h1>
         <label class="text-secondary mb-3">
-          <strong>Powered by Vue</strong>
+          <strong>Powered by <i class="fa-brands fa-vuejs"></i>  <i class="fa-solid fa-rss"></i></strong> and built by <strong><a class="text-secondary" style="text-decoration: none;" href="https://github.com/rubanero14">Raj</a></strong>
         </label>
 
         <a v-if="tabNav === 0 && showSourceCode" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
@@ -41,7 +41,7 @@
                   <center :style="{ '--i':index }">
                     <a class="title" @click="forwardNav(source)">
                       <div class="card logo p-0 mb-3 mx-2">
-                        <div class="d-inline-block justify-content-center align-items-center">
+                        <div class="d-contents">
                           <img class="logo" :src="source.logo" onerror="this.src='https://rss.com/favicon.ico'"/>
                         </div>
                       </div>
@@ -163,7 +163,7 @@
 
         <hr class="my-3" size="5" noshade/>
         
-        <button v-if="tabNav > 0" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
+        <button v-if="tabNav > 0 && showLowerBackBtn()" @click="backwardNav(isError)" class="btn btn-secondary w-100" :disabled="isloading"><i class="bi bi-arrow-left"></i> Back</button>
       </div>
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
@@ -342,6 +342,14 @@ export default {
       };
       this.isloading = false;
     },
+    showLowerBackBtn(){
+      if(this.tabNav === 1) {
+        return this.topicData !== undefined && this.topicData.length > 4;
+      }
+      if(this.tabNav === 2) {
+        return this.feeds !== undefined && this.feeds.length > 4;
+      }
+    },
   },
 }
 </script>
@@ -380,6 +388,11 @@ export default {
     width: 100%;
     margin: 0;
     border-radius: 4px;
+
+  }
+
+  .d-contents {
+    display: contents;
   }
 
   h3.title{
