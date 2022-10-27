@@ -9,7 +9,7 @@ const TEST_ENV = (env = 0) =>
 /* Dynamically driven Cypress test suite */
 // Random number generator for sources level test subject
 const randomSourceSelection = () => {
-  return Math.ceil(Math.random() * sources.length - 1);
+  return Math.floor(Math.random() * sources.length);
 };
 let sourcesIndex = randomSourceSelection();
 
@@ -22,7 +22,7 @@ const randomSecondSourceSelection = () => {
 };
 
 // E2E Test Suite
-describe("Visit RSS Feed Home Page", () => {
+describe("Visits RSS Feed Home Page", () => {
   it("Visit the page", () => {
     // enter param 1 into TEST_ENV to test prod, leave it empty to test development
     cy.visit(TEST_ENV());
@@ -43,16 +43,9 @@ describe("Visit RSS Feed Home Page", () => {
       let articleLength = Cypress.$(
         '[data-cy="actions-article-wrapper"]'
       ).children().length;
-      let randomArticle =
-        Math.floor(Math.random() * articleLength) > 1
-          ? Math.floor(Math.random() * articleLength)
-          : 1;
+      let randomArticle = Math.floor(Math.random() * articleLength);
       cy.wait(5000);
-      cy.get(
-        `[data-cy="actions-article-${
-          randomArticle === 1 ? randomArticle-- : randomArticle
-        }"]`
-      ).click();
+      cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
     });
 
     it("Back to Second Nav", () => {
@@ -67,16 +60,9 @@ describe("Visit RSS Feed Home Page", () => {
       let articleLength = Cypress.$(
         '[data-cy="actions-article-wrapper"]'
       ).children().length;
-      let randomArticle =
-        Math.floor(Math.random() * articleLength) > 1
-          ? Math.floor(Math.random() * articleLength)
-          : 1;
+      let randomArticle = Math.floor(Math.random() * articleLength);
       cy.wait(5000);
-      cy.get(
-        `[data-cy="actions-article-${
-          randomArticle === 1 ? randomArticle-- : randomArticle
-        }"]`
-      ).click();
+      cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
     });
 
     it("Back to Home Page", () => {
