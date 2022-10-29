@@ -1,2 +1,7 @@
 node_modules/
 dist/
+cypress.env.json
+cypress/downloads/
+cypress/fixtures/
+cypress/supports/
+cypress/videos/
