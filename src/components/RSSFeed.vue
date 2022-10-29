@@ -31,9 +31,9 @@
             </div>
           </div>
           <div v-else>
-            <div  @click="backwardNav(isError)" class="card d-flex justify-content-center align-content-center p-4">
+            <card-component @click="backwardNav(isError)" class="d-flex justify-content-center align-content-center p-4">
               <span class="text-danger mb-0"><strong><em>No articles found here!</em></strong></span>
-            </div> 
+            </card-component>
           </div>
         </div>
         <!-- Topic Tiles Section -->
@@ -70,6 +70,7 @@ import SourcesTiles from './SourcesTiles.vue';
 import LoadingSpinner from './UI/LoadingSpinner.vue';
 import ArticlesTiles from './ArticlesTiles.vue';
 import TopicTiles from './TopicTiles.vue';
+import CardComponent from './UI/CardComponent.vue';
 
 export default {
     components: { 
@@ -79,7 +80,8 @@ export default {
       SourcesTiles, 
       LoadingSpinner, 
       ArticlesTiles, 
-      TopicTiles 
+      TopicTiles,
+      CardComponent,
     },
     data() {
         return {
