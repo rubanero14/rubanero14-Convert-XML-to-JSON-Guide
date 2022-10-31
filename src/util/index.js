@@ -5,5 +5,8 @@ export default class Util {
         .replaceAll('/','%2F')
         .replaceAll('"','%22')
         .replaceAll('&','%26')
+        .replaceAll('?','%3F')
+        .replaceAll('+','%2B')
+        .replaceAll(':','%3A')
     }
 }

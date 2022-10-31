@@ -61,7 +61,7 @@
 <script>
 import axios from 'axios';
 import Util from '../util'
-
+const xml2js = require('xml2js');
 import sources from '@/assets/sources.js';
 import HeaderComponent from './HeaderComponent.vue';
 import ErrorComponent from './ErrorComponent.vue';
@@ -151,22 +151,38 @@ export default {
             this.pic = picUrl;
             this.topicTitle2 = title;
             // Payload for Fetch API setting
-            console.log(Util.UrlEncoder(payloadUrl))
-            let payload = `https://rss-feed-proxy-server.herokuapp.com/${Util.UrlEncoder(payloadUrl)}`;
-            // Fetch API as XML and convert into JSON format
-            this.data = await axios
+            if(payloadUrl.includes('tradingeconomics') || payloadUrl.includes('sciencedaily')){
+              const payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
+                console.log('foreign proxy fires')
+                this.data = await axios
                 .get(payload)
                 .then((response) => {
-                return response.data
-            })
+                    return xml2js.parseStringPromise(response.data);
+              })
                 .catch(err => {
-                this.isloading = false;
-                this.isError = true;
-                console.log(err);
-                return err.message + ",";
-            });
-            if (this.isError)
-                return;
+                  this.isloading = false;
+                  this.isError = true;
+                  console.log(err);
+                  return err.message + ",";
+              });
+            } else {
+              let payload = `https://rss-feed-proxy-server.herokuapp.com/${Util.UrlEncoder(payloadUrl)}`;
+              // Fetch API as XML and convert into JSON format
+              console.log('own proxy fires')
+              this.data = await axios
+                  .get(payload)
+                  .then((response) => {
+                  return response.data
+              })
+                  .catch(err => {
+                  this.isloading = false;
+                  this.isError = true;
+                  console.log(err);
+                  return err.message + ",";
+              });
+            }
+
+            if (this.isError) return;
             this.feeds = Object.keys(this.data).includes("rss") ? this.data.rss.channel[0].item : this.data["rdf:RDF"].item;
             this.feedHasArticles = () => {
                 if (Object.keys(this.data).includes("rss"))
