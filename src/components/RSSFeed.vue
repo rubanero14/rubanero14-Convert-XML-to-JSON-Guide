@@ -60,7 +60,7 @@
 
 <script>
 import axios from 'axios';
-const xml2js = require('xml2js');
+import Util from '../util'
 
 import sources from '@/assets/sources.js';
 import HeaderComponent from './HeaderComponent.vue';
@@ -151,12 +151,13 @@ export default {
             this.pic = picUrl;
             this.topicTitle2 = title;
             // Payload for Fetch API setting
-            let payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
+            console.log(Util.UrlEncoder(payloadUrl))
+            let payload = `https://rss-feed-proxy-server.herokuapp.com/${Util.UrlEncoder(payloadUrl)}`;
             // Fetch API as XML and convert into JSON format
             this.data = await axios
                 .get(payload)
                 .then((response) => {
-                return xml2js.parseStringPromise(response.data);
+                return response.data
             })
                 .catch(err => {
                 this.isloading = false;
