@@ -60,7 +60,7 @@
 
 <script>
 import axios from 'axios';
-import Util from '../util'
+import Util from '../util';
 const xml2js = require('xml2js');
 import sources from '@/assets/sources.js';
 import HeaderComponent from './HeaderComponent.vue';
@@ -166,7 +166,7 @@ export default {
                   return err.message + ",";
               });
             } else {
-              let payload = `https://rss-feed-proxy-server.herokuapp.com/${Util.UrlEncoder(payloadUrl)}`;
+              const payload = `https://rss-feed-proxy-server.herokuapp.com/${Util.UrlEncoder(payloadUrl)}`;
               // Fetch API as XML and convert into JSON format
               console.log('own proxy fires')
               this.data = await axios
