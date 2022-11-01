@@ -47,7 +47,7 @@ describe("Visits RSS Feed Home Page", () => {
         .then((articles) => {
           articlesLength = Cypress.$(articles).length;
           const randomArticle = Math.floor(Math.random() * articlesLength);
-          cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
+          cy.get(`[data-cy="actions-article-${randomArticle}"]`).wait(3000).click();
         });
     });
 
@@ -66,7 +66,7 @@ describe("Visits RSS Feed Home Page", () => {
         .then((articles) => {
           articlesLength = Cypress.$(articles).length;
           const randomArticle = Math.floor(Math.random() * articlesLength);
-          cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
+          cy.get(`[data-cy="actions-article-${randomArticle}"]`).wait(3000).click();
         });
     });
 
