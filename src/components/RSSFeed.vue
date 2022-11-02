@@ -22,7 +22,7 @@
         <!-- Articles Section -->
         <div v-if="!isError && !isloading && tabNav === 2">
           <Transition name="fade" appear mode="out-in">
-            <h2 class="text-secondary mb-3">{{ topicTitle2 }}</h2>
+            <h2 class="text-secondary mb-3">{{ topicData.length === 1 ? topicTitle :topicTitle2 }}</h2>
           </Transition>
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div data-cy="actions-article-wrapper" class="articles-wrapper" v-if="this.feedHasArticles()">
@@ -125,7 +125,7 @@ export default {
                 this.topicData = data.topics;
                 this.topicNavUrl = data.topics[0].url;
                 this.topicTitle2 = data.topics[0].title;
-                this.getRssFeeds(this.pic, this.topicNavUrl, this.topicTitle2);
+                this.getRssFeeds(this.pic, this.topicNavUrl, this.topicTitle2, this.logo);
                 return this.tabNav = 2;
             }
         },
