@@ -114,10 +114,10 @@ export default {
     },
     methods: {
         forwardNav(data) {
+            this.topicTitle = data.name;
             if (this.tabNav === 0 && data.topics.length > 1) {
                 this.topicData = data.topics;
                 this.topicNavUrl = data.url;
-                this.topicTitle = data.name;
                 return this.tabNav < 3 ? this.tabNav++ : this.tabNav;
             }
             if (this.tabNav === 0 && data.topics.length === 1) {
