@@ -150,7 +150,7 @@ NewSource("The EurAsian Times", null, "eat-logo.png", [
 
 NewSource("DefenseNews", "https://www.defensenews.com/pf/resources/img/favicons/def/favicon-32x32.png?d=104", "dn-logo.jpg", null, ["Global", "Air", "Land", "Naval", "Space", "Unmanned", "Industry"], ["https://www.defensenews.com/arc/outboundfeeds/rss/category/", "item.toLowerCase()" ,"/?outputType=xml"]);
 
-NewSource("DefenseTalk", "https://feedburner.com/favicon.ico", "dt-logo.jpeg", null, [ "Defense News", "Defense Security", "Defense Technology", "Missiles Bombs","Nuclear & WMD News", "Navy News", "Drones News"], ["https://feeds.feedburner.com/", "item.toLowerCase().replaceAll(' ','')",""]);
+NewSource("DefenseTalk", "https://feedburner.com/favicon.ico", "dt-logo.jpeg", null, [ "DefenseNews", "Army News", "Defense Security", "Defense Technology", "Missiles Bombs", "WMD News", "NavyNews", "DronesNews"], ["https://feeds.feedburner.com/", "item.toLowerCase().replaceAll(' ','-')",""]);
 
 NewSource("Shephard Media", null, "sm-logo.png", [
     ["Latest Articles", "https://www.shephardmedia.com/news/feed/"],
