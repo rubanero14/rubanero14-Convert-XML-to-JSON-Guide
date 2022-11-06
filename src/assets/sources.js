@@ -93,7 +93,10 @@ NewSource("freeCodeCamp", "https://cdn.freecodecamp.org/universal/favicons/favic
     "Object-Oriented-Programming", "Online-Courses", "Open-Source", "OpenGL", "Pair-Programming", "PHP", "Portfolio", "Postgres", "Problem-Solving", "Product-Design", 
     "Productivity", "Programming", "Programming-Languages", "Project-Management", "Projects", "Python", "Pytorch", "Quality-Assurance", "React","React-Context","React-Hooks",
     "React-Router", "ReactJS", "Redis", "Redux", "Regex", "Remote-Work", "Responsive-Design", "Rest-API", "Resume", "Rust", "SASS", "Security", "Self-Improvement", "SEO", 
-    "Serverless", "Smart-Contracts", "Software", "Software-Architecture", "Software-Development", "Software-Engineering", "Software-Testing", "Solana", "SQL", "Startup", "Storage", "Svelte", "SVG", "Swift", "Systems", "Systems-Engineering", "Tableau", "Tailwind", "Tech", "Technical-Writing", "Technology", "Tensorflow", "Terraform", "Test-Driven-Development", "Testing", "Typescript", "UI-Design", "Unicode", "University", "Unreal-Engine", "User-Experience", "Vim", "Visual-Basic", "VSCode", "Vue", "Web", "Web-Design", "Web-Development", "Web-Performance", "Web-Scraping", "Web-Security", "Web3", "WebGPU", "Windows", "Windows-10", "Wordpress", "XML", "Youtube"
+    "Serverless", "Smart-Contracts", "Software", "Software-Architecture", "Software-Development", "Software-Engineering", "Software-Testing", "Solana", "SQL", "Startup", 
+    "Storage", "Svelte", "SVG", "Swift", "Systems", "Systems-Engineering", "Tableau", "Tailwind", "Tech", "Technical-Writing", "Technology", "Tensorflow", "Terraform", 
+    "Test-Driven-Development", "Testing", "Typescript", "UI-Design", "Unicode", "University", "Unreal-Engine", "User-Experience", "Vim", "Visual-Basic", "VSCode", "Vue", "Web",
+     "Web-Design", "Web-Development", "Web-Performance", "Web-Scraping", "Web-Security", "Web3", "WebGPU", "Windows", "Windows-10", "Wordpress", "XML", "Youtube"
 ], ["https://www.freecodecamp.org/news/tag/", "item.toLowerCase()", '/rss']);
 
 NewSource("Reuters", null, "reuters-logo.png", [
