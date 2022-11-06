@@ -5,7 +5,7 @@ const sources = [];
 const NewSource = (Name, sub, Logo, Topics, Topics2, rssUrl) => {
   const topics = [];
   // Dynamic favicon url constructor 
-  const favicon = () => sub || `https://www.${Name.toLowerCase().replaceAll(" ", "").replaceAll(/.com|.org/gi, "")}${Name.includes('.org') ? '.org' : '.com'}/favicon.ico`;
+  const favicon = () => sub || `https://${Name.toLowerCase().replaceAll(" ", "").replaceAll(/.com|.org/gi, "")}${Name.includes('.org') ? '.org' : '.com'}/favicon.ico`;
   const [name , url, logo] = [Name, favicon(), Logo]
   if(!Topics2){
     Topics.map(item => {
