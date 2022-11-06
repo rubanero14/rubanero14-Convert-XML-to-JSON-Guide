@@ -266,12 +266,12 @@ export default {
   /* Declared variable --i is used to dynamically calculate transition time */
   .fade-enter-active {
     transition: all 0.5s ease-in-out;
-    transition-delay: calc(var(--i) * 0.15s);
+    transition-delay: calc(var(--i) * 0.05s);
   }
 
   .fade-leave-active {
     transition: all 0.5s ease-in-out;
-    transition-delay: calc(var(--i) * 0.15s);
+    transition-delay: calc(var(--i) * 0.05s);
     
   }
 
