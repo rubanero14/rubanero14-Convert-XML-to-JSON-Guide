@@ -1,19 +1,18 @@
 // Array containing data of multiple sources initiated
 const sources = [];
 
-// Constructor function to add new source
+// Dynamic constructor function to add new source into sources object
 const NewSource = (Name, sub, Logo, Topics, fcc) => {
   const topics = [];
-  const domains = ['.com', '.org', '.io'];
-  const Url = () => sub || domains.map(domain => `https://${Name.toLowerCase().replaceAll(" ", "").replaceAll(domain, "")}${domain}/favicon.ico`)
+  // Dynamic favicon url constructor 
+  const Url = () => sub || `https://www.${Name.toLowerCase().replaceAll(" ", "").replaceAll(/.com|.org/gi, "")}${Name.includes('.org') ? '.org' : '.com'}/favicon.ico`;
   const [name , url, logo] = [Name, Url(), Logo]
   if(!fcc){
     Topics.map(item => {
       const [title, url] = [item[0], item[1]];
       topics.push({title, url});
     })
-  }
-  if(fcc) {
+  } else {
     fcc.map(item => {
       const [title, url] = [item.replaceAll("-"," "), `https://www.freecodecamp.org/news/tag/${item.toLowerCase()}/rss`];
       topics.push({title, url});
@@ -406,7 +405,7 @@ NewSource("Janes", null, "janes-logo.png", [
   ]
 );
 
-NewSource("GlobalSecurity.org", "https://www.globalsecurity.org/favicon.ico", "gs-logo.png", [
+NewSource("GlobalSecurity.org", null, "gs-logo.png", [
     ["Defence News", "https://www.globalsecurity.org/globalsecurity-org.xml"],
   ]
 );
