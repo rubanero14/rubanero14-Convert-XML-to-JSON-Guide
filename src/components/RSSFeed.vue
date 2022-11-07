@@ -27,7 +27,7 @@
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div data-cy="actions-article-wrapper" class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-              <articles-tiles :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
+              <articles-tiles :titlePic="titlePic" :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
             </div>
           </div>
           <div v-else>
@@ -157,6 +157,7 @@ export default {
                 this.data = await axios
                 .get(payload)
                 .then((response) => {
+                    console.log(xml2js.parseStringPromise(response.data));
                     return xml2js.parseStringPromise(response.data);
               })
                 .catch(err => {
@@ -172,7 +173,8 @@ export default {
               this.data = await axios
                   .get(payload)
                   .then((response) => {
-                  return response.data
+                  console.log(response.data);
+                  return response.data;
               })
                   .catch(err => {
                   this.isloading = false;
@@ -190,6 +192,41 @@ export default {
                 if (Object.keys(this.data).includes("rdf:RDF"))
                     return Object.keys(this.data["rdf:RDF"]).includes("item");
             };
+            
+            // Article header picture extracting and display logic
+            this.titlePic = (idx) => {
+              // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
+              if(Object.keys(this.data).includes("rss")){
+                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "enclosure")){
+                  return this.feeds[idx].enclosure[0].$.url;
+                }
+
+                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "media:group")){
+                  return this.feeds[idx]["media:group"][0]["media:content"][0].$.url;
+                }
+
+                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "media:content")){
+                  return this.feeds[idx]["media:content"][0].$.url;
+                }
+
+                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "description") && this.feeds[idx].description[0].includes('src=')){
+                  return this.feeds[idx].description[0].split('src="')[1].split('"')[0];
+                }
+                
+                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "a10:content") && this.feeds[idx]["a10:content"][0]._.includes("url(&quot;")){
+                  return this.feeds[idx]["a10:content"][0]._.split("&quot;")[1];
+                }
+
+                if(this.feeds[idx].title === "The Diplomat"){
+                  return false
+                }
+              }
+
+              if(Object.keys(this.data).includes("rdf:RDF")){
+                return false;
+              }
+            };
+
             this.isloading = false;
         },
         devMode() {
@@ -218,6 +255,7 @@ export default {
 
   img {
     margin: 5px auto;
+    height: 35px;
     width: 35px;
     border-radius: 4px;
   }

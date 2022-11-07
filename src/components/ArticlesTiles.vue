@@ -8,19 +8,27 @@
         <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
         <center :style="{ '--j': this.index }">
             <a :data-cy="`actions-article-${index}`" class="title" :href="feed.link.toString()" target="_blank">
-                <card-component>
+                <card-component class="mb-3">
+                    <div class="row" v-if="titlePic(index)">
+                        <div class="col-12">
+                            <img class="banner" :src="titlePic(index)">
+                        </div>
+                    </div>
                     <div class="p-3">
                         <div class="row">
-                            <div class="col-9 col-md-11 text-start">
-                                <h3 class="title text-secondary">
-                                    <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 250).replace(': ','') + '...' }}</span>
+                            <div class="col-12">
+                                <h3 class="title text-secondary mb-0">
+                                    <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 500).replace(': ','') + '...' }}</span>
                                     <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
                                     <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
                                 </h3>
-                                <p v-if="date()" class="time d-block text-secondary mb-0"><em>Updated: {{ date(index) }} ago</em></p>
                             </div>
-                            <div class="wrapper col-3 col-md-1 d-flex align-items-center justify-content-center">
-                                <img class="m-auto" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                            <div class="col-12">
+                                <hr/>
+                                <div class="d-flex justify-content-between align-contents-center">
+                                    <aside v-if="date()" class="time d-flex align-self-end text-secondary mb-0"><em>Updated: {{ date(index) }} ago</em></aside>
+                                    <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -33,7 +41,7 @@
 import Util from '../util';
 import CardComponent from './UI/CardComponent.vue';
 export default {
-    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic'],
+    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic', 'titlePic'],
     components: { CardComponent },
     methods: {
         date(){
@@ -44,16 +52,25 @@ export default {
 }
 </script>
 <style scoped>
-span.time {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-}
-
 h3.title{
     font-size: 18px;
     font-weight:bold;
     margin-bottom: 15px;
+    text-align: start;
+}
+
+img.banner {
+    height:  auto;
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+}
+
+img.img {
+    height: 35px;
+    width: 35px;
+    border-radius: 4px;
+    margin: 0;
 }
 
   /* Declared variable --j is used to dynamically calculate transition time */

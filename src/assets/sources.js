@@ -69,7 +69,7 @@ NewSource("Seeking Alpha", "https://seekingalpha.com/samw/static/images/favicon-
     ["IPO Analysis", "https://seekingalpha.com/tag/ipo-analysis.xml"],
     ["Transcripts", "https://seekingalpha.com/sector/transcripts.xml"],
     ["Wall St Breakfast", "https://seekingalpha.com/tag/wall-st-breakfast.xml"],
-    ["ET-portfolio-strategy", "https://seekingalpha.com/tag/etf-portfolio-strategy.xml"],
+    ["ETF Portfolio Strategy", "https://seekingalpha.com/tag/etf-portfolio-strategy.xml"],
   ]
 );
 
