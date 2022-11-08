@@ -122,7 +122,7 @@ export default class Util {
           return false;
         }
         if(Object.keys(data).includes("rdf:RDF") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
-          return feeds[idx].description.trim()
+          return feeds[idx].description;
         }
       }
 }
