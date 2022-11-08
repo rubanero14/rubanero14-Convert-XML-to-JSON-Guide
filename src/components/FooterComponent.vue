@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <hr class="my-3" size="5" noshade/>
-        <button @click="$emit('backwardNav', 'isError')" v-if="this.tabNav > 0 && showLowerBackBtn()" class="btn btn-secondary w-100" :disabled="this.isloading"><i class="bi bi-arrow-left"></i> Back</button>
-    </div>
+    <hr class="my-3" size="5" noshade/>
+    <button @click="$emit('backwardNav', 'isError')" v-if="this.tabNav > 0 && showLowerBackBtn()" class="btn btn-secondary w-100 mb-4" :disabled="this.isloading"><i class="bi bi-arrow-left"></i> Back</button>
+    <footer class="full-length">
+            &copy; {{ new Date().getFullYear() }} by Raj
+    </footer>
 </template>
 <script>
 export default {
-    props: ['tabNav', 'isloading', 'isError', 'topicData', 'feeds'],
+    props: ['tabNav', 'isloading', 'isError', 'topicData', 'feeds', 'sources'],
     methods: {
         showLowerBackBtn() {
             if (this.tabNav === 1) {
@@ -19,3 +20,22 @@ export default {
     }
 }
 </script>
+<style scoped>
+.full-length {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 1200px){
+    .less-content {
+        margin: auto 18vw;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    .less-content {
+        margin: auto 15vw;
+    }
+}
+</style>

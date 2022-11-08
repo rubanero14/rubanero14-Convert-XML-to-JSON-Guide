@@ -112,17 +112,17 @@ export default class Util {
           if(Object.prototype.hasOwnProperty.call(feeds[idx], "description") && !isEmptyDesc){
             if(feeds[idx].description[0].includes('</') && !isEmptyDesc){
               // Regex to target and replace all html tags with empty space
-              return feeds[idx].description[0].replaceAll(/<[^>]*>/gi,'');
+              return feeds[idx].description[0].replaceAll(/<[^>]*>/gi,'').trim();
             }
 
             if(feeds[idx].description[0] && !isEmptyDesc){
-              return feeds[idx].description[0];
+              return feeds[idx].description[0].trim();
             }
           }
           return false;
         }
         if(Object.keys(data).includes("rdf:RDF") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
-          return feeds[idx].description
+          return feeds[idx].description.trim()
         }
       }
 }

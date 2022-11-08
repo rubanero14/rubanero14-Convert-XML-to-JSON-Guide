@@ -3,7 +3,7 @@
     <div class="row">
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
       <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
-        <HeaderComponent @backward-nav="backwardNav(isError)" :tabNav="tabNav" :isloading="isloading" :isError="isError" :showSourceCode="showSourceCode" :devActivationCount="devActivationCount"/>
+        <HeaderComponent class="mb-3" @backward-nav="backwardNav(isError)" :tabNav="tabNav" :isloading="isloading" :isError="isError" :showSourceCode="showSourceCode" :devActivationCount="devActivationCount"/>
         <loading-spinner :isloading="isloading" :isError="isError" />
         <!-- Sources Tiles Section -->
         <Transition name="card-fade" appear mode="out-in">
@@ -51,7 +51,7 @@
             </div>
         </Transition>
         <error-component @backward-nav="backwardNav()" :data="data" :tabNav="tabNav" :isError="isError"/>
-        <footer-component @backward-nav="backwardNav(isError)" :data="data" :tabNav="tabNav" :isloading="isloading" :isError="isError" :topicData="topicData || []" :feeds="feeds || []" />
+        <footer-component @backward-nav="backwardNav(isError)" :data="data" :tabNav="tabNav" :isloading="isloading" :sources="sources" :isError="isError" :topicData="topicData || []" :feeds="feeds || []" />
       </div>
       <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
@@ -157,7 +157,8 @@ export default {
                 this.data = await axios
                 .get(payload)
                 .then((response) => {
-                    return xml2js.parseStringPromise(response.data);
+                  console.log(xml2js.parseStringPromise(response.data));
+                  return xml2js.parseStringPromise(response.data);
               })
                 .catch(err => {
                   this.isloading = false;
@@ -172,7 +173,8 @@ export default {
               this.data = await axios
                   .get(payload)
                   .then((response) => {
-                  return response.data;
+                    console.log(response.data);
+                    return response.data;
               })
                   .catch(err => {
                   this.isloading = false;
