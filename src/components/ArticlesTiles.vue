@@ -24,13 +24,13 @@
                             <div class="col-12" v-if="articleDescription(index)">
                                 <hr/>
                                 <em>
-                                    <p class="text-secondary mb-0" v-if="screenWidth >= 1200">
+                                    <p class="description text-secondary mb-0" v-if="screenWidth >= 1200">
                                         {{articleDescription(index).toString().substr(0, 800).replace(': ','') + '...'}}<span class="text-primary">read more</span>
                                     </p>
-                                    <p class="text-secondary mb-0" v-else-if="screenWidth >= 600 && screenWidth < 1200">
+                                    <p class="description text-secondary mb-0" v-else-if="screenWidth >= 600 && screenWidth < 1200">
                                         {{articleDescription(index).toString().substr(0, 400).replace(': ','') + '...'}}<span class="text-primary">read more</span>
                                     </p>
-                                    <p class="text-secondary mb-0" v-else>
+                                    <p class="description text-secondary mb-0" v-else>
                                         {{articleDescription(index).toString().substr(0, 200).replace(': ','') + '...' }}<span class="text-primary">read more</span>
                                     </p>
                                 </em>
@@ -69,6 +69,10 @@ h3.title{
     font-weight:bold;
     margin-bottom: 15px;
     text-align: start;
+}
+
+p.description{
+    text-align: justify;
 }
 
 img.banner {
