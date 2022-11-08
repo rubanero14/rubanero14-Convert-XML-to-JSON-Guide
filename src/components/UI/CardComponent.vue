@@ -9,6 +9,7 @@
     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
     border-radius: 5px;
     overflow: hidden;
+    transition: all 0.1s ease-out;
 }
 
 .card.logo {
@@ -18,11 +19,11 @@
 }
 
 .card:hover {
-    background: rgba(0,0,0,.01);
+    transform: scale(0.97);
 }
 
 .card.logo:hover {
-    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
+    transform: scale(0.95);
 }
 
 @media only screen and (max-width: 600px) {
