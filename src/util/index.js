@@ -1,10 +1,33 @@
 export default class Util {
+    // Array containing data of multiple sources initiated
+    static sources = [];
+
+    // Dynamic constructor method to add new source into sources object
+    static NewSource(Name, sub, Logo, Topics, Topics2, rssUrl){
+        const topics = [];
+        // Dynamic favicon url constructor 
+        const favicon = () => sub || `https://${Name.toLowerCase().replaceAll(" ", "").replaceAll(/.com|.org/gi, "")}${Name.includes('.org') ? '.org' : '.com'}/favicon.ico`;
+        const [name , url, logo] = [Name, favicon(), Logo]
+        if(!Topics2){
+            Topics.map(item => {
+            const [title, url] = [item[0], item[1]];
+            topics.push({title, url});
+            })
+        } else {
+            Topics2.map(item => {
+            const [title, url] = [item.replaceAll("-"," "), `${rssUrl[0]}${eval(rssUrl[1])}${rssUrl[2]}`];
+            topics.push({title, url});
+            })
+        }
+        return this.sources.push({name, url, logo, topics})
+    }
+
     static UrlEncoder(url) {
         return encodeURIComponent(url);
     }
 
+    // Custom show elapsed time algorithm method
     static ElapsedTime(date) {
-        // Custom show elapsed time algorithm
         // get UNIX timestamp of pubDate value
         const Elapsed = new Date(date).getTime();
         // get UNIX timestamp of Present value
