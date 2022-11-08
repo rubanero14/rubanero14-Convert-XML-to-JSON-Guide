@@ -27,7 +27,7 @@
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div data-cy="actions-article-wrapper" class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-              <articles-tiles :titlePic="titlePic" :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
+              <articles-tiles :articleDescription="articleDescription" :titlePic="titlePic" :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
             </div>
           </div>
           <div v-else>
@@ -157,7 +157,6 @@ export default {
                 this.data = await axios
                 .get(payload)
                 .then((response) => {
-                    console.log(xml2js.parseStringPromise(response.data));
                     return xml2js.parseStringPromise(response.data);
               })
                 .catch(err => {
@@ -173,7 +172,6 @@ export default {
               this.data = await axios
                   .get(payload)
                   .then((response) => {
-                  console.log(response.data);
                   return response.data;
               })
                   .catch(err => {
@@ -224,6 +222,28 @@ export default {
 
               if(Object.keys(this.data).includes("rdf:RDF")){
                 return false;
+              }
+            };
+
+            this.articleDescription = (idx) => {
+              // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
+              if(Object.keys(this.data).includes("rss") && Object.prototype.hasOwnProperty.call(this.feeds[idx], "description")){
+                const isEmptyDesc = this.feeds[idx].description[0].replaceAll("\n",'').replaceAll(" ",'').length === 0 || this.feeds[idx].description[0].includes('DefenceTalk');
+                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "description") && !isEmptyDesc){
+                  if(this.feeds[idx].description[0].includes('</') && !isEmptyDesc){
+                    // Regex to target and replace all html tags with empty space
+                    return this.feeds[idx].description[0].replaceAll(/<[^>]*>/gi,'');
+                  }
+
+                  if(this.feeds[idx].description[0] && !isEmptyDesc){
+                    return this.feeds[idx].description[0];
+                  }
+                }
+                return false;
+              }
+
+              if(Object.keys(this.data).includes("rdf:RDF") && Object.prototype.hasOwnProperty.call(this.feeds[idx], "description")){
+                return this.feeds[idx].description
               }
             };
 

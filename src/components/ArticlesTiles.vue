@@ -17,11 +17,23 @@
                     <div class="p-3">
                         <div class="row">
                             <div class="col-12">
-                                <h3 class="title text-secondary mb-0">
-                                    <span v-if="screenWidth >= 1200">{{ feed.title.toString().substr(0, 500).replace(': ','') + '...' }}</span>
-                                    <span v-else-if="screenWidth >= 600 && screenWidth < 1200">{{ feed.title.toString().substr(0, 150).replace(': ','') + '...' }}</span>
-                                    <span v-else>{{ feed.title.toString().substr(0, 50).replace(': ','') + '...' }}</span>
+                                <h3 class="title text-center text-secondary mb-0">
+                                    {{ feed.title.toString() }}
                                 </h3>
+                            </div>
+                            <div class="col-12" v-if="articleDescription(index)">
+                                <hr/>
+                                <em>
+                                    <p class="text-secondary mb-0" v-if="screenWidth >= 1200">
+                                        {{articleDescription(index).toString().substr(0, 800).replace(': ','') + '...'}}<span class="text-primary">read more</span>
+                                    </p>
+                                    <p class="text-secondary mb-0" v-else-if="screenWidth >= 600 && screenWidth < 1200">
+                                        {{articleDescription(index).toString().substr(0, 400).replace(': ','') + '...'}}<span class="text-primary">read more</span>
+                                    </p>
+                                    <p class="text-secondary mb-0" v-else>
+                                        {{articleDescription(index).toString().substr(0, 200).replace(': ','') + '...' }}<span class="text-primary">read more</span>
+                                    </p>
+                                </em>
                             </div>
                             <div class="col-12">
                                 <hr/>
@@ -41,7 +53,7 @@
 import Util from '../util';
 import CardComponent from './UI/CardComponent.vue';
 export default {
-    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic', 'titlePic'],
+    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic', 'titlePic', 'articleDescription'],
     components: { CardComponent },
     methods: {
         date(){
