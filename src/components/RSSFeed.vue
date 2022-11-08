@@ -27,7 +27,7 @@
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div data-cy="actions-article-wrapper" class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-              <articles-tiles :articleDescription="articleDescription" :titlePic="titlePic" :index="index" :feed="feed" :feeds="feeds" :data="data" :screenWidth="screenWidth" :pic="pic"/>
+              <articles-tiles :index="index" :feed="feed" :feeds="this.feeds" :data="this.data" :screenWidth="screenWidth" :pic="pic"/>
             </div>
           </div>
           <div v-else>
@@ -190,63 +190,6 @@ export default {
                 if (Object.keys(this.data).includes("rdf:RDF"))
                     return Object.keys(this.data["rdf:RDF"]).includes("item");
             };
-            
-            // Article header picture extracting and display logic
-            this.titlePic = (idx) => {
-              // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
-              if(Object.keys(this.data).includes("rss")){
-                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "enclosure")){
-                  return this.feeds[idx].enclosure[0].$.url;
-                }
-
-                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "media:group")){
-                  return this.feeds[idx]["media:group"][0]["media:content"][0].$.url;
-                }
-
-                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "media:content")){
-                  return this.feeds[idx]["media:content"][0].$.url;
-                }
-
-                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "description") && this.feeds[idx].description[0].includes('src=')){
-                  return this.feeds[idx].description[0].split('src="')[1].split('"')[0];
-                }
-                
-                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "a10:content") && this.feeds[idx]["a10:content"][0]._.includes("url(&quot;")){
-                  return this.feeds[idx]["a10:content"][0]._.split("&quot;")[1];
-                }
-
-                if(this.feeds[idx].title === "The Diplomat"){
-                  return false
-                }
-              }
-
-              if(Object.keys(this.data).includes("rdf:RDF")){
-                return false;
-              }
-            };
-
-            this.articleDescription = (idx) => {
-              // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
-              if(Object.keys(this.data).includes("rss") && Object.prototype.hasOwnProperty.call(this.feeds[idx], "description")){
-                const isEmptyDesc = this.feeds[idx].description[0].replaceAll("\n",'').replaceAll(" ",'').length === 0 || this.feeds[idx].description[0].includes('DefenceTalk');
-                if(Object.prototype.hasOwnProperty.call(this.feeds[idx], "description") && !isEmptyDesc){
-                  if(this.feeds[idx].description[0].includes('</') && !isEmptyDesc){
-                    // Regex to target and replace all html tags with empty space
-                    return this.feeds[idx].description[0].replaceAll(/<[^>]*>/gi,'');
-                  }
-
-                  if(this.feeds[idx].description[0] && !isEmptyDesc){
-                    return this.feeds[idx].description[0];
-                  }
-                }
-                return false;
-              }
-
-              if(Object.keys(this.data).includes("rdf:RDF") && Object.prototype.hasOwnProperty.call(this.feeds[idx], "description")){
-                return this.feeds[idx].description
-              }
-            };
-
             this.isloading = false;
         },
         devMode() {

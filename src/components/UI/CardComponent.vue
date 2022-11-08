@@ -18,11 +18,11 @@
 }
 
 .card:hover {
-    background: rgba(0,0,0,.05);
+    background: rgba(0,0,0,.01);
 }
 
 .card.logo:hover {
-    box-shadow: 0px 2px 8px 8px rgb(0 0 0 / 20%);
+    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
 }
 
 @media only screen and (max-width: 600px) {

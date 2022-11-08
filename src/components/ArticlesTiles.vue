@@ -8,10 +8,10 @@
         <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
         <center :style="{ '--j': this.index }">
             <a :data-cy="`actions-article-${index}`" class="title" :href="feed.link.toString()" target="_blank">
-                <card-component class="mb-3">
-                    <div class="row" v-if="titlePic(index)">
+                <card-component class="mb-4">
+                    <div class="row" v-if="titlePic(index, feeds, data)">
                         <div class="col-12">
-                            <img class="banner" :src="titlePic(index)">
+                            <img class="banner" :src="titlePic(index, feeds, data)">
                         </div>
                     </div>
                     <div class="p-3">
@@ -21,17 +21,17 @@
                                     {{ feed.title.toString() }}
                                 </h3>
                             </div>
-                            <div class="col-12" v-if="articleDescription(index)">
+                            <div class="col-12" v-if="articleDescription(index, feeds, data)">
                                 <hr/>
                                 <em>
                                     <p class="description text-secondary mb-0" v-if="screenWidth >= 1200">
-                                        {{articleDescription(index).toString().substr(0, 800).replace(': ','') + '...'}}<span class="text-primary">read more</span>
+                                        {{articleDescription(index, feeds, data).toString().substr(0, 800).replace(': ','') + '...'}}<span class="text-primary">read more</span>
                                     </p>
                                     <p class="description text-secondary mb-0" v-else-if="screenWidth >= 600 && screenWidth < 1200">
-                                        {{articleDescription(index).toString().substr(0, 400).replace(': ','') + '...'}}<span class="text-primary">read more</span>
+                                        {{articleDescription(index, feeds, data).toString().substr(0, 400).replace(': ','') + '...'}}<span class="text-primary">read more</span>
                                     </p>
                                     <p class="description text-secondary mb-0" v-else>
-                                        {{articleDescription(index).toString().substr(0, 200).replace(': ','') + '...' }}<span class="text-primary">read more</span>
+                                        {{articleDescription(index, feeds, data).toString().substr(0, 200).replace(': ','') + '...' }}<span class="text-primary">read more</span>
                                     </p>
                                 </em>
                             </div>
@@ -53,13 +53,19 @@
 import Util from '../util';
 import CardComponent from './UI/CardComponent.vue';
 export default {
-    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic', 'titlePic', 'articleDescription'],
+    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic'],
     components: { CardComponent },
     methods: {
         date(){
             this.rssMode = Object.keys(this.data).includes("rss") ? "pubDate" : "dc:date";
             return Util.ElapsedTime(this.feeds[0][this.rssMode]);
-        }
+        },
+        titlePic(idx, feeds, data){
+            return Util.titlePic(idx, feeds, data)
+        },
+        articleDescription(idx, feeds, data){
+            return Util.articleDescription(idx, feeds, data);
+        },
     }
 }
 </script>

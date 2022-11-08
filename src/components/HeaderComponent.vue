@@ -2,7 +2,7 @@
     <div>
         <!-- Header Section -->
         <h1 class="text-secondary mb-1">
-          <strong>Latest News Feeds</strong>
+          <strong>News Feeds App</strong>
         </h1>
         <label class="text-secondary mb-3">
           Powered by <strong><i class="fa-brands fa-vuejs"></i>  <i class="fa-solid fa-rss"></i></strong> and built by <strong><a class="text-secondary" style="text-decoration: none;" href="https://github.com/rubanero14">Raj</a></strong>
