@@ -26,16 +26,4 @@ export default {
     align-self: center;
     justify-content: center;
 }
-
-@media screen and (min-width: 1200px){
-    .less-content {
-        margin: auto 18vw;
-    }
-}
-
-@media screen and (min-width: 1400px){
-    .less-content {
-        margin: auto 15vw;
-    }
-}
 </style>

@@ -157,7 +157,7 @@ export default {
                 this.data = await axios
                 .get(payload)
                 .then((response) => {
-                  console.log(xml2js.parseStringPromise(response.data));
+                  // console.log(xml2js.parseStringPromise(response.data));
                   return xml2js.parseStringPromise(response.data);
               })
                 .catch(err => {
@@ -173,7 +173,7 @@ export default {
               this.data = await axios
                   .get(payload)
                   .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     return response.data;
               })
                   .catch(err => {

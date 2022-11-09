@@ -72,57 +72,57 @@ export default class Util {
 
     // Article header picture extracting and display logic
     static titlePic(idx, feeds, data){
-        // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
-        if(Object.keys(data).includes("rss")){
-          if(Object.prototype.hasOwnProperty.call(feeds[idx], "enclosure")){
-            return feeds[idx].enclosure[0].$.url;
-          }
-
-          if(Object.prototype.hasOwnProperty.call(feeds[idx], "media:group")){
-            return feeds[idx]["media:group"][0]["media:content"][0].$.url;
-          }
-
-          if(Object.prototype.hasOwnProperty.call(feeds[idx], "media:content")){
-            return feeds[idx]["media:content"][0].$.url;
-          }
-
-          if(Object.prototype.hasOwnProperty.call(feeds[idx], "description") && feeds[idx].description[0].includes('src=')){
-            return feeds[idx].description[0].split('src="')[1].split('"')[0];
-          }
-          
-          if(Object.prototype.hasOwnProperty.call(feeds[idx], "a10:content") && feeds[idx]["a10:content"][0]._.includes("url(&quot;")){
-            return feeds[idx]["a10:content"][0]._.split("&quot;")[1];
-          }
-
-          if(feeds[idx].title === "The Diplomat"){
-            return false
-          }
+      // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
+      if(Object.keys(data).includes("rss")){
+        if(Object.prototype.hasOwnProperty.call(feeds[idx], "enclosure")){
+          return feeds[idx].enclosure[0].$.url;
         }
 
-        if(Object.keys(data).includes("rdf:RDF")){
-          return false;
+        if(Object.prototype.hasOwnProperty.call(feeds[idx], "media:group")){
+          return feeds[idx]["media:group"][0]["media:content"][0].$.url;
+        }
+
+        if(Object.prototype.hasOwnProperty.call(feeds[idx], "media:content")){
+          return feeds[idx]["media:content"][0].$.url;
+        }
+
+        if(Object.prototype.hasOwnProperty.call(feeds[idx], "description") && feeds[idx].description[0].includes('src=')){
+          return feeds[idx].description[0].split('src="')[1].split('"')[0];
+        }
+        
+        if(Object.prototype.hasOwnProperty.call(feeds[idx], "a10:content") && feeds[idx]["a10:content"][0]._.includes("url(&quot;")){
+          return feeds[idx]["a10:content"][0]._.split("&quot;")[1];
+        }
+
+        if(feeds[idx].title === "The Diplomat"){
+          return false
         }
       }
 
-      // Article description extracting and display logic
-      static articleDescription(idx, feeds, data){
-        // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
-        if(Object.keys(data).includes("rss") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
-          const isEmptyDesc = feeds[idx].description[0].replaceAll("\n",'').replaceAll(" ",'').length === 0 || feeds[idx].description[0].includes('DefenceTalk');
-          if(Object.prototype.hasOwnProperty.call(feeds[idx], "description") && !isEmptyDesc){
-            if(feeds[idx].description[0].includes('</') && !isEmptyDesc){
-              // Regex to target and replace all html tags with empty space
-              return feeds[idx].description[0].replaceAll(/<[^>]*>/gi,'').trim();
-            }
-
-            if(feeds[idx].description[0] && !isEmptyDesc){
-              return feeds[idx].description[0].trim();
-            }
-          }
-          return false;
-        }
-        if(Object.keys(data).includes("rdf:RDF") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
-          return feeds[idx].description;
-        }
+      if(Object.keys(data).includes("rdf:RDF")){
+        return false;
       }
+    }
+
+    // Article description extracting and display logic
+    static articleDescription(idx, feeds, data){
+      // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
+      if(Object.keys(data).includes("rss") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
+        const isEmptyDesc = feeds[idx].description[0].replaceAll("\n",'').replaceAll(" ",'').length === 0 || feeds[idx].description[0].includes('DefenceTalk');
+        if(Object.prototype.hasOwnProperty.call(feeds[idx], "description") && !isEmptyDesc){
+          if(feeds[idx].description[0].includes('</') && !isEmptyDesc){
+            // Regex to target and replace all html tags with empty space
+            return feeds[idx].description[0].replaceAll(/<[^>]*>/gi,'').trim();
+          }
+
+          if(feeds[idx].description[0] && !isEmptyDesc){
+            return feeds[idx].description[0].trim();
+          }
+        }
+        return false;
+      }
+      if(Object.keys(data).includes("rdf:RDF") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
+        return feeds[idx].description;
+      }
+    }
 }
