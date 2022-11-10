@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="row">
-      <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
-      <div :class="{'':screenWidth < 1200, 'col-6':screenWidth >= 1200}">
+      <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
+      <div :class="{'':screenWidth < 1200, 'col-8':screenWidth >= 1200}">
         <HeaderComponent class="mb-3" @backward-nav="backwardNav(isError)" :tabNav="tabNav" :isloading="isloading" :isError="isError" :showSourceCode="showSourceCode" :devActivationCount="devActivationCount"/>
         <loading-spinner :isloading="isloading" :isError="isError" />
         <!-- Sources Tiles Section -->
@@ -53,7 +53,7 @@
         <error-component @backward-nav="backwardNav()" :data="data" :tabNav="tabNav" :isError="isError"/>
         <footer-component @backward-nav="backwardNav(isError)" :data="data" :tabNav="tabNav" :isloading="isloading" :sources="sources" :isError="isError" :topicData="topicData || []" :feeds="feeds || []" />
       </div>
-      <div :class="{'col-3':screenWidth >= 1200, '':screenWidth < 1200}"></div>
+      <div :class="{'col-2':screenWidth >= 1200, '':screenWidth < 1200}"></div>
     </div>
   </div>
 </template>

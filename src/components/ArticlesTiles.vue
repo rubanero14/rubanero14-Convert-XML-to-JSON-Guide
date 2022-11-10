@@ -47,7 +47,7 @@
                         <div v-if="titlePic(index, feeds, data)">
                             <img class="desktop" :src="titlePic(index, feeds, data)">
                         </div>
-                        <div class="w-100 p-3">
+                        <div class="w-100 d-flex justify-content-center align-items-center p-3">
                             <div class="row">
                                 <div class="col-12">
                                     <h3 class="title text-center text-secondary mb-0">
@@ -58,10 +58,10 @@
                                     <hr/>
                                     <em>
                                         <p class="description text-secondary mb-0" v-if="screenWidth >= 1200">
-                                            {{articleDescription(index, feeds, data).toString().substr(0, 800).replace(': ','') + '...'}}<span class="text-primary">read more</span>
+                                            {{articleDescription(index, feeds, data).toString().substr(0, 200).replace(': ','') + '...'}}<span class="text-primary">read more</span>
                                         </p>
                                         <p class="description text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200">
-                                            {{articleDescription(index, feeds, data).toString().substr(0, 400).replace(': ','') + '...'}}<span class="text-primary">read more</span>
+                                            {{articleDescription(index, feeds, data).toString().substr(0, 100).replace(': ','') + '...'}}<span class="text-primary">read more</span>
                                         </p>
                                     </em>
                                 </div>
