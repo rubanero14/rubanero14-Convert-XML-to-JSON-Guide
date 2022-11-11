@@ -22,8 +22,7 @@
                             <div class="col-12" v-if="articleDescription(index, feeds, data)">
                                 <hr/>
                                 <em>
-                                    <p class="description text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
-                                    <p class="description text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
+                                    <p class="description text-secondary mb-0" v-html="articleInjector()"></p>
                                 </em>
                             </div>
                             <div class="col-12">
@@ -94,6 +93,9 @@ export default {
                 return this.articleDesktop = `${this.articleDescription(this.index, this.feeds, this.data).toString().substr(0, 200).replace(': ','') + '...'}<span class="text-primary">read more</span>`;
             }
             if(this.screenWidth >= 768 && this.screenWidth < 1200){
+                return this.articleDesktop = `${this.articleDescription(this.index, this.feeds, this.data).toString().substr(0, 100).replace(': ','') + '...'}<span class="text-primary">read more</span>`;
+            }
+            if(this.screenWidth < 768){
                 return this.articleMobile = `${this.articleDescription(this.index, this.feeds, this.data).toString().substr(0, 100).replace(': ','') + '...'}<span class="text-primary">read more</span>`;
             }
         },

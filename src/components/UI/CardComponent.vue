@@ -6,8 +6,8 @@
 <style scoped>
 .card {
     cursor: pointer;
-    box-shadow: 0px 3px 16px 0px rgb(0 0 0 / 20%);
-    border-radius: 8px;
+    box-shadow: 0px 4px 16px 0px rgb(0 0 0 / 20%);
+    border-radius: 16px;
     overflow: hidden;
     transition: all 0.2s ease-out;
 }
