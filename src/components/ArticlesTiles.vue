@@ -17,19 +17,13 @@
                     <div class="p-3">
                         <div class="row">
                             <div class="col-12">
-                                <h3 class="title text-center text-secondary mb-0">
-                                    {{ feed.title.toString() }}
-                                </h3>
+                                <h3 class="title text-center text-secondary mb-0" v-html="feed.title"></h3>
                             </div>
                             <div class="col-12" v-if="articleDescription(index, feeds, data)">
                                 <hr/>
                                 <em>
-                                    <p class="description text-secondary mb-0" v-if="screenWidth >= 600 && screenWidth <= 768">
-                                        {{articleDescription(index, feeds, data).toString().substr(0, 400).replace(': ','') + '...'}}<span class="text-primary">read more</span>
-                                    </p>
-                                    <p class="description text-secondary mb-0" v-else-if="screenWidth < 600">
-                                        {{articleDescription(index, feeds, data).toString().substr(0, 200).replace(': ','') + '...' }}<span class="text-primary">read more</span>
-                                    </p>
+                                    <p class="description text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
+                                    <p class="description text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
                                 </em>
                             </div>
                             <div class="col-12">
@@ -50,19 +44,13 @@
                         <div class="w-100 d-flex justify-content-center align-items-center p-3">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="title text-center text-secondary mb-0">
-                                        {{ feed.title.toString() }}
-                                    </h3>
+                                    <h3 class="title text-center text-secondary mb-0" v-html="feed.title"></h3>
                                 </div>
                                 <div class="col-12" v-if="articleDescription(index, feeds, data)">
                                     <hr/>
                                     <em>
-                                        <p class="description text-secondary mb-0" v-if="screenWidth >= 1200">
-                                            {{articleDescription(index, feeds, data).toString().substr(0, 200).replace(': ','') + '...'}}<span class="text-primary">read more</span>
-                                        </p>
-                                        <p class="description text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200">
-                                            {{articleDescription(index, feeds, data).toString().substr(0, 100).replace(': ','') + '...'}}<span class="text-primary">read more</span>
-                                        </p>
+                                        <p class="description text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
+                                        <p class="description text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
                                     </em>
                                 </div>
                             </div>
@@ -84,6 +72,12 @@ import CardComponent from './UI/CardComponent.vue';
 export default {
     props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic'],
     components: { CardComponent },
+    data(){
+        return {
+            articleDesktop: '',
+            articleMobile: '',
+        };
+    },
     methods: {
         date(){
             this.rssMode = Object.keys(this.data).includes("rss") ? "pubDate" : "dc:date";
@@ -94,6 +88,14 @@ export default {
         },
         articleDescription(idx, feeds, data){
             return Util.articleDescription(idx, feeds, data);
+        },
+        articleInjector(){
+            if(this.screenWidth >= 1200){
+                return this.articleDesktop = `${this.articleDescription(this.index, this.feeds, this.data).toString().substr(0, 200).replace(': ','') + '...'}<span class="text-primary">read more</span>`;
+            }
+            if(this.screenWidth >= 768 && this.screenWidth < 1200){
+                return this.articleMobile = `${this.articleDescription(this.index, this.feeds, this.data).toString().substr(0, 100).replace(': ','') + '...'}<span class="text-primary">read more</span>`;
+            }
         },
     }
 }
