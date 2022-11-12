@@ -227,12 +227,38 @@ export default {
   img.logo {
     height: 100%;
     width: 100%;
+    border-radius: 20px;
     margin: 0;
   }
 
   a.title {
     text-decoration: none;
     color: inherit;
+  }
+
+  
+  @media (min-width: 768px) and (max-width: 992px) {
+      img.logo {
+          border-radius: 12px;
+      }
+  }
+  
+  @media (min-width: 476px) and (max-width: 768px) {
+      img.logo {
+          border-radius: 8px;
+      }
+  }
+
+  @media (min-width: 300px) and (max-width: 476px) {
+      img.logo {
+          border-radius: 4px;
+      }
+  }
+
+  @media (max-width: 300px) {
+      img.logo {
+          border-radius: 4px;
+      }
   }
 
   @media only screen and (max-width: 600px) {
