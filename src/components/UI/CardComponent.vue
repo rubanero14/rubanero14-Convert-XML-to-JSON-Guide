@@ -16,6 +16,7 @@
     height: 120px;
     width: 120px;
     border-radius: 20px;
+    overflow: hidden;
 }
 
 .card:hover {
@@ -30,7 +31,7 @@
     transform: scale(0.85);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 992px) {
     .card.logo {
         height: 80px;
         width: 80px;
@@ -38,10 +39,19 @@
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 768px) {
+    .card.logo {
+        height: 80px;
+        width: 80px;
+        border-radius: 8px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
     .card.logo {
         height: 70px;
         width: 70px;
+        border-radius: 4px;
     }
 }
 
