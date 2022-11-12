@@ -15,7 +15,7 @@
 .card.logo {
     height: 120px;
     width: 120px;
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
 .card:hover {
