@@ -11,6 +11,8 @@
     overflow: hidden;
     transition: all 0.2s ease-out;
     background-clip: padding-box;
+    background: transparent;
+
 }
 
 .card.logo {
@@ -32,34 +34,34 @@
     transform: scale(0.85);
 }
 
-@media only screen and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 992px) {
     .card.logo {
         height: 80px;
         width: 80px;
         border-radius: 12px;
     }
 }
-
-@media only screen and (max-width: 768px) {
+@media (min-width: 476px) and (max-width: 768px) {
     .card.logo {
-        height: 80px;
-        width: 80px;
+        height: 70px;
+        width: 70px;
         border-radius: 8px;
     }
 }
 
-@media only screen and (max-width: 300px) {
+@media (min-width: 300px) and (max-width: 476px) {
     .card.logo {
-        height: 70px;
-        width: 70px;
+        height: 50px;
+        width: 50px;
         border-radius: 4px;
     }
 }
 
-@media only screen and (max-width: 300px) {
+@media (max-width: 300px) {
     .card.logo {
-        height: 60px;
-        width: 60px;
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
     }
 }
 </style>

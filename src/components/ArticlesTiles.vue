@@ -28,7 +28,7 @@
                             <div class="col-12">
                                 <hr/>
                                 <div class="d-flex justify-content-between align-contents-center">
-                                    <aside v-if="date()" class="time d-flex align-self-end text-secondary mb-0"><em>Updated: {{ date(index) }} ago</em></aside>
+                                    <aside v-if="date()" class="time d-flex align-self-end text-secondary mb-0"><em>Updated: {{ date(index) }} ago <strong>&#183; {{this.provider}}</strong></em></aside>
                                     <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                     </div>
                     <hr class="my-0"/>
                     <div class="d-flex justify-content-between align-content-end p-3">
-                        <aside v-if="date()" class="time d-flex align-self-end text-secondary mb-0"><em>Updated: {{ date(index) }} ago</em></aside>
+                        <aside v-if="date()" class="time d-flex align-self-end text-secondary mb-0"><em>Updated: {{ date(index) }} ago <strong>&#183; {{this.provider}}</strong></em></aside>
                         <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
                     </div>        
                 </card-component>
@@ -69,7 +69,7 @@
 import Util from '../util';
 import CardComponent from './UI/CardComponent.vue';
 export default {
-    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic'],
+    props: ['index', 'feed', 'data', 'feeds', 'screenWidth', 'pic', 'provider'],
     components: { CardComponent },
     data(){
         return {
@@ -108,6 +108,10 @@ h3.title{
     font-weight:bold;
     margin-bottom: 15px;
     text-align: start;
+}
+
+aside {
+    font-size: 15px;
 }
 
 p.description{

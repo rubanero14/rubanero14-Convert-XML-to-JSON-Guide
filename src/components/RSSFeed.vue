@@ -22,12 +22,12 @@
         <!-- Articles Section -->
         <div v-if="!isError && !isloading && tabNav === 2">
           <Transition name="fade" appear mode="out-in">
-            <h2 class="text-secondary mb-3">{{ topicData.length === 1 ? topicTitle :topicTitle2 }}</h2>
+            <h2 class="text-secondary mb-3">{{ topicData.length === 1 ? topicTitle : topicTitle2 }}</h2>
           </Transition>
           <!-- Declaring and assigning index using v-for and use it to assign as key -->
           <div data-cy="actions-article-wrapper" class="articles-wrapper" v-if="this.feedHasArticles()">
             <div class="mb-2" v-for="(feed, index) in feeds" :key="index">
-              <articles-tiles :index="index" :feed="feed" :feeds="this.feeds" :data="this.data" :screenWidth="screenWidth" :pic="pic"/>
+              <articles-tiles :provider="topicTitle" :index="index" :feed="feed" :feeds="this.feeds" :data="this.data" :screenWidth="screenWidth" :pic="pic"/>
             </div>
           </div>
           <div v-else>
