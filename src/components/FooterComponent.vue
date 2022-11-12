@@ -4,7 +4,7 @@
     <footer class="full-length">
         &copy; {{ new Date().getFullYear() }} by
         <strong>
-            <a target="_blank" class="text-secondary ms-1" style="text-decoration: none;" href="https://github.com/rubanero14/RSS-Feed-CP-Prototype-Vue3">Raj</a>
+            <a target="_blank" class="text-secondary ms-1" style="text-decoration: none;" href="/">Raj</a>
         </strong>
     </footer>
 </template>
