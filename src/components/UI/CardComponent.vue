@@ -22,6 +22,10 @@
     transform: scale(0.90);
 }
 
+.card.tile {
+    border-radius: 8px;
+}
+
 .card.logo:hover {
     transform: scale(0.85);
 }
@@ -30,7 +34,6 @@
     .card.logo {
         height: 80px;
         width: 80px;
-        border-radius: 4px;
     }
 }
 

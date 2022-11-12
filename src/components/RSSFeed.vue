@@ -222,14 +222,12 @@ export default {
     margin: 5px auto;
     height: 35px;
     width: 35px;
-    border-radius: 4px;
   }
 
   img.logo {
     height: 100%;
     width: 100%;
     margin: 0;
-    border-radius: 4px;
   }
 
   a.title {
