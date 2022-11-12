@@ -13,7 +13,7 @@
           </strong> 
         </label>
         <div class="alert alert-dark" role="alert">
-          Add new feed? Submit a <a target="_blank" class="issue btn-sm btn-secondary" href="/issues">ticket</a>
+          Add new feed? Submit a <a target="_blank" class="issue btn-sm btn-secondary" href="Multi-RSS-News-Feed-Vue3/issues">ticket</a>
         </div>
         <a v-if="this.tabNav === 0 && this.showSourceCode" href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src" class="btn btn-outline-secondary mb-lg-3 w-100" target="_blank"><i class="bi bi-code-slash"></i> Source Code</a>
         <button data-cy ="actions-back-button" v-if="this.tabNav > 0" @click="$emit('backwardNav', this.isError)" class="btn btn-secondary w-100" :disabled="this.isloading"><i class="bi bi-arrow-left"></i> Back</button>

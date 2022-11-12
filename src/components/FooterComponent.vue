@@ -4,7 +4,7 @@
     <footer class="full-length">
         &copy; {{ new Date().getFullYear() }} by
         <strong>
-            <a target="_blank" class="text-secondary ms-1" style="text-decoration: none;" href="/">Raj</a>
+            <a target="_blank" class="text-secondary ms-1" style="text-decoration: none;" href="/Multi-RSS-News-Feed-Vue3">Raj</a>
         </strong>
     </footer>
 </template>
