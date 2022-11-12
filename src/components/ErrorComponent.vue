@@ -7,7 +7,7 @@
             <div v-else class="row">
             <div class="col-12">
                 <h2 class="text-danger mb-3">{{ this.data.replace(',','!') }}</h2>
-                <img class="err" src="https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/err.png"/>
+                <img class="err" src="err.png"/>
                 <figcaption class="mb-3">Figure 1 - Click <span>Enable Access</span> button below to open this page</figcaption>
                 <ol type="1" class="text-start text-secondary">
                     <li>Click <strong class="text-success">Enable Access</strong> button below</li>
