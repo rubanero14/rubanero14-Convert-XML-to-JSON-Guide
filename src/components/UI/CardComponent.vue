@@ -34,6 +34,7 @@
     .card.logo {
         height: 80px;
         width: 80px;
+        border-radius: 12px;
     }
 }
 
