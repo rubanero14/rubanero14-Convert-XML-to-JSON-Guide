@@ -10,6 +10,7 @@
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.2s ease-out;
+    background-clip: padding-box;
 }
 
 .card.logo {
