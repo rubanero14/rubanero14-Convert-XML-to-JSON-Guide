@@ -1,128 +1,158 @@
 export default class Util {
-    // Array containing data of multiple sources initiated
-    static sources = [];
+  // Array containing data of multiple sources initiated
+  static sources = [];
 
-    // Dynamic constructor method to add new source into sources object
-    static NewSource(Name, sub, Logo, Topics, Topics2, rssUrl){
-        const topics = [];
-        // Dynamic favicon url constructor 
-        const favicon = () => sub || `https://${Name.toLowerCase().replaceAll(" ", "").replaceAll(/.com|.org/gi, "")}${Name.includes('.org') ? '.org' : '.com'}/favicon.ico`;
-        const [name , url, logo] = [Name, favicon(), Logo]
-        if(!Topics2){
-            Topics.map(item => {
-            const [title, url] = [item[0], item[1]];
-            topics.push({title, url});
-            })
-        } else {
-            Topics2.map(item => {
-            const [title, url] = [item.replaceAll("-"," "), `${rssUrl[0]}${eval(rssUrl[1])}${rssUrl[2]}`];
-            topics.push({title, url});
-            })
-        }
-        return this.sources.push({name, url, logo, topics})
+  // Dynamic constructor method to add new source into sources object
+  static NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
+    const topics = [];
+    // Dynamic favicon url constructor
+    const favicon = () =>
+      sub ||
+      `https://${Name.toLowerCase()
+        .replaceAll(" ", "")
+        .replaceAll(/.com|.org/gi, "")}${
+        Name.includes(".org") ? ".org" : ".com"
+      }/favicon.ico`;
+    const [name, url, logo] = [Name, favicon(), Logo];
+    if (!Topics2) {
+      Topics.map((item) => {
+        const [title, url] = [item[0], item[1]];
+        topics.push({ title, url });
+      });
+    } else {
+      Topics2.map((item) => {
+        const [title, url] = [
+          item.replaceAll("-", " "),
+          `${rssUrl[0]}${eval(rssUrl[1])}${rssUrl[2]}`,
+        ];
+        topics.push({ title, url });
+      });
     }
+    return this.sources.push({ name, url, logo, topics });
+  }
 
-    static UrlEncoder(url) {
-        return encodeURIComponent(url);
+  static UrlEncoder(url) {
+    return encodeURIComponent(url);
+  }
+
+  // Custom show elapsed time algorithm method
+  static ElapsedTime(date) {
+    // get UNIX timestamp of pubDate value
+    const Elapsed = new Date(date).getTime();
+    // get UNIX timestamp of Present value
+    const Now = Date.now();
+    // Convert UNIX to seconds
+    const seconds = (Now - Elapsed) / 1000;
+    // Convert UNIX to minutes
+    const minutes = seconds / 60;
+    // Convert UNIX to hours
+    const hours = minutes / 60;
+    // Convert UNIX to days
+    const days = hours / 24;
+    // Convert UNIX to weeks
+    const weeks = days / 7;
+    // Convert UNIX to months
+    const months = weeks / 4;
+    // Convert UNIX to years
+    const years = months / 12;
+    // Elapsed Time output logic
+    if (seconds >= 1 && seconds < 60) {
+      return (
+        seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? " second" : " seconds")
+      );
     }
-
-    // Custom show elapsed time algorithm method
-    static ElapsedTime(date) {
-        // get UNIX timestamp of pubDate value
-        const Elapsed = new Date(date).getTime();
-        // get UNIX timestamp of Present value
-        const Now = Date.now();
-        // Convert UNIX to seconds
-        const seconds = ((Now - Elapsed) / 1000);
-        // Convert UNIX to minutes
-        const minutes = (seconds / 60);
-        // Convert UNIX to hours
-        const hours = (minutes / 60);
-        // Convert UNIX to days
-        const days = (hours / 24);
-        // Convert UNIX to weeks
-        const weeks = (days / 7);
-        // Convert UNIX to months
-        const months = (weeks / 4);
-        // Convert UNIX to years
-        const years = (months / 12);
-        // Elapsed Time output logic
-        if (seconds >= 1 && seconds < 60) {
-            return seconds.toFixed(0) + (seconds.toFixed(0) < 2 ? " second" : " seconds");
-        }
-        if (minutes >= 1 && minutes < 60) {
-            return minutes.toFixed(0) + (minutes.toFixed(0) < 2 ? " minute" : " minutes");
-        }
-        if (hours >= 1 && hours < 24) {
-            return hours.toFixed(0) + (hours.toFixed(0) < 2 ? " hour" : " hours");
-        }
-        if (days >= 1 && days < 7) {
-            return days.toFixed(0) + (days.toFixed(0) < 2 ? " day" : " days");
-        }
-        if (weeks >= 1 && weeks < 4) {
-            return weeks.toFixed(0) + (weeks.toFixed(0) < 2 ? " week" : " weeks");
-        }
-        if (months >= 1 && months < 12) {
-            return months.toFixed(0) + (months.toFixed(0) < 2 ? " month" : " months");
-        }
-        if (years >= 1) {
-            return years.toFixed(0) + (years.toFixed(0) < 2 ? " year" : " years");
-        }
+    if (minutes >= 1 && minutes < 60) {
+      return (
+        minutes.toFixed(0) + (minutes.toFixed(0) < 2 ? " minute" : " minutes")
+      );
     }
+    if (hours >= 1 && hours < 24) {
+      return hours.toFixed(0) + (hours.toFixed(0) < 2 ? " hour" : " hours");
+    }
+    if (days >= 1 && days < 7) {
+      return days.toFixed(0) + (days.toFixed(0) < 2 ? " day" : " days");
+    }
+    if (weeks >= 1 && weeks < 4) {
+      return weeks.toFixed(0) + (weeks.toFixed(0) < 2 ? " week" : " weeks");
+    }
+    if (months >= 1 && months < 12) {
+      return months.toFixed(0) + (months.toFixed(0) < 2 ? " month" : " months");
+    }
+    if (years >= 1) {
+      return years.toFixed(0) + (years.toFixed(0) < 2 ? " year" : " years");
+    }
+  }
 
-    // Article header picture extracting and display logic
-    static titlePic(idx, feeds, data){
-      // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
-      if(Object.keys(data).includes("rss")){
-        if(Object.prototype.hasOwnProperty.call(feeds[idx], "enclosure")){
-          return feeds[idx].enclosure[0].$.url;
-        }
-
-        if(Object.prototype.hasOwnProperty.call(feeds[idx], "media:group")){
-          return feeds[idx]["media:group"][0]["media:content"][0].$.url;
-        }
-
-        if(Object.prototype.hasOwnProperty.call(feeds[idx], "media:content")){
-          return feeds[idx]["media:content"][0].$.url;
-        }
-
-        if(Object.prototype.hasOwnProperty.call(feeds[idx], "description") && feeds[idx].description[0].includes('src=')){
-          return feeds[idx].description[0].split('src="')[1].split('"')[0];
-        }
-        
-        if(Object.prototype.hasOwnProperty.call(feeds[idx], "a10:content") && feeds[idx]["a10:content"][0]._.includes("url(&quot;")){
-          return feeds[idx]["a10:content"][0]._.split("&quot;")[1];
-        }
-
-        if(feeds[idx].title === "The Diplomat"){
-          return false
-        }
+  // Article header picture extracting and display logic
+  static titlePic(idx, feeds, data) {
+    // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
+    if (Object.keys(data).includes("rss")) {
+      if (Object.prototype.hasOwnProperty.call(feeds[idx], "enclosure")) {
+        return feeds[idx].enclosure[0].$.url;
       }
 
-      if(Object.keys(data).includes("rdf:RDF")){
+      if (Object.prototype.hasOwnProperty.call(feeds[idx], "media:group")) {
+        return feeds[idx]["media:group"][0]["media:content"][0].$.url;
+      }
+
+      if (Object.prototype.hasOwnProperty.call(feeds[idx], "media:content")) {
+        return feeds[idx]["media:content"][0].$.url;
+      }
+
+      if (
+        Object.prototype.hasOwnProperty.call(feeds[idx], "description") &&
+        feeds[idx].description[0].includes("src=")
+      ) {
+        return feeds[idx].description[0].split('src="')[1].split('"')[0];
+      }
+
+      if (
+        Object.prototype.hasOwnProperty.call(feeds[idx], "a10:content") &&
+        feeds[idx]["a10:content"][0]._.includes("url(&quot;")
+      ) {
+        return feeds[idx]["a10:content"][0]._.split("&quot;")[1];
+      }
+
+      if (feeds[idx].title === "The Diplomat") {
         return false;
       }
     }
 
-    // Article description extracting and display logic
-    static articleDescription(idx, feeds, data){
-      // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
-      if(Object.keys(data).includes("rss") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
-        const isEmptyDesc = feeds[idx].description[0].replaceAll("\n",'').replaceAll(" ",'').length === 0 || feeds[idx].description[0].includes('DefenceTalk');
-        if(Object.prototype.hasOwnProperty.call(feeds[idx], "description") && !isEmptyDesc){
-          if(feeds[idx].description[0].includes('</') && !isEmptyDesc){
-            // Regex to target and replace all html tags with empty space
-            return feeds[idx].description[0].replaceAll(/<[^>]*>/gi,'').trim();
-          }
-
-          if(feeds[idx].description[0] && !isEmptyDesc){
-            return feeds[idx].description[0].trim();
-          }
-        }
-        return false;
-      }
-      if(Object.keys(data).includes("rdf:RDF") && Object.prototype.hasOwnProperty.call(feeds[idx], "description")){
-        return feeds[idx].description;
-      }
+    if (Object.keys(data).includes("rdf:RDF")) {
+      return false;
     }
+  }
+
+  // Article description extracting and display logic
+  static articleDescription(idx, feeds, data) {
+    // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
+    if (
+      Object.keys(data).includes("rss") &&
+      Object.prototype.hasOwnProperty.call(feeds[idx], "description")
+    ) {
+      const isEmptyDesc =
+        feeds[idx].description[0].replaceAll("\n", "").replaceAll(" ", "")
+          .length === 0 || feeds[idx].description[0].includes("DefenceTalk");
+      if (
+        Object.prototype.hasOwnProperty.call(feeds[idx], "description") &&
+        !isEmptyDesc
+      ) {
+        if (feeds[idx].description[0].includes("</") && !isEmptyDesc) {
+          // Regex to target and replace all html tags with empty space
+          return feeds[idx].description[0].replaceAll(/<[^>]*>/gi, "").trim();
+        }
+
+        if (feeds[idx].description[0] && !isEmptyDesc) {
+          return feeds[idx].description[0].trim();
+        }
+      }
+      return false;
+    }
+    if (
+      Object.keys(data).includes("rdf:RDF") &&
+      Object.prototype.hasOwnProperty.call(feeds[idx], "description")
+    ) {
+      return feeds[idx].description;
+    }
+  }
 }
