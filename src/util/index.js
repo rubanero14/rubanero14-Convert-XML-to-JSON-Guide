@@ -6,13 +6,11 @@ export default class Util {
   static NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
     const topics = [];
     // Dynamic favicon url constructor
-    const favicon = () =>
-      sub ||
-      `https://${Name.toLowerCase()
-        .replaceAll(" ", "")
-        .replaceAll(/.com|.org/gi, "")}${
-        Name.includes(".org") ? ".org" : ".com"
-      }/favicon.ico`;
+    const favicon = () => { 
+      const Url = Name.includes(".") ? `https://${Name.toLowerCase()}/favicon.ico` : `https://${Name.toLowerCase().replaceAll(" ", "")}.com/favicon.ico`;
+      return sub || Url;
+    };
+    
     const [name, url, logo] = [Name, favicon(), Logo];
     if (!Topics2) {
       Topics.map((item) => {
