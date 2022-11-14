@@ -471,16 +471,9 @@ util.NewSource(
   [["Latest News", "https://defensivecss.dev/feed/feed.xml"]]
 );
 
-util.NewSource("Dev.to", null, "dcss-logo.jpg", [
+util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
 ]);
-
-util.NewSource(
-  "Testing Accessibility",
-  "https://defensivecss.dev/img/favicon.png",
-  "dcss-logo.jpg",
-  [["Testing Accessibility", "https://testingaccessibility.com/rss.xml"]]
-);
 
 util.NewSource("The EurAsian Times", null, "eat-logo.png", [
   ["Latest News", "https://eurasiantimes.com/feed/"],
