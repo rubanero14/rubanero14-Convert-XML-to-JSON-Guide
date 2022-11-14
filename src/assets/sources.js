@@ -464,13 +464,6 @@ util.NewSource(
   ["https://www.freecodecamp.org/news/tag/", "item.toLowerCase()", "/rss"]
 );
 
-util.NewSource(
-  "Defensive CSS",
-  "https://defensivecss.dev/img/favicon.png",
-  "dcss-logo.jpg",
-  [["Latest News", "https://defensivecss.dev/feed/feed.xml"]]
-);
-
 util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
 ]);

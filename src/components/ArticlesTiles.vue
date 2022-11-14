@@ -11,7 +11,9 @@
                 <card-component class="mb-4" v-if="screenWidth <= 768">
                     <div class="row" v-if="titlePic(index, feeds, data)">
                         <div class="col-12">
-                            <img class="banner" :src="titlePic(index, feeds, data)">
+                            <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
+                            <audio controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
+                            <img class="banner" :src="titlePic(index, feeds, data)" v-else>
                         </div>
                     </div>
                     <div class="p-3">
@@ -38,7 +40,9 @@
                 <card-component class="mb-4" v-else>
                     <div class="d-flex">
                         <div v-if="titlePic(index, feeds, data)">
-                            <img class="desktop" :src="titlePic(index, feeds, data)">
+                            <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
+                            <audio controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
+                            <img class="banner" :src="titlePic(index, feeds, data)" v-else>
                         </div>
                         <div class="w-100 d-flex justify-content-center align-items-center p-3">
                             <div class="row">
@@ -118,7 +122,7 @@ p.description{
     text-align: justify;
 }
 
-img.banner {
+iframe.banner, img.banner {
     height: auto;
     width: 100%;
     border-radius: 0;
