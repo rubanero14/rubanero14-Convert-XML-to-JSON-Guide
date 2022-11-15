@@ -234,6 +234,22 @@ util.NewSource("CSS-Tricks", null, "csst-logo.jpg", [
   ["CSS-Tricks", "https://css-tricks.com/feed/"],
 ]);
 
+util.NewSource("Codepen.io", null, "cdpn-logo.png", [
+  ["CodePen Blog", "https://blog.codepen.io/feed/"],
+]);
+
+util.NewSource("Nodejs.org", null, "node-logo.png", [
+  ["Node.js Blog", "https://nodejs.org/en/feed/blog.xml"],
+]);
+
+util.NewSource("Reactjs.org", null, "react-logo.png", [
+  ["React Updates", "https://reactjs.org/feed.xml"],
+]);
+
+util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
+  ["Vue.js News", "https://news.vuejs.org/feed.xml"],
+]);
+
 util.NewSource(
   "freeCodeCamp",
   "https://cdn.freecodecamp.org/universal/favicons/favicon.ico",

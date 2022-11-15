@@ -13,7 +13,7 @@
                         <div class="col-12">
                             <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
                             <audio controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
-                            <img class="banner" :src="titlePic(index, feeds, data)" v-else>
+                            <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'" v-else>
                         </div>
                     </div>
                     <div class="p-3">
@@ -42,7 +42,7 @@
                         <div v-if="titlePic(index, feeds, data)">
                             <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
                             <audio controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
-                            <img class="banner" :src="titlePic(index, feeds, data)" v-else>
+                            <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'"  v-else>
                         </div>
                         <div class="w-100 d-flex justify-content-center align-items-center p-3">
                             <div class="row">
@@ -109,7 +109,7 @@ export default {
 <style scoped>
 h3.title{
     font-size: 18px;
-    font-weight:bold;
+    font-weight: bold;
     margin-bottom: 15px;
     text-align: start;
 }
@@ -123,7 +123,7 @@ p.description{
 }
 
 iframe.banner, img.banner {
-    height: auto;
+    height: 100%;
     width: 100%;
     border-radius: 0;
     margin: 0;
