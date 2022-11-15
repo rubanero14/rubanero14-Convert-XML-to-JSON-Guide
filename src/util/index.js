@@ -106,8 +106,11 @@ export default class Util {
         return feeds[idx].description[0].split('src="')[1].split('"')[0];
       }
 
-      if (Object.prototype.hasOwnProperty.call(feeds[idx], "content")) {
-        return false;
+      if (
+        Object.prototype.hasOwnProperty.call(feeds[idx], "a10:content") &&
+        feeds[idx]["a10:content"][0]._.includes("url(&quot;")
+      ) {
+        return feeds[idx]["a10:content"][0]._.split("&quot;")[1];
       }
 
       if (feeds[idx].title === "The Diplomat") {
