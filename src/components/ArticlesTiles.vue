@@ -50,13 +50,13 @@
                         <div class="ps-0" :class="{'col-6': titlePic(index, feeds, data), 'col-12': !titlePic(index, feeds, data)}">
                             <div class="row ps-0">
                                 <div class="col-12 p-3">
-                                    <h3 class="title text-center text-secondary mb-0" v-html="feed.title"></h3>
+                                    <h3 class="title me-3 text-center text-secondary mb-0" v-html="feed.title"></h3>
                                 </div>
                                 <div class="col-12" v-if="articleDescription(index, feeds, data)">
                                     <hr class="my-0"/>
                                     <em class="desc d-block p-3">
-                                        <p class="description  ms-3 text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
-                                        <p class="description ms-3 text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
+                                        <p class="description me-3 text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
+                                        <p class="description me-3 text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
                                     </em>
                                 </div>
                             </div>
