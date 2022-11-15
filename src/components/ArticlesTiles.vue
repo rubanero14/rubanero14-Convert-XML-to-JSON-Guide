@@ -54,9 +54,9 @@
                                 </div>
                                 <div class="col-12" v-if="articleDescription(index, feeds, data)">
                                     <hr class="my-0"/>
-                                    <em class="d-inline-block p-3">
-                                        <p class="description text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
-                                        <p class="description text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
+                                    <em class="desc d-block p-3">
+                                        <p class="description  ms-3 text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
+                                        <p class="description ms-3 text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
                                     </em>
                                 </div>
                             </div>
@@ -66,7 +66,6 @@
                     <div class="d-flex justify-content-between align-content-end px-3 py-2">
                         <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
                         <aside v-if="date()" class="time d-flex align-items-center text-secondary mb-0"><em><strong>{{this.provider}} &#183; {{ date(index) }} ago  </strong></em></aside>
-                        
                     </div>        
                 </card-component>
             </a>
@@ -111,6 +110,10 @@ export default {
 }
 </script>
 <style scoped>
+em.desc {
+    width: fit-content;
+}
+
 h3.title{
     font-size: 18px;
     font-weight: bold;

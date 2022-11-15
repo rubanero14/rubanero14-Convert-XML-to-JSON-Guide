@@ -264,6 +264,16 @@ util.NewSource(
   [["Svelte blog", "https://svelte.dev/blog/rss.xml"]]
 );
 
+util.NewSource(
+  ".NET",
+  "dotnet-logo.png",
+  "dotnet-logo.png",
+  [
+    ["Practical .NET", "https://visualstudiomagazine.com/rss-feeds/practical-net.aspx"],
+    [".NET Blogs", "https://visualstudiomagazine.com/rss-feeds/blogs.aspx"],
+  ]
+);
+
 util.NewSource("Mozilla.org", null, "mzla-logo.webp", [
   ["Hacks", "https://hacks.mozilla.org/feed/"],
   ["Blog", "https://blog.mozilla.org/feed//"],
