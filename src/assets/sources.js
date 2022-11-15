@@ -269,8 +269,11 @@ util.NewSource(
   "dotnet-logo.png",
   "dotnet-logo.png",
   [
-    ["Practical .NET", "https://visualstudiomagazine.com/rss-feeds/practical-net.aspx"],
-    [".NET Blogs", "https://visualstudiomagazine.com/rss-feeds/blogs.aspx"],
+    ["News", "https://visualstudiomagazine.com/rss-feeds/news.aspx"],
+    ["Features", "https://visualstudiomagazine.com/rss-feeds/features.aspx"],
+    ["Data Driver Blog", "https://visualstudiomagazine.com/rss-feeds/data-driver-blog.aspx"],
+    ["Blogs", "https://visualstudiomagazine.com/rss-feeds/blogs.aspx"],
+    ["Webcasts", "https://visualstudiomagazine.com/rss-feeds/tech-library-webcasts.aspx"],
   ]
 );
 
