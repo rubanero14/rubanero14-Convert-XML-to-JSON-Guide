@@ -247,7 +247,27 @@ util.NewSource("Reactjs.org", null, "react-logo.png", [
 ]);
 
 util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
-  ["Vue.js News", "https://news.vuejs.org/feed.xml"],
+  ["Vue.js Updates", "https://news.vuejs.org/feed.xml"],
+]);
+
+util.NewSource(
+  "Angular.io",
+  "https://angular.io/assets/images/favicons/favicon-32x32.png",
+  "ang-logo.svg",
+  [["Angular Blog", "https://blog.angular.io/feed"]]
+);
+
+util.NewSource(
+  "Svelte.dev",
+  "https://svelte.dev/favicon.png",
+  "svlt-logo.png",
+  [["Svelte blog", "https://svelte.dev/blog/rss.xml"]]
+);
+
+util.NewSource("Mozilla.org", null, "mzla-logo.webp", [
+  ["Hacks", "https://hacks.mozilla.org/feed/"],
+  ["Blog", "https://blog.mozilla.org/feed//"],
+  ["Accessibility", "https://blog.mozilla.org/accessibility/feed/"],
 ]);
 
 util.NewSource(

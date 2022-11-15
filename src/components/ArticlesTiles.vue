@@ -11,9 +11,12 @@
                 <card-component class="mb-4" v-if="screenWidth <= 768">
                     <div class="row" v-if="titlePic(index, feeds, data)">
                         <div class="col-12">
-                            <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
-                            <audio controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
-                            <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'" v-else>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
+                                <audio class="banner" controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
+                                <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'" v-else>
+                            </div>
+                            <hr v-if="titlePic(index, feeds, data).includes('.mp3')"/>
                         </div>
                     </div>
                     <div class="p-3">
@@ -30,28 +33,28 @@
                             <div class="col-12">
                                 <hr/>
                                 <div class="d-flex justify-content-between align-contents-center">
-                                    <aside v-if="date()" class="time d-flex align-self-end text-secondary mb-0"><em><strong>{{ date(index) }} ago &#183; {{this.provider}}</strong></em></aside>
                                     <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                                    <aside v-if="date()" class="time d-flex align-items-center text-secondary mb-0"><em><strong>{{this.provider}} &#183; {{ date(index) }} ago</strong></em></aside>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </card-component>
                 <card-component class="mb-4" v-else>
-                    <div class="d-flex">
-                        <div v-if="titlePic(index, feeds, data)">
+                    <div class="row pe-0">
+                        <div class="col-6" v-if="titlePic(index, feeds, data)">
                             <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
-                            <audio controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
+                            <audio class="banner" controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
                             <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'"  v-else>
                         </div>
-                        <div class="w-100 d-flex justify-content-center align-items-center p-3">
-                            <div class="row">
-                                <div class="col-12">
+                        <div class="ps-0" :class="{'col-6': titlePic(index, feeds, data), 'col-12': !titlePic(index, feeds, data)}">
+                            <div class="row ps-0">
+                                <div class="col-12 p-3">
                                     <h3 class="title text-center text-secondary mb-0" v-html="feed.title"></h3>
                                 </div>
                                 <div class="col-12" v-if="articleDescription(index, feeds, data)">
-                                    <hr/>
-                                    <em>
+                                    <hr class="my-0"/>
+                                    <em class="d-inline-block p-3">
                                         <p class="description text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
                                         <p class="description text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
                                     </em>
@@ -60,9 +63,10 @@
                         </div>
                     </div>
                     <hr class="my-0"/>
-                    <div class="d-flex justify-content-between align-content-end p-3">
-                        <aside v-if="date()" class="time d-flex align-self-end text-secondary mb-0"><em><strong>{{ date(index) }} ago &#183; {{this.provider}}</strong></em></aside>
+                    <div class="d-flex justify-content-between align-content-end px-3 py-2">
                         <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
+                        <aside v-if="date()" class="time d-flex align-items-center text-secondary mb-0"><em><strong>{{this.provider}} &#183; {{ date(index) }} ago  </strong></em></aside>
+                        
                     </div>        
                 </card-component>
             </a>
@@ -116,6 +120,10 @@ h3.title{
 
 aside {
     font-size: 15px;
+}
+
+audio.banner {
+    margin: 15% auto;
 }
 
 p.description{

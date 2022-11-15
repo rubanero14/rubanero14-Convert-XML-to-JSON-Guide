@@ -6,11 +6,13 @@ export default class Util {
   static NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
     const topics = [];
     // Dynamic favicon url constructor
-    const favicon = () => { 
-      const Url = Name.includes(".") ? `https://${Name.toLowerCase()}/favicon.ico` : `https://${Name.toLowerCase().replaceAll(" ", "")}.com/favicon.ico`;
+    const favicon = () => {
+      const Url = Name.includes(".")
+        ? `https://${Name.toLowerCase()}/favicon.ico`
+        : `https://${Name.toLowerCase().replaceAll(" ", "")}.com/favicon.ico`;
       return sub || Url;
     };
-    
+
     const [name, url, logo] = [Name, favicon(), Logo];
     if (!Topics2) {
       Topics.map((item) => {
@@ -104,15 +106,19 @@ export default class Util {
         return feeds[idx].description[0].split('src="')[1].split('"')[0];
       }
 
-      if (
-        Object.prototype.hasOwnProperty.call(feeds[idx], "a10:content") &&
-        feeds[idx]["a10:content"][0]._.includes("url(&quot;")
-      ) {
-        return feeds[idx]["a10:content"][0]._.split("&quot;")[1];
+      if (Object.prototype.hasOwnProperty.call(feeds[idx], "content")) {
+        return false;
       }
 
       if (feeds[idx].title === "The Diplomat") {
         return false;
+      }
+
+      if (
+        Object.prototype.hasOwnProperty.call(feeds[idx], "description") &&
+        feeds[idx].description[0].includes("src=")
+      ) {
+        return feeds[idx].content[0];
       }
     }
 
@@ -151,6 +157,13 @@ export default class Util {
       Object.prototype.hasOwnProperty.call(feeds[idx], "description")
     ) {
       return feeds[idx].description;
+    }
+
+    if (
+      Object.keys(data).includes("feed") &&
+      Object.prototype.hasOwnProperty.call(feeds[idx], "entry")
+    ) {
+      return feeds[idx].content[0].replaceAll(/<[^>]*>/gi, "").trim();
     }
   }
 }
