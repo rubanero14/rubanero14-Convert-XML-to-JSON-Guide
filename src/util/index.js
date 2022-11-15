@@ -31,6 +31,7 @@ export default class Util {
     return this.sources.push({ name, url, logo, topics });
   }
 
+  // URL Encoder method
   static UrlEncoder(url) {
     return encodeURIComponent(url);
   }
