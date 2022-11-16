@@ -44,7 +44,7 @@
                     <card-component class="mb-4" v-else>
                         <div class="row pe-0">
                             <div class="col-6" v-if="titlePic(index, feeds, data)">
-                                <video class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></video>
+                                <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
                                 <audio class="banner" controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
                                 <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'"  v-else>
                             </div>
@@ -135,7 +135,7 @@ p.description{
     text-align: justify;
 }
 
-video.banner, img.banner {
+iframe.banner, img.banner {
     height: 100%;
     width: 100%;
     border-radius: 0;
