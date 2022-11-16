@@ -14,7 +14,11 @@
                             <div class="col-12">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
-                                    <audio class="banner" controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
+                                    <audio class="banner" controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')">
+                                        <a :href="titlePic(index, feeds, data)">
+                                            Download
+                                        </a>
+                                    </audio>
                                     <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'" v-else>
                                 </div>
                                 <hr v-if="titlePic(index, feeds, data).includes('.mp3')"/>
@@ -45,7 +49,11 @@
                         <div class="row pe-0">
                             <div class="col-6" v-if="titlePic(index, feeds, data)">
                                 <iframe class="banner" :src="titlePic(index, feeds, data)" frameborder="0" v-if="titlePic(index, feeds, data).includes('youtube')"></iframe>
-                                <audio class="banner" controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')"></audio>
+                                <audio class="banner" controls :src="titlePic(index, feeds, data)" v-else-if="titlePic(index, feeds, data).includes('.mp3')">
+                                    <a :href="titlePic(index, feeds, data)">
+                                        Download
+                                    </a>
+                                </audio>
                                 <img class="banner" :src="titlePic(index, feeds, data)" onerror="this.style='display: none'"  v-else>
                             </div>
                             <div class="ps-0" :class="{'col-6': titlePic(index, feeds, data), 'col-12': !titlePic(index, feeds, data)}">

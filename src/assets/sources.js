@@ -206,6 +206,10 @@ util.NewSource("CNN", null, "cnn-logo.png", [
   ["CNN World", "http://rss.cnn.com/rss/cnn_latest.rss"],
 ]);
 
+util.NewSource("Podnews.net", null, "pod-logo.png", [
+  ["Lofi Podcast", "http://feeds.feedburner.com/lofibeatsradiopodcast"],
+]);
+
 util.NewSource("Conflict of Nations", null, "con-logo.png", [
   [
     "Latest Update",
@@ -249,6 +253,15 @@ util.NewSource("Reactjs.org", null, "react-logo.png", [
 util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
   ["Vue.js Updates", "https://news.vuejs.org/feed.xml"],
 ]);
+
+util.NewSource(
+  "hackernoon",
+  null,
+  "hckrnoon-logo.jpg",
+  null,
+  ["javascript", "css", "frontend", "react", "programming", "coding"],
+  ["https://hackernoon.com/tagged/", "item", "/feed"]
+);
 
 util.NewSource(
   "Angular.io",
@@ -609,9 +622,8 @@ util.NewSource("GlobalSecurity.org", null, "gs-logo.png", [
 
 util.NewSource("Football Updates", "epl-logo.png", "epl-logo.png", [
   ["World", "https://www.espn.co.uk/espn/rss/football/news"],
-  ["EPL", "https://www.football.london/?service=rss"]
+  ["EPL", "https://www.football.london/?service=rss"],
 ]);
-
 
 util.NewSource("Science Daily", null, "scd-logo.jpg", [
   ["All News", "https://www.sciencedaily.com/rss/all.xml"],
