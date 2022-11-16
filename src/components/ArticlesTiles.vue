@@ -35,7 +35,7 @@
                                     <hr/>
                                     <div class="d-flex justify-content-between align-contents-center">
                                         <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
-                                        <aside v-if="date()" class="time d-flex align-items-center text-secondary mb-0"><em><strong>{{this.provider}} &#183; {{ date(index) }} ago</strong></em></aside>
+                                        <aside v-if="date" class="time d-flex align-items-center text-secondary mb-0"><em><strong>{{this.provider}} &#183; {{ date(index) }} ago</strong></em></aside>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                         <hr class="my-0"/>
                         <div class="d-flex justify-content-between align-content-end px-3 py-2">
                             <img class="img" v-if="pic" :src="pic" onerror="this.src='https://rss.com/favicon.ico'"/>
-                            <aside v-if="date()" class="time d-flex align-items-center text-secondary mb-0"><em><strong>{{this.provider}} &#183; {{ date(index) }} ago  </strong></em></aside>
+                            <aside v-if="date" class="time d-flex align-items-center text-secondary mb-0"><em><strong>{{this.provider}} &#183; {{ date(index) }} ago  </strong></em></aside>
                         </div>        
                     </card-component>
                 </article>

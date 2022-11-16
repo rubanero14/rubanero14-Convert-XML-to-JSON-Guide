@@ -607,6 +607,12 @@ util.NewSource("GlobalSecurity.org", null, "gs-logo.png", [
   ["Defence News", "https://www.globalsecurity.org/globalsecurity-org.xml"],
 ]);
 
+util.NewSource("Football Updates", "epl-logo.png", "epl-logo.png", [
+  ["World", "https://www.espn.co.uk/espn/rss/football/news"],
+  ["EPL", "https://www.football.london/?service=rss"]
+]);
+
+
 util.NewSource("Science Daily", null, "scd-logo.jpg", [
   ["All News", "https://www.sciencedaily.com/rss/all.xml"],
   ["Top Science", "https://www.sciencedaily.com/rss/top/science.xml"],

@@ -99,6 +99,9 @@ export default class Util {
     if (years >= 1) {
       return years.toFixed(0) + (years.toFixed(0) < 2 ? " year" : " years");
     }
+    if(Now - Elapsed){
+      return "Sometime";
+    }
   }
 
   // Article header picture extracting and display logic
