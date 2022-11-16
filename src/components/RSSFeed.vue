@@ -121,6 +121,7 @@ export default {
                 return this.tabNav < 3 ? this.tabNav++ : this.tabNav;
             }
             if (this.tabNav === 0 && data.topics.length === 1) {
+                this.topicTitle = data["name"];
                 this.pic = data.url;
                 this.topicData = data.topics;
                 this.topicNavUrl = data.topics[0].url;
