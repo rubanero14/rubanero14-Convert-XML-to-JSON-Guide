@@ -210,13 +210,6 @@ util.NewSource("Podnews.net", null, "pod-logo.png", [
   ["Podnews Lofi Radio", "http://feeds.feedburner.com/lofibeatsradiopodcast"],
 ]);
 
-util.NewSource("Conflict of Nations", null, "con-logo.png", [
-  [
-    "Latest Update",
-    "https://wiki.conflictnations.com/api.php?hidebots=1&days=360&limit=50&action=feedrecentchanges&feedformat=rss",
-  ],
-]);
-
 util.NewSource("Game Informer", null, "gi-logo.jpg", [
   ["All News", "https://www.gameinformer.com/rss.xml"],
 ]);
@@ -255,22 +248,13 @@ util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
 ]);
 
 util.NewSource(
-  "HackerNoon",
-  null,
-  "hckrnoon-logo.jpg",
-  null,
-  ["javascript", "css", "frontend", "react", "programming", "coding"],
-  ["https://hackernoon.com/tagged/", "item", "/feed"]
-);
-
-util.NewSource(
   "Angular.io",
   "https://angular.io/assets/images/favicons/favicon-32x32.png",
   "ang-logo.svg",
   [["Angular Blog", "https://blog.angular.io/feed"]]
-);
+  );
 
-util.NewSource(
+  util.NewSource(
   "Svelte.dev",
   "https://svelte.dev/favicon.png",
   "svlt-logo.png",
@@ -290,6 +274,15 @@ util.NewSource(".NET", "dotnet-logo.png", "dotnet-logo.png", [
     "https://visualstudiomagazine.com/rss-feeds/tech-library-webcasts.aspx",
   ],
 ]);
+
+util.NewSource(
+  "HackerNoon",
+  null,
+  "hckrnoon-logo.jpg",
+  null,
+  ["javascript", "css", "frontend", "react", "programming", "coding"],
+  ["https://hackernoon.com/tagged/", "item", "/feed"]
+);
 
 util.NewSource("Mozilla.org", null, "mzla-logo.webp", [
   ["Hacks", "https://hacks.mozilla.org/feed/"],
