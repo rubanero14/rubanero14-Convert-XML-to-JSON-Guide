@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-12" v-if="articleDescription(index, feeds, data)">
                                     <hr class="my-0"/>
-                                    <em class="desc d-block p-3">
+                                    <em class="desc d-block p-3" :class="{'ms-3': !titlePic(index, feeds, data), '': titlePic(index, feeds, data)}">
                                         <p class="description me-3 text-secondary mb-0" v-if="screenWidth >= 1200" v-html="articleInjector()"></p>
                                         <p class="description me-3 text-secondary mb-0" v-else-if="screenWidth >= 768 && screenWidth < 1200" v-html="articleInjector()"></p>
                                     </em>
