@@ -1,18 +1,19 @@
+import util from "../../src/util";
 import sources from "../../src/assets/sources";
 
 /* Dynamically driven Cypress test suite */
 // Random number generator for sources level test subject
 const randomSourceSelection = () => {
-  return Math.floor(Math.random() * sources.length);
+  return Math.floor(Math.random() * util.sources.length);
 };
 const sourcesIndex = randomSourceSelection();
 
 // Random number generator for topics level test subject
 const randomSecondSourceSelection = () => {
-  if (sources[sourcesIndex].topics.length === undefined) {
+  if (util.sources[sourcesIndex].topics.length === undefined) {
     return cy.log("No Topics Found!");
   }
-  return Math.floor(Math.random() * sources[sourcesIndex].topics.length);
+  return Math.floor(Math.random() * util.sources[sourcesIndex].topics.length);
 };
 
 let articlesLength = 0;
@@ -33,7 +34,7 @@ describe("Visits RSS Feed Home Page", () => {
     cy.get(`[data-cy="actions-source-${sourcesIndex}"]`).click();
   });
 
-  if (sources[sourcesIndex].topics.length > 1) {
+  if (util.sources[sourcesIndex].topics.length > 1) {
     it("Open Random Topic", () => {
       cy.get(
         `[data-cy="actions-topic-${randomSecondSourceSelection()}"]`
@@ -43,11 +44,12 @@ describe("Visits RSS Feed Home Page", () => {
     it("Click Random Article", () => {
       // Upon get response, get total div articles elements found inside article wrapper, and pass it to random selector function
       cy.get('[data-cy="actions-article-wrapper"]')
+        .wait(5000)
         .children("div")
         .then((articles) => {
           articlesLength = Cypress.$(articles).length;
           const randomArticle = Math.floor(Math.random() * articlesLength);
-          cy.get(`[data-cy="actions-article-${randomArticle}"]`).wait(3000).click();
+          cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
         });
     });
 
@@ -62,11 +64,12 @@ describe("Visits RSS Feed Home Page", () => {
     it("Click Random Article", () => {
       // Upon get response, get total div articles elements found inside article wrapper, and pass it to random selector function
       cy.get('[data-cy="actions-article-wrapper"]')
+        .wait(5000)
         .children("div")
         .then((articles) => {
           articlesLength = Cypress.$(articles).length;
           const randomArticle = Math.floor(Math.random() * articlesLength);
-          cy.get(`[data-cy="actions-article-${randomArticle}"]`).wait(3000).click();
+          cy.get(`[data-cy="actions-article-${randomArticle}"]`).click();
         });
     });
 

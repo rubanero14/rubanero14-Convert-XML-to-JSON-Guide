@@ -10,6 +10,6 @@ module.exports = defineConfig({
   },
   env: {
     DEV_ENV: "http://localhost:8080/",
-    PROD_ENV: "https://rubanero14.github.io/RSS-Feed-CP-Prototype-Vue3/",
+    PROD_ENV: "https://rubanero14.github.io/Multi-RSS-News-Feed-Vue3/",
   },
 });

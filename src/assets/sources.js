@@ -1,4 +1,4 @@
-import util from "@/util";
+import util from "../util";
 
 const sources = util.sources;
 
@@ -264,18 +264,19 @@ util.NewSource(
   [["Svelte blog", "https://svelte.dev/blog/rss.xml"]]
 );
 
-util.NewSource(
-  ".NET",
-  "dotnet-logo.png",
-  "dotnet-logo.png",
+util.NewSource(".NET", "dotnet-logo.png", "dotnet-logo.png", [
+  ["News", "https://visualstudiomagazine.com/rss-feeds/news.aspx"],
+  ["Features", "https://visualstudiomagazine.com/rss-feeds/features.aspx"],
   [
-    ["News", "https://visualstudiomagazine.com/rss-feeds/news.aspx"],
-    ["Features", "https://visualstudiomagazine.com/rss-feeds/features.aspx"],
-    ["Data Driver Blog", "https://visualstudiomagazine.com/rss-feeds/data-driver-blog.aspx"],
-    ["Blogs", "https://visualstudiomagazine.com/rss-feeds/blogs.aspx"],
-    ["Webcasts", "https://visualstudiomagazine.com/rss-feeds/tech-library-webcasts.aspx"],
-  ]
-);
+    "Data Driver Blog",
+    "https://visualstudiomagazine.com/rss-feeds/data-driver-blog.aspx",
+  ],
+  ["Blogs", "https://visualstudiomagazine.com/rss-feeds/blogs.aspx"],
+  [
+    "Webcasts",
+    "https://visualstudiomagazine.com/rss-feeds/tech-library-webcasts.aspx",
+  ],
+]);
 
 util.NewSource("Mozilla.org", null, "mzla-logo.webp", [
   ["Hacks", "https://hacks.mozilla.org/feed/"],
@@ -560,6 +561,26 @@ util.NewSource(
   ]
 );
 
+util.NewSource(
+  "Defence Aviation Post",
+  "https://defenceaviationpost.com/wp-content/uploads/2022/01/cropped-Copy-of-funny-big-sale-portrait-poster-template-blue-Made-with-PosterMyWall-1-32x32.png",
+  "dap-logo.jfif",
+  null,
+  [
+    "defence/indian-army",
+    "defence/indian-air-force",
+    "defence/indian-navy",
+    "defence-industry/drdo",
+    "defence-industry/ofb",
+    "defence-industry/private-sector",
+    "internal-security",
+    "global-news",
+    "aviation",
+    "press-release",
+  ],
+  ["https://defenceaviationpost.com/category/", "item.toLowerCase()", "/feed"]
+);
+
 util.NewSource("Shephard Media", null, "sm-logo.png", [
   ["Latest Articles", "https://www.shephardmedia.com/news/feed/"],
   ["Naval Warfare", "https://www.shephardmedia.com/news/naval-warfare/feed/"],
@@ -584,25 +605,6 @@ util.NewSource("Janes", null, "janes-logo.png", [
 
 util.NewSource("GlobalSecurity.org", null, "gs-logo.png", [
   ["Defence News", "https://www.globalsecurity.org/globalsecurity-org.xml"],
-]);
-
-util.NewSource("Defence Aviation Post", 'https://defenceaviationpost.com/wp-content/uploads/2022/01/cropped-Copy-of-funny-big-sale-portrait-poster-template-blue-Made-with-PosterMyWall-1-32x32.png', 
-"dap-logo.jfif", null, [
-  "defence/indian-army",
-  "defence/indian-air-force",
-  "defence/indian-navy",
-  "defence-industry/drdo",
-  "defence-industry/ofb",
-  "defence-industry/private-sector",
-  "internal-security",
-  "global-news",
-  "aviation",
-  "press-release",
-
-], [
-  "https://defenceaviationpost.com/category/",
-  "item.toLowerCase()",
-  "/feed",
 ]);
 
 util.NewSource("Science Daily", null, "scd-logo.jpg", [
