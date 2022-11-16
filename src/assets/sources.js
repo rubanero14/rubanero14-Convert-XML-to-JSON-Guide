@@ -207,7 +207,7 @@ util.NewSource("CNN", null, "cnn-logo.png", [
 ]);
 
 util.NewSource("Podnews.net", null, "pod-logo.png", [
-  ["Lofi Podcast", "http://feeds.feedburner.com/lofibeatsradiopodcast"],
+  ["Podnews Lofi Radio", "http://feeds.feedburner.com/lofibeatsradiopodcast"],
 ]);
 
 util.NewSource("Conflict of Nations", null, "con-logo.png", [
@@ -255,7 +255,7 @@ util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
 ]);
 
 util.NewSource(
-  "hackernoon",
+  "HackerNoon",
   null,
   "hckrnoon-logo.jpg",
   null,
