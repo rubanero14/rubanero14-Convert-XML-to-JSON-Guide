@@ -586,6 +586,25 @@ util.NewSource("GlobalSecurity.org", null, "gs-logo.png", [
   ["Defence News", "https://www.globalsecurity.org/globalsecurity-org.xml"],
 ]);
 
+util.NewSource("Defence Aviation Post", 'https://defenceaviationpost.com/wp-content/uploads/2022/01/cropped-Copy-of-funny-big-sale-portrait-poster-template-blue-Made-with-PosterMyWall-1-32x32.png', 
+"dap-logo.jfif", null, [
+  "defence/indian-army",
+  "defence/indian-air-force",
+  "defence/indian-navy",
+  "defence-industry/drdo",
+  "defence-industry/ofb",
+  "defence-industry/private-sector",
+  "internal-security",
+  "global-news",
+  "aviation",
+  "press-release",
+
+], [
+  "https://defenceaviationpost.com/category/",
+  "item.toLowerCase()",
+  "/feed",
+]);
+
 util.NewSource("Science Daily", null, "scd-logo.jpg", [
   ["All News", "https://www.sciencedaily.com/rss/all.xml"],
   ["Top Science", "https://www.sciencedaily.com/rss/top/science.xml"],

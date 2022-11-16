@@ -36,7 +36,7 @@ export default {
 
 h3.title{
     font-size: 18px;
-    font-weight:bold;
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
@@ -44,9 +44,7 @@ h3.title{
     border-radius: 4px;
 }
 
-@media only screen and (max-width: 600px) {
-    span.title {
-        font-size: 12px;
-    }
+span.title {
+    font-size: 12px;
 }
 </style>

@@ -16,15 +16,20 @@ export default class Util {
     const [name, url, logo] = [Name, favicon(), Logo];
     if (!Topics2) {
       Topics.map((item) => {
-        const [title, url] = [item[0], item[1]];
+        const [title, url] = [item[0].toUpperCase(), item[1]];
         topics.push({ title, url });
       });
     } else {
       Topics2.map((item) => {
-        const [title, url] = [
-          item.replaceAll("-", " "),
+        let [title, url] = [
+          item.replaceAll("-", " ").toUpperCase(),
           `${rssUrl[0]}${eval(rssUrl[1])}${rssUrl[2]}`,
         ];
+
+        if(title.includes('/') && title.includes(" ")){
+          title = title.split("/")[1].toUpperCase();
+        }
+
         topics.push({ title, url });
       });
     }
