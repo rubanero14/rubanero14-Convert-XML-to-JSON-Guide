@@ -4,7 +4,9 @@ export default class Util {
 
   // Dynamic constructor method to add new source into sources object
   static NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
+    // Initiate topics array
     const topics = [];
+
     // Dynamic favicon url constructor
     const favicon = () => {
       const Url = Name.includes(".")
@@ -13,13 +15,17 @@ export default class Util {
       return sub || Url;
     };
 
+    // Intiating and storing data in variables respectively
     const [name, url, logo] = [Name, favicon(), Logo];
+
+    // If lists of RSS links structure pattern are variable 
     if (!Topics2) {
       Topics.map((item) => {
         const [title, url] = [item[0], item[1]];
         topics.push({ title, url });
       });
     } else {
+     // If lists of RSS links structure patterns are constant
       Topics2.map((item) => {
         let [title, url] = [
           item.replaceAll("-", " "),
@@ -41,10 +47,11 @@ export default class Util {
             title = formattedWords.join(" ");
           });
         }
-
+        // Adding title and urls of respective RSS feeds into topics array
         topics.push({ title, url });
       });
     }
+    // Adding all the relevant data into sources array as an object
     return this.sources.push({ name, url, logo, topics });
   }
 

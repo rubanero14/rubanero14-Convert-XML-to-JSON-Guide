@@ -261,19 +261,14 @@ util.NewSource(
   [["Svelte blog", "https://svelte.dev/blog/rss.xml"]]
 );
 
-util.NewSource(".NET", "dotnet-logo.png", "dotnet-logo.png", [
-  ["News", "https://visualstudiomagazine.com/rss-feeds/news.aspx"],
-  ["Features", "https://visualstudiomagazine.com/rss-feeds/features.aspx"],
-  [
-    "Data Driver Blog",
-    "https://visualstudiomagazine.com/rss-feeds/data-driver-blog.aspx",
-  ],
-  ["Blogs", "https://visualstudiomagazine.com/rss-feeds/blogs.aspx"],
-  [
-    "Webcasts",
-    "https://visualstudiomagazine.com/rss-feeds/tech-library-webcasts.aspx",
-  ],
-]);
+util.NewSource(".NET", "dotnet-logo.png", "dotnet-logo.png", null, [
+  "news",
+  "features",
+  "data-driver-blog",
+  "blogs",
+  "tech-library-webcasts"
+
+], ["https://visualstudiomagazine.com/rss-feeds/", "item", ".aspx"],);
 
 util.NewSource(
   "HackerNoon",
@@ -286,7 +281,7 @@ util.NewSource(
 
 util.NewSource("Mozilla.org", null, "mzla-logo.webp", [
   ["Hacks", "https://hacks.mozilla.org/feed/"],
-  ["Blog", "https://blog.mozilla.org/feed//"],
+  ["Blog", "https://blog.mozilla.org/feed/"],
   ["Accessibility", "https://blog.mozilla.org/accessibility/feed/"],
 ]);
 
