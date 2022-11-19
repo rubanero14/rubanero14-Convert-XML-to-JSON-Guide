@@ -40,7 +40,6 @@ export default class Util {
             const First_Letter = word[0].toUpperCase();
             const Other_Letters = word
               .slice(1)
-              .replaceAll("-", " ")
               .toLowerCase();
             const Full_Word = First_Letter + Other_Letters;
             formattedWords.push(Full_Word);
