@@ -29,7 +29,7 @@ export default class Util {
       Topics2.map((item) => {
         let [title, url] = [
           item.replaceAll("-", " "),
-          `${rssUrl[0]}${eval(rssUrl[1])}${rssUrl[2]}`,
+          `${rssUrl[0]}${eval(rssUrl[1]).toLowerCase()}${rssUrl[2] ?? ""}`,
         ];
 
         // Logic for to uppercase every first letter in the sentence
@@ -37,7 +37,7 @@ export default class Util {
           const arr = title.split(/\/| |-/gi);
           const formattedWords = [];
           arr.map((word) => {
-            const First_Letter = word[0].replaceAll("-", " ").toUpperCase();
+            const First_Letter = word[0].toUpperCase();
             const Other_Letters = word
               .slice(1)
               .replaceAll("-", " ")
