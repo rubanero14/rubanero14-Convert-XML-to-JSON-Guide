@@ -536,9 +536,9 @@ util.NewSource(
 
 util.NewSource(
   "DefenseTalk",
-  "https://feedburner.com/favicon.ico",
   "dt-logo.jpeg",
   "dt-logo.jpeg",
+  null,
   [
     "DefenseNews",
     "Army News",
