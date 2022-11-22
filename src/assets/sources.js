@@ -252,23 +252,23 @@ util.NewSource(
   "https://angular.io/assets/images/favicons/favicon-32x32.png",
   "ang-logo.svg",
   [["Angular Blog", "https://blog.angular.io/feed"]]
-  );
+);
 
-  util.NewSource(
+util.NewSource(
   "Svelte.dev",
   "https://svelte.dev/favicon.png",
   "svlt-logo.png",
   [["Svelte blog", "https://svelte.dev/blog/rss.xml"]]
 );
 
-util.NewSource(".NET", "dotnet-logo.png", "dotnet-logo.png", null, [
-  "news",
-  "features",
-  "data-driver-blog",
-  "blogs",
-  "tech-library-webcasts"
-
-], ["https://visualstudiomagazine.com/rss-feeds/", "item", ".aspx"]);
+util.NewSource(
+  ".NET",
+  "dotnet-logo.png",
+  "dotnet-logo.png",
+  null,
+  ["news", "features", "data-driver-blog", "blogs", "tech-library-webcasts"],
+  ["https://visualstudiomagazine.com/rss-feeds/", "item", ".aspx"]
+);
 
 util.NewSource(
   "HackerNoon",
@@ -513,7 +513,7 @@ util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
 ]);
 
-util.NewSource("The EurAsian Times", null, "eat-logo.png", [
+util.NewSource("The EurAsian Times", "eat-logo.png", "eat-logo.png", [
   ["Latest News", "https://eurasiantimes.com/feed/"],
 ]);
 
@@ -538,7 +538,7 @@ util.NewSource(
   "DefenseTalk",
   "https://feedburner.com/favicon.ico",
   "dt-logo.jpeg",
-  null,
+  "dt-logo.jpeg",
   [
     "DefenseNews",
     "Army News",
@@ -549,10 +549,7 @@ util.NewSource(
     "NavyNews",
     "DronesNews",
   ],
-  [
-    "https://feeds.feedburner.com/",
-    "item"
-  ]
+  ["https://feeds.feedburner.com/", "item"]
 );
 
 util.NewSource(

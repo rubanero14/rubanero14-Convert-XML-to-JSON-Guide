@@ -18,18 +18,20 @@ export default class Util {
     // Intiating and storing data in variables respectively
     const [name, url, logo] = [Name, favicon(), Logo];
 
-    // If lists of RSS links structure pattern are variable 
+    // If lists of RSS links structure pattern are variable
     if (!Topics2) {
       Topics.map((item) => {
         const [title, url] = [item[0], item[1]];
         topics.push({ title, url });
       });
     } else {
-     // If lists of RSS links structure patterns are constant
+      // If lists of RSS links structure patterns are constant
       Topics2.map((item) => {
         let [title, url] = [
           item.replaceAll("-", " "),
-          `${rssUrl[0]}${eval(rssUrl[1]).toLowerCase()}${rssUrl[2] ?? ""}`,
+          `${rssUrl[0]}${eval(rssUrl[1]).replaceAll(" ", "-").toLowerCase()}${
+            rssUrl[2] ?? ""
+          }`,
         ];
 
         // Logic for to uppercase every first letter in the sentence
@@ -38,9 +40,7 @@ export default class Util {
           const formattedWords = [];
           arr.map((word) => {
             const First_Letter = word[0].toUpperCase();
-            const Other_Letters = word
-              .slice(1)
-              .toLowerCase();
+            const Other_Letters = word.slice(1).toLowerCase();
             const Full_Word = First_Letter + Other_Letters;
             formattedWords.push(Full_Word);
             title = formattedWords.join(" ");
@@ -105,7 +105,7 @@ export default class Util {
     if (years >= 1) {
       return years.toFixed(0) + (years.toFixed(0) < 2 ? " year" : " years");
     }
-    if(Now - Elapsed){
+    if (Now - Elapsed) {
       return "Sometime";
     }
   }
