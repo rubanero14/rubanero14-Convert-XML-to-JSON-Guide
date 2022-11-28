@@ -168,7 +168,7 @@ export default {
                   return err.message + ",";
               });
             } else {
-              const payload = `https://rss-feed-proxy-server.herokuapp.com/${Util.UrlEncoder(payloadUrl)}`;
+              const payload = `https://node-simple-rss-feed-proxy-server.onrender.com/${Util.UrlEncoder(payloadUrl)}`;
               // Fetch API as XML and convert into JSON format
               console.log('own proxy fires')
               this.data = await axios
