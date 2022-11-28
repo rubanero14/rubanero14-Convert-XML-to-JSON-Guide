@@ -334,6 +334,9 @@ util.NewSource(
     "developers",
     "hacker",
     "side-project",
+    "functional-programming",
+    "object-oriented-programming",
+    "multithreading",
   ],
   ["https://hackernoon.com/tagged/", "item", "/feed"]
 );
