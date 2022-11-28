@@ -575,9 +575,22 @@ util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
 ]);
 
-util.NewSource("The EurAsian Times", "eat-logo.png", "eat-logo.png", [
-  ["Latest News", "https://eurasiantimes.com/feed/"],
-]);
+util.NewSource(
+  "The EurAsian Times",
+  "eat-logo.png",
+  "eat-logo.png",
+  null,
+  [
+    "world",
+    "americas",
+    "asia-pacific",
+    "eurasian-region",
+    "europe",
+    "middle-east",
+    "south-asia",
+  ],
+  ["https://eurasiantimes.com/category/", "item", "/feed/"]
+);
 
 util.NewSource("The Diplomat", null, "td-logo.png", [
   ["Current Affairs", "https://thediplomat.com/feed/"],
