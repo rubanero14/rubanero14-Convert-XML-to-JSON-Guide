@@ -175,10 +175,6 @@ util.NewSource("MarketWatch", null, "mw-logo.png", [
   ],
 ]);
 
-util.NewSource("WSJ", null, "wsj-logo.png", [
-  ["Markets", "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"],
-]);
-
 util.NewSource("Reuters", null, "reuters-logo.png", [
   [
     "Market Impact",
@@ -575,23 +571,6 @@ util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
 ]);
 
-util.NewSource(
-  "The EurAsian Times",
-  "eat-logo.png",
-  "eat-logo.png",
-  null,
-  [
-    "world",
-    "americas",
-    "asia-pacific",
-    "eurasian-region",
-    "europe",
-    "middle-east",
-    "south-asia",
-  ],
-  ["https://eurasiantimes.com/category/", "item", "/feed/"]
-);
-
 util.NewSource("The Diplomat", null, "td-logo.png", [
   ["Current Affairs", "https://thediplomat.com/feed/"],
 ]);
@@ -607,24 +586,6 @@ util.NewSource(
     "item",
     "/?outputType=xml",
   ]
-);
-
-util.NewSource(
-  "DefenseTalk",
-  "dt-logo.jpeg",
-  "dt-logo.jpeg",
-  null,
-  [
-    "DefenseNews",
-    "Army News",
-    "Defense Security",
-    "Defense Technology",
-    "Missiles Bombs",
-    "WMD News",
-    "NavyNews",
-    "DronesNews",
-  ],
-  ["https://feeds.feedburner.com/", "item"]
 );
 
 util.NewSource(
