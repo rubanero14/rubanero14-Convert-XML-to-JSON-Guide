@@ -588,44 +588,6 @@ util.NewSource(
   ]
 );
 
-util.NewSource(
-  "Defence Aviation Post",
-  "https://defenceaviationpost.com/wp-content/uploads/2022/01/cropped-Copy-of-funny-big-sale-portrait-poster-template-blue-Made-with-PosterMyWall-1-32x32.png",
-  "dap-logo.jfif",
-  null,
-  [
-    "defence/indian-army",
-    "defence/indian-air-force",
-    "defence/indian-navy",
-    "defence-industry/drdo",
-    "defence-industry/ofb",
-    "defence-industry/private-sector",
-    "internal-security",
-    "global-news",
-    "aviation",
-    "press-release",
-  ],
-  ["https://defenceaviationpost.com/category/", "item", "/feed"]
-);
-
-util.NewSource("Shephard Media", null, "sm-logo.png", [
-  ["Latest Articles", "https://www.shephardmedia.com/news/feed/"],
-  ["Naval Warfare", "https://www.shephardmedia.com/news/naval-warfare/feed/"],
-  ["Land Warfare", "https://www.shephardmedia.com/news/landwarfareintl/feed/"],
-  ["Air Warfare", "https://www.shephardmedia.com/news/air-warfare/feed/"],
-  ["Defence Notes", "https://www.shephardmedia.com/news/defence-notes/feed/"],
-  [
-    "Defence Helicopter",
-    "https://www.shephardmedia.com/news/defence-helicopter/feed/",
-  ],
-  ["Military Logistics", "https://www.shephardmedia.com/news/mil-log/feed/"],
-  [
-    "Special Operations",
-    "https://www.shephardmedia.com/news/special-operations/feed/",
-  ],
-  ["Uncrewed Vehicles", "https://www.shephardmedia.com/news/uv-online/feed/"],
-]);
-
 util.NewSource("Janes", null, "janes-logo.png", [
   ["Janes News", "https://www.janes.com/feeds/news"],
 ]);
