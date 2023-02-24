@@ -266,7 +266,20 @@ util.NewSource(
   "dotnet-logo.png",
   "dotnet-logo.png",
   null,
-  ["news", "features", "data-driver-blog", "blogs", "tech-library-webcasts"],
+  [
+    "c-corner",
+    "news",
+    "features",
+    "data-driver-blog",
+    "blogs",
+    "tech-library-webcasts",
+    "onward-and-upward",
+    "columns",
+    "agile-advisor",
+    "open-source-net",
+    "features",
+    "tech-library",
+  ],
   ["https://visualstudiomagazine.com/rss-feeds/", "item", ".aspx"]
 );
 
