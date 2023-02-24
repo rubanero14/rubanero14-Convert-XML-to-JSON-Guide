@@ -175,10 +175,6 @@ util.NewSource("MarketWatch", null, "mw-logo.png", [
   ],
 ]);
 
-util.NewSource("WSJ", null, "wsj-logo.png", [
-  ["Markets", "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"],
-]);
-
 util.NewSource("Reuters", null, "reuters-logo.png", [
   [
     "Market Impact",
@@ -288,7 +284,69 @@ util.NewSource(
   null,
   "hckrnoon-logo.jpg",
   null,
-  ["javascript", "css", "frontend", "react", "programming", "coding"],
+  [
+    "javascript",
+    "html",
+    "css",
+    "csharp",
+    "java",
+    "go",
+    "react",
+    "reactjs",
+    "react-native",
+    "nodejs",
+    "angularjs",
+    "dotnet",
+    "api",
+    "frontend",
+    "backend",
+    "programming",
+    "learning",
+    "github",
+    "seo",
+    "cms",
+    "web-scraping",
+    "coding",
+    "database",
+    "testing",
+    "test-automation",
+    "software-architecture",
+    "front-end-development",
+    "best-practices",
+    "design",
+    "ux",
+    "design-patterns",
+    "tutorial",
+    "learning-to-code",
+    "refactoring",
+    "debugging",
+    "mvp",
+    "careers",
+    "web-development",
+    "website-design",
+    "ios",
+    "flutter",
+    "web3",
+    "automation",
+    "serverless",
+    "microservices",
+    "remote-work",
+    "agile",
+    "ai",
+    "data",
+    "data-engineering",
+    "saas",
+    "hacking",
+    "security-token",
+    "cyber-security",
+    "webpack",
+    "developers",
+    "hacker",
+    "side-project",
+    "functional-programming",
+    "object-oriented-programming",
+    "multithreading",
+  ],
   ["https://hackernoon.com/tagged/", "item", "/feed"]
 );
 
@@ -526,10 +584,6 @@ util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
 ]);
 
-util.NewSource("The EurAsian Times", "eat-logo.png", "eat-logo.png", [
-  ["Latest News", "https://eurasiantimes.com/feed/"],
-]);
-
 util.NewSource("The Diplomat", null, "td-logo.png", [
   ["Current Affairs", "https://thediplomat.com/feed/"],
 ]);
@@ -546,62 +600,6 @@ util.NewSource(
     "/?outputType=xml",
   ]
 );
-
-util.NewSource(
-  "DefenseTalk",
-  "dt-logo.jpeg",
-  "dt-logo.jpeg",
-  null,
-  [
-    "DefenseNews",
-    "Army News",
-    "Defense Security",
-    "Defense Technology",
-    "Missiles Bombs",
-    "WMD News",
-    "NavyNews",
-    "DronesNews",
-  ],
-  ["https://feeds.feedburner.com/", "item"]
-);
-
-util.NewSource(
-  "Defence Aviation Post",
-  "https://defenceaviationpost.com/wp-content/uploads/2022/01/cropped-Copy-of-funny-big-sale-portrait-poster-template-blue-Made-with-PosterMyWall-1-32x32.png",
-  "dap-logo.jfif",
-  null,
-  [
-    "defence/indian-army",
-    "defence/indian-air-force",
-    "defence/indian-navy",
-    "defence-industry/drdo",
-    "defence-industry/ofb",
-    "defence-industry/private-sector",
-    "internal-security",
-    "global-news",
-    "aviation",
-    "press-release",
-  ],
-  ["https://defenceaviationpost.com/category/", "item", "/feed"]
-);
-
-util.NewSource("Shephard Media", null, "sm-logo.png", [
-  ["Latest Articles", "https://www.shephardmedia.com/news/feed/"],
-  ["Naval Warfare", "https://www.shephardmedia.com/news/naval-warfare/feed/"],
-  ["Land Warfare", "https://www.shephardmedia.com/news/landwarfareintl/feed/"],
-  ["Air Warfare", "https://www.shephardmedia.com/news/air-warfare/feed/"],
-  ["Defence Notes", "https://www.shephardmedia.com/news/defence-notes/feed/"],
-  [
-    "Defence Helicopter",
-    "https://www.shephardmedia.com/news/defence-helicopter/feed/",
-  ],
-  ["Military Logistics", "https://www.shephardmedia.com/news/mil-log/feed/"],
-  [
-    "Special Operations",
-    "https://www.shephardmedia.com/news/special-operations/feed/",
-  ],
-  ["Uncrewed Vehicles", "https://www.shephardmedia.com/news/uv-online/feed/"],
-]);
 
 util.NewSource("Janes", null, "janes-logo.png", [
   ["Janes News", "https://www.janes.com/feeds/news"],
