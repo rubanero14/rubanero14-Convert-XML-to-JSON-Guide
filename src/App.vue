@@ -3,19 +3,19 @@
 </template>
 
 <script>
-import RSSFeed from './components/RSSFeed.vue';
+import RSSFeed from "./components/RSSFeed.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     RSSFeed,
-  }
-}
+  },
+};
 </script>
 
 <style>
 body {
-  background: #f5f5f5;
+  background: #333;
 }
 
 #app {
@@ -23,7 +23,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #f5f5f5;
   margin: 60px auto;
 }
 </style>
