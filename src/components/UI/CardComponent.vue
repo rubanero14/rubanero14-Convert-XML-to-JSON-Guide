@@ -6,7 +6,7 @@
 <style scoped>
 .card {
   cursor: pointer;
-  box-shadow: 0px 4px 16px 0px rgb(255 255 255 / 20%);
+  box-shadow: 0px 4px 16px 0px rgb(255 255 255 / 30%);
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.2s ease-out;
@@ -20,6 +20,8 @@
   width: 120px;
   border-radius: 20px;
   overflow: hidden;
+  border: none;
+  background: transparent;
 }
 
 .card:hover {
