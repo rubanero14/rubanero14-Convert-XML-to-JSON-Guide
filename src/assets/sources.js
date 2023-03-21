@@ -235,8 +235,13 @@ util.NewSource("Nodejs.org", null, "node-logo.png", [
   ["Node.js Blog", "https://nodejs.org/en/feed/blog.xml"],
 ]);
 
-util.NewSource("Reactjs.org", null, "react-logo.png", [
-  ["React Updates", "https://reactjs.org/feed.xml"],
+// util.NewSource("Reactjs.org", null, "react-logo.png", [
+//   ["React Updates", "https://reactjs.org/feed.xml"],
+// ]); // Disabled till further notice - replacement URL yet to be announced
+//
+
+util.NewSource("TechLeadJournal.dev", null, "tlj-logo.png", [
+  ["Podcasts", "https://techleadjournal.dev/index.xml"],
 ]);
 
 util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
