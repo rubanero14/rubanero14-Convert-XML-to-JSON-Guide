@@ -240,6 +240,10 @@ util.NewSource("Nodejs.org", null, "node-logo.png", [
 // ]); // Disabled till further notice - replacement URL yet to be announced
 //
 
+util.NewSource("Nextjs.org/", null, "next-logo.png", [
+  ["Next.js Updates", "https://nextjs.org/feed.xml"],
+]);
+
 util.NewSource("TechLeadJournal.dev", null, "tlj-logo.png", [
   ["Podcasts", "https://techleadjournal.dev/index.xml"],
 ]);
