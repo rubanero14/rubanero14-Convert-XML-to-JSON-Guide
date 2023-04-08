@@ -231,14 +231,23 @@ util.NewSource("Codepen.io", null, "cdpn-logo.png", [
   ["CodePen Blog", "https://blog.codepen.io/feed/"],
 ]);
 
-util.NewSource("Nodejs.org", null, "node-logo.png", [
-  ["Node.js Blog", "https://nodejs.org/en/feed/blog.xml"],
-]);
+util.NewSource(
+  "InfoQ",
+  null,
+  "infoq-logo.png",
+  null,
+  ["articles", "news", "podcasts", "presentations"],
+  ["https://feed.infoq.com/", "item", ""]
+);
 
 // util.NewSource("Reactjs.org", null, "react-logo.png", [
 //   ["React Updates", "https://reactjs.org/feed.xml"],
 // ]); // Disabled till further notice - replacement URL yet to be announced
 //
+
+util.NewSource("Nodejs.org", null, "node-logo.png", [
+  ["Node.js Blog", "https://nodejs.org/en/feed/blog.xml"],
+]);
 
 util.NewSource("Nextjs.org", null, "nextjs-logo.jpeg", [
   ["Next.js Updates", "https://nextjs.org/feed.xml"],
