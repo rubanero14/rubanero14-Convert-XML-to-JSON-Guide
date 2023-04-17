@@ -1,7 +1,7 @@
 <template>
   <Transition appear :key="this.index" name="fade" mode="out-in">
     <!-- Using the declared index and assign it to dynamic variable for CSS transition use -->
-    <center :style="{ '--i': this.index }">
+    <center :style="{ '--i': this.index }" :title="source.name">
       <a
         :data-cy="`actions-source-${index}`"
         class="title"

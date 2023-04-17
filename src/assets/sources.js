@@ -240,6 +240,17 @@ util.NewSource(
   ["https://feed.infoq.com/", "item", ""]
 );
 
+util.NewSource("TechLeadJournal.dev", null, "tlj-logo.png", [
+  ["Podcasts", "https://techleadjournal.dev/index.xml"],
+]);
+
+util.NewSource("TechCabal", "tc-logo.png", "tc-logo.png", [
+  [
+    "Entering Tech",
+    "https://techcabal.com/category/newsletters/entering-tech/feed/",
+  ],
+]);
+
 // util.NewSource("Reactjs.org", null, "react-logo.png", [
 //   ["React Updates", "https://reactjs.org/feed.xml"],
 // ]); // Disabled till further notice - replacement URL yet to be announced
@@ -251,10 +262,6 @@ util.NewSource("Nodejs.org", null, "node-logo.png", [
 
 util.NewSource("Nextjs.org", null, "nextjs-logo.jpeg", [
   ["Next.js Updates", "https://nextjs.org/feed.xml"],
-]);
-
-util.NewSource("TechLeadJournal.dev", null, "tlj-logo.png", [
-  ["Podcasts", "https://techleadjournal.dev/index.xml"],
 ]);
 
 util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
