@@ -253,7 +253,7 @@ util.NewSource("TechCabal", "tc-logo.png", "tc-logo.png", [
 
 util.NewSource("Reactjs.org", null, "react-logo.png", [
   ["React Updates", "https://legacy.reactjs.org/feed.xml"],
-]); // Disabled till further notice - replacement URL yet to be announced
+]);
 
 util.NewSource("Nodejs.org", null, "node-logo.png", [
   ["Node.js Blog", "https://nodejs.org/en/feed/blog.xml"],
