@@ -86,7 +86,10 @@
           </card-component>
           <card-component class="mb-4" v-else>
             <div class="row pe-0">
-              <div class="col-6" v-if="titlePic(index, feeds, data)">
+              <div
+                class="col-6 d-flex justify-content-center align-items-center"
+                v-if="titlePic(index, feeds, data)"
+              >
                 <iframe
                   class="banner"
                   :src="titlePic(index, feeds, data)"
