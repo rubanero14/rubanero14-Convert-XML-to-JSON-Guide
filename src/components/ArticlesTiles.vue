@@ -115,36 +115,45 @@
                   'col-12': !titlePic(index, feeds, data),
                 }"
               >
-                <div class="row ps-0">
-                  <div class="col-12 p-3">
+                <div class="row h-100 ps-0">
+                  <div
+                    class="col-12 p-3 d-flex justify-content-center align-items-center"
+                  >
                     <h3
                       class="title mx-3 text-center text-dark mb-0"
                       v-html="feed.title"
                     ></h3>
                   </div>
-                  <hr class="my-0" />
+                  <hr
+                    v-if="articleDescription(index, feeds, data)"
+                    class="my-0"
+                  />
                   <div
-                    class="col-12"
+                    class="col-12 p-3"
                     v-if="articleDescription(index, feeds, data)"
                   >
-                    <em
-                      class="desc d-block p-3"
-                      :class="{
-                        'ms-3': !titlePic(index, feeds, data),
-                        '': titlePic(index, feeds, data),
-                      }"
+                    <div
+                      class="d-flex justify-content-center align-items-center"
                     >
-                      <p
-                        class="description me-3 text-dark mb-0"
-                        v-if="screenWidth >= 1200"
-                        v-html="articleInjector()"
-                      ></p>
-                      <p
-                        class="description me-3 text-dark mb-0"
-                        v-else-if="screenWidth >= 768 && screenWidth < 1200"
-                        v-html="articleInjector()"
-                      ></p>
-                    </em>
+                      <em
+                        class="desc p-3"
+                        :class="{
+                          'ms-3': !titlePic(index, feeds, data),
+                          '': titlePic(index, feeds, data),
+                        }"
+                      >
+                        <p
+                          class="description text-center text-dark mb-0"
+                          v-if="screenWidth >= 1200"
+                          v-html="articleInjector()"
+                        ></p>
+                        <p
+                          class="description text-center text-dark mb-0"
+                          v-else-if="screenWidth >= 768 && screenWidth < 1200"
+                          v-html="articleInjector()"
+                        ></p>
+                      </em>
+                    </div>
                   </div>
                 </div>
               </div>
