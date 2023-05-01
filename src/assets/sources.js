@@ -251,6 +251,27 @@ util.NewSource("TechCabal", "tc-logo.png", "tc-logo.png", [
   ],
 ]);
 
+util.NewSource(
+  "TheNewStack.io",
+  null,
+  "tns-logo.png",
+  null,
+  [
+    "frontend-development",
+    "software-development",
+    "typescript",
+    "webassembly",
+    "microservices",
+    "serverless",
+    "machine-learning",
+    "platform-engineering",
+    "devops",
+    "security",
+    "data",
+  ],
+  ["https://thenewstack.io/", "item", "/feed"]
+);
+
 util.NewSource("Reactjs.org", null, "react-logo.png", [
   ["React Updates", "https://legacy.reactjs.org/feed.xml"],
 ]);

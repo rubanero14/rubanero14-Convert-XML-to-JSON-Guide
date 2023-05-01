@@ -225,7 +225,8 @@ export default {
       // Payload for Fetch API setting
       if (
         payloadUrl.includes("tradingeconomics") ||
-        payloadUrl.includes("sciencedaily")
+        payloadUrl.includes("sciencedaily") ||
+        payloadUrl.includes("thenewstack")
       ) {
         const payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
         console.log("foreign proxy fires");
