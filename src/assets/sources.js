@@ -251,6 +251,10 @@ util.NewSource("TechCabal", "tc-logo.png", "tc-logo.png", [
   ],
 ]);
 
+util.NewSource("CodeMaze", "cm-logo.png", "cm-logo.png", [
+  ["Articles", "https://code-maze.com/feed/"],
+]);
+
 util.NewSource(
   "TheNewStack.io",
   null,
