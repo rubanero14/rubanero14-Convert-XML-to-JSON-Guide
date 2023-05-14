@@ -5,7 +5,7 @@
       <a
         :data-cy="`actions-article-${index}`"
         class="title"
-        :href="feed.link.toString()"
+        :href="link(feed.link)"
         target="_blank"
       >
         <article>
@@ -201,10 +201,26 @@ export default {
     };
   },
   methods: {
+    link(data) {
+      return Util.articleLink(data);
+    },
     date() {
-      this.rssMode = Object.keys(this.data).includes("rss")
-        ? "pubDate"
-        : "dc:date";
+      const rssMode = (data) => {
+        if (Object.keys(data).includes("rss")) {
+          return "pubDate";
+        }
+
+        if (Object.keys(data).includes("rdf: RDF")) {
+          return "dc:date";
+        }
+
+        if (Object.keys(data).includes("feed")) {
+          return "updated";
+        }
+      };
+
+      this.rssMode = rssMode(this.data);
+      console.log(this.feeds);
       return Util.ElapsedTime(this.feeds[0][this.rssMode]);
     },
     titlePic(idx, feeds, data) {

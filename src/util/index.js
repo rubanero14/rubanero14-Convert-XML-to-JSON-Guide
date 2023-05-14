@@ -110,6 +110,15 @@ export default class Util {
     }
   }
 
+  // Article Link
+  static articleLink(data) {
+    const link = data[0];
+    if (typeof link === "object") {
+      return link["$"].href;
+    }
+    return link;
+  }
+
   // Article header picture extracting and display logic
   static titlePic(idx, feeds, data) {
     // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors

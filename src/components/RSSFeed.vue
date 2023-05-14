@@ -263,15 +263,36 @@ export default {
       }
 
       if (this.isError) return;
-      this.feeds = Object.keys(this.data).includes("rss")
-        ? this.data.rss.channel[0].item
-        : this.data["rdf:RDF"].item;
-      this.feedHasArticles = () => {
-        if (Object.keys(this.data).includes("rss"))
-          return Object.keys(this.data.rss.channel[0]).includes("item");
-        if (Object.keys(this.data).includes("rdf:RDF"))
-          return Object.keys(this.data["rdf:RDF"]).includes("item");
+      const feedsModifier = (data) => {
+        if (Object.keys(data).includes("rss")) {
+          return data.rss.channel[0].item;
+        }
+
+        if (Object.keys(data).includes("rdf:RDF")) {
+          return data["rdf:RDF"].item;
+        }
+
+        if (Object.keys(data).includes("feed")) {
+          return data["feed"].entry;
+        }
       };
+
+      this.feeds = feedsModifier(this.data);
+
+      this.feedHasArticles = () => {
+        if (Object.keys(this.data).includes("rss")) {
+          return Object.keys(this.data.rss.channel[0]).includes("item");
+        }
+
+        if (Object.keys(this.data).includes("rdf:RDF")) {
+          return Object.keys(this.data["rdf:RDF"]).includes("item");
+        }
+
+        if (Object.keys(this.data).includes("feed")) {
+          return Object.keys(this.data["feed"]).includes("entry");
+        }
+      };
+
       this.isloading = false;
     },
     devMode() {
