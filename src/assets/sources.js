@@ -306,12 +306,9 @@ util.NewSource(
   [["Svelte blog", "https://svelte.dev/blog/rss.xml"]]
 );
 
-util.NewSource(
-  "Javascript Updates",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png?20120221235433",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png?20120221235433",
-  [["ECMA Updates", "https://ecmascript-daily.github.io/atom.xml"]]
-);
+util.NewSource("Javascript Updates", "js-logo.png", "js-logo.png", [
+  ["ECMA Updates", "https://ecmascript-daily.github.io/atom.xml"],
+]);
 
 util.NewSource(
   ".NET",
