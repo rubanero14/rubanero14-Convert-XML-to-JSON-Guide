@@ -256,6 +256,16 @@ util.NewSource("CodeMaze", "cm-logo.png", "cm-logo.png", [
 ]);
 
 util.NewSource(
+  "LogRocket",
+  "lr-logo.webp",
+  "lr-logo.webp",
+  [
+    ["Blog", "https://blog.logrocket.com/feed/"],
+    ["Podcast", "https://feeds.fireside.fm/podrocket/rss"],
+  ]
+);
+
+util.NewSource(
   "TheNewStack.io",
   null,
   "tns-logo.png",
