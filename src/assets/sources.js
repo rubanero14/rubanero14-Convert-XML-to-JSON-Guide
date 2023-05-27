@@ -255,15 +255,14 @@ util.NewSource("CodeMaze", "cm-logo.png", "cm-logo.png", [
   ["Articles", "https://code-maze.com/feed/"],
 ]);
 
-util.NewSource(
-  "LogRocket",
-  "lr-logo.webp",
-  "lr-logo.webp",
-  [
-    ["Blog", "https://blog.logrocket.com/feed/"],
-    ["Podcast", "https://feeds.fireside.fm/podrocket/rss"],
-  ]
-);
+util.NewSource("LogRocket", "lr-logo.webp", "lr-logo.webp", [
+  ["Blog", "https://blog.logrocket.com/feed/"],
+  ["Podcast", "https://feeds.fireside.fm/podrocket/rss"],
+]);
+
+util.NewSource("MilanJovanovic.tech", "mjt-logo.jfif", "mjt-logo.jfif", [
+  ["Milan's .NET Weekly", "https://www.milanjovanovic.tech/rss/feed.xml"],
+]);
 
 util.NewSource(
   "TheNewStack.io",
@@ -318,6 +317,7 @@ util.NewSource(
 
 util.NewSource("Javascript Updates", "js-logo.png", "js-logo.png", [
   ["ECMA Updates", "https://ecmascript-daily.github.io/atom.xml"],
+  ["Javascript Tutorial", "https://www.javascripttutorial.net/feed/"],
 ]);
 
 util.NewSource(
