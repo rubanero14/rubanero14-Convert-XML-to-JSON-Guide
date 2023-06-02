@@ -61,6 +61,7 @@ export default class Util {
 
   // Custom show elapsed time algorithm method
   static ElapsedTime(date) {
+    console.log(date);
     // get UNIX timestamp of pubDate value
     const Elapsed = new Date(date).getTime();
     // get UNIX timestamp of Present value

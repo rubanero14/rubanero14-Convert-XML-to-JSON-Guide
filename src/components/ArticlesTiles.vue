@@ -210,7 +210,7 @@ export default {
           return "pubDate";
         }
 
-        if (Object.keys(data).includes("rdf: RDF")) {
+        if (Object.keys(data).includes("rdf:RDF")) {
           return "dc:date";
         }
 
@@ -220,7 +220,6 @@ export default {
       };
 
       this.rssMode = rssMode(this.data);
-      console.log(this.feeds);
       return Util.ElapsedTime(this.feeds[0][this.rssMode]);
     },
     titlePic(idx, feeds, data) {
