@@ -204,5 +204,12 @@ export default class Util {
     ) {
       return feeds[idx].content[0].replaceAll(/<[^>]*>/gi, "").trim();
     }
+
+    if (
+      Object.keys(data).includes("feed") &&
+      Object.prototype.hasOwnProperty.call(feeds[idx], "summary")
+    ) {
+      return feeds[idx].summary[0].replaceAll(/<[^>]*>/gi, "").trim();
+    }
   }
 }

@@ -227,6 +227,10 @@ util.NewSource("CSS-Tricks", null, "csst-logo.jpg", [
   ["CSS-Tricks", "https://css-tricks.com/feed/"],
 ]);
 
+util.NewSource("Material.io", "mio-logo.ico", "mio-logo.ico", [
+  ["Material.io - Material Design", "https://material.io/feed.xml"],
+]);
+
 util.NewSource("Codepen.io", null, "cdpn-logo.png", [
   ["CodePen Blog", "https://blog.codepen.io/feed/"],
 ]);
@@ -340,6 +344,15 @@ util.NewSource(
     "tech-library",
   ],
   ["https://visualstudiomagazine.com/rss-feeds/", "item", ".aspx"]
+);
+
+util.NewSource(
+  "Spring",
+  "sb-logo.jpg",
+  "sb-logo.jpg",
+  null,
+  ["engineering", "releases", "news"],
+  ["https://spring.io/blog/category/", "item", ".atom"]
 );
 
 util.NewSource(
@@ -642,6 +655,13 @@ util.NewSource(
   ],
   ["https://www.freecodecamp.org/news/tag/", "item", "/rss"]
 );
+
+util.NewSource("Apple Developer", "adn-logo.ico", "adn-logo.ico", [
+  [
+    "Latest News - Apple Developer",
+    "https://developer.apple.com/news/rss/news.rss",
+  ],
+]);
 
 util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
