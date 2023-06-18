@@ -656,15 +656,16 @@ util.NewSource(
   ["https://www.freecodecamp.org/news/tag/", "item", "/rss"]
 );
 
-util.NewSource("Apple Developer", "adn-logo.ico", "adn-logo.ico", [
-  [
-    "Latest News - Apple Developer",
-    "https://developer.apple.com/news/rss/news.rss",
-  ],
-]);
-
 util.NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
+]);
+
+util.NewSource("Apple Developer", "adn-logo.ico", "adn-logo.ico", [
+  ["Latest Apple News", "https://www.apple.com/newsroom/rss-feed.rss"],
+  [
+    "Latest Apple Developer News",
+    "https://developer.apple.com/news/rss/news.rss",
+  ],
 ]);
 
 util.NewSource("The Diplomat", null, "td-logo.png", [
