@@ -126,7 +126,7 @@
 
 <script>
 import axios from "axios";
-import Util from "../util";
+// import Util from "../util";
 const xml2js = require("xml2js");
 import sources from "@/assets/sources.js";
 import HeaderComponent from "./HeaderComponent.vue";
@@ -223,44 +223,58 @@ export default {
       this.pic = picUrl;
       this.topicTitle2 = title;
       // Payload for Fetch API setting
-      if (
-        payloadUrl.includes("tradingeconomics") ||
-        payloadUrl.includes("sciencedaily") ||
-        payloadUrl.includes("thenewstack")
-      ) {
-        const payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
-        console.log("foreign proxy fires");
-        this.data = await axios
-          .get(payload)
-          .then((response) => {
-            console.log(xml2js.parseStringPromise(response.data));
-            return xml2js.parseStringPromise(response.data);
-          })
-          .catch((err) => {
-            this.isloading = false;
-            this.isError = true;
-            console.log(err);
-            return err.message + ",";
-          });
-      } else {
-        const payload = `https://node-simple-rss-feed-proxy-server.onrender.com/${Util.UrlEncoder(
-          payloadUrl
-        )}`;
-        // Fetch API as XML and convert into JSON format
-        console.log("own proxy fires");
-        this.data = await axios
-          .get(payload)
-          .then((response) => {
-            console.log(response.data);
-            return response.data;
-          })
-          .catch((err) => {
-            this.isloading = false;
-            this.isError = true;
-            console.log(err);
-            return err.message + ",";
-          });
-      }
+      // if (
+      //   payloadUrl.includes("tradingeconomics") ||
+      //   payloadUrl.includes("sciencedaily") ||
+      //   payloadUrl.includes("thenewstack")
+      // ) {
+      //   const payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
+      //   console.log("foreign proxy fires");
+      //   this.data = await axios
+      //     .get(payload)
+      //     .then((response) => {
+      //       console.log(xml2js.parseStringPromise(response.data));
+      //       return xml2js.parseStringPromise(response.data);
+      //     })
+      //     .catch((err) => {
+      //       this.isloading = false;
+      //       this.isError = true;
+      //       console.log(err);
+      //       return err.message + ",";
+      //     });
+      // } else {
+      //   const payload = `https://node-simple-rss-feed-proxy-server.onrender.com/${Util.UrlEncoder(
+      //     payloadUrl
+      //   )}`;
+      //   // Fetch API as XML and convert into JSON format
+      //   console.log("own proxy fires");
+      //   this.data = await axios
+      //     .get(payload)
+      //     .then((response) => {
+      //       console.log(response.data);
+      //       return response.data;
+      //     })
+      //     .catch((err) => {
+      //       this.isloading = false;
+      //       this.isError = true;
+      //       console.log(err);
+      //       return err.message + ",";
+      //     });
+      // }
+
+      const payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
+      this.data = await axios
+        .get(payload)
+        .then((response) => {
+          console.log(xml2js.parseStringPromise(response.data));
+          return xml2js.parseStringPromise(response.data);
+        })
+        .catch((err) => {
+          this.isloading = false;
+          this.isError = true;
+          console.log(err);
+          return err.message + ",";
+        });
 
       if (this.isError) return;
       const feedsModifier = (data) => {
