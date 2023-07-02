@@ -1,9 +1,9 @@
-import util from "../util";
+import { sourcesContainer, NewSource } from "../util";
 
-const sources = util.sources;
+const sources = sourcesContainer;
 
-// Constructing and adding new source into sources array by calling the util.NewSource function by passing relevant params within it
-util.NewSource("Investing.com", null, "in-logo.jpg", [
+// Constructing and adding new source into sources array by calling the NewSource function by passing relevant params within it
+NewSource("Investing.com", null, "in-logo.jpg", [
   ["Economy News", "https://www.investing.com/rss/news_14.rss"],
   ["Economic Indicators News", "https://www.investing.com/rss/news_95.rss"],
   ["Stock Market News", "https://www.investing.com/rss/news_25.rss"],
@@ -11,7 +11,7 @@ util.NewSource("Investing.com", null, "in-logo.jpg", [
   ["Foreign Exchange News", "https://www.investing.com/rss/news_1.rss"],
 ]);
 
-util.NewSource("Business Wire", null, "bw-logo.png", [
+NewSource("Business Wire", null, "bw-logo.png", [
   [
     "Dividend News",
     "https://feed.businesswire.com/rss/home/?rss=G1QFDERJXkJeEF9ZVA==&_gl=1*z96yy4*_ga*OTYwNTQzODE4LjE2NjYwNzU0MTM.*_ga_ZQWF70T3FK*MTY2NjA4MTU2My4yLjEuMTY2NjA4MjAxOS4wLjAuMA..",
@@ -46,7 +46,7 @@ util.NewSource("Business Wire", null, "bw-logo.png", [
   ],
 ]);
 
-util.NewSource("GlobeNewswire", null, "gnw.jpg", [
+NewSource("GlobeNewswire", null, "gnw.jpg", [
   [
     "Dividend Reports",
     "https://www.globenewswire.com/RssFeed/subjectcode/12-Dividend%20Reports%20and%20Estimates/feedTitle/GlobeNewswire%20-%20Dividend%20Reports%20and%20Estimates",
@@ -93,7 +93,7 @@ util.NewSource("GlobeNewswire", null, "gnw.jpg", [
   ],
 ]);
 
-util.NewSource(
+NewSource(
   "Finance Asia",
   null,
   "fa-logo.jpg",
@@ -102,7 +102,7 @@ util.NewSource(
   ["https://www.financeasia.com/rss/category/", "item"]
 );
 
-util.NewSource(
+NewSource(
   "Trading Economics",
   null,
   "te-logo.jfif",
@@ -124,7 +124,7 @@ util.NewSource(
   ]
 );
 
-util.NewSource(
+NewSource(
   "Seeking Alpha",
   "https://seekingalpha.com/samw/static/images/favicon-32x32.png",
   "sa-logo.webp",
@@ -141,11 +141,11 @@ util.NewSource(
   ]
 );
 
-util.NewSource("Zacks", null, "zk-logo.png", [
+NewSource("Zacks", null, "zk-logo.png", [
   ["Press Release", "https://scr.zacks.com/rss/pressrelease.aspx"],
 ]);
 
-util.NewSource(
+NewSource(
   "S&P Global",
   "https://www.spglobal.com/_assets/images/icons/SPG_favicon_wht_32x32.ico",
   "sp-logo.png",
@@ -157,25 +157,25 @@ util.NewSource(
   ]
 );
 
-util.NewSource("CNBC", null, "cnbc-logo.png", [
+NewSource("CNBC", null, "cnbc-logo.png", [
   [
     "Investing News",
     "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069",
   ],
 ]);
 
-util.NewSource("Yahoo Finance", null, "yf-logo.jpg", [
+NewSource("Yahoo Finance", null, "yf-logo.jpg", [
   ["Finance News", "https://finance.yahoo.com/news/rssindex"],
 ]);
 
-util.NewSource("MarketWatch", null, "mw-logo.png", [
+NewSource("MarketWatch", null, "mw-logo.png", [
   [
     "Real-time Headlines",
     "http://feeds.marketwatch.com/marketwatch/realtimeheadlines",
   ],
 ]);
 
-util.NewSource("Reuters", null, "reuters-logo.png", [
+NewSource("Reuters", null, "reuters-logo.png", [
   [
     "Market Impact",
     "https://www.reutersagency.com/feed/?best-customer-impacts=market-impact&post_type=best",
@@ -198,19 +198,19 @@ util.NewSource("Reuters", null, "reuters-logo.png", [
   ],
 ]);
 
-util.NewSource("CNN", null, "cnn-logo.png", [
+NewSource("CNN", null, "cnn-logo.png", [
   ["CNN World", "http://rss.cnn.com/rss/cnn_latest.rss"],
 ]);
 
-util.NewSource("Podnews.net", null, "pod-logo.png", [
+NewSource("Podnews.net", null, "pod-logo.png", [
   ["Podnews Lofi Radio", "http://feeds.feedburner.com/lofibeatsradiopodcast"],
 ]);
 
-util.NewSource("Game Informer", null, "gi-logo.jpg", [
+NewSource("Game Informer", null, "gi-logo.jpg", [
   ["All News", "https://www.gameinformer.com/rss.xml"],
 ]);
 
-util.NewSource("Real Wire", null, "rw-logo.jpg", [
+NewSource("Real Wire", null, "rw-logo.jpg", [
   ["Aerospace", "https://www.realwire.com/rss/?id=582&row=&view=Synopsis"],
   ["Automotive", "https://www.realwire.com/rss/?id=451&row=&view=Synopsis"],
   ["Defence", "https://www.realwire.com/rss/?id=586&row=&view=Synopsis"],
@@ -223,19 +223,19 @@ util.NewSource("Real Wire", null, "rw-logo.jpg", [
   ],
 ]);
 
-util.NewSource("CSS-Tricks", null, "csst-logo.jpg", [
+NewSource("CSS-Tricks", null, "csst-logo.jpg", [
   ["CSS-Tricks", "https://css-tricks.com/feed/"],
 ]);
 
-util.NewSource("Material.io", "mio-logo.ico", "mio-logo.ico", [
+NewSource("Material.io", "mio-logo.ico", "mio-logo.ico", [
   ["Material.io - Material Design", "https://material.io/feed.xml"],
 ]);
 
-util.NewSource("Codepen.io", null, "cdpn-logo.png", [
+NewSource("Codepen.io", null, "cdpn-logo.png", [
   ["CodePen Blog", "https://blog.codepen.io/feed/"],
 ]);
 
-util.NewSource(
+NewSource(
   "InfoQ",
   null,
   "infoq-logo.png",
@@ -244,31 +244,31 @@ util.NewSource(
   ["https://feed.infoq.com/", "item", ""]
 );
 
-util.NewSource("TechLeadJournal.dev", null, "tlj-logo.png", [
+NewSource("TechLeadJournal.dev", null, "tlj-logo.png", [
   ["Podcasts", "https://techleadjournal.dev/index.xml"],
 ]);
 
-util.NewSource("TechCabal", "tc-logo.png", "tc-logo.png", [
+NewSource("TechCabal", "tc-logo.png", "tc-logo.png", [
   [
     "Entering Tech",
     "https://techcabal.com/category/newsletters/entering-tech/feed/",
   ],
 ]);
 
-util.NewSource("CodeMaze", "cm-logo.png", "cm-logo.png", [
+NewSource("CodeMaze", "cm-logo.png", "cm-logo.png", [
   ["Articles", "https://code-maze.com/feed/"],
 ]);
 
-util.NewSource("LogRocket", "lr-logo.webp", "lr-logo.webp", [
+NewSource("LogRocket", "lr-logo.webp", "lr-logo.webp", [
   ["Blog", "https://blog.logrocket.com/feed/"],
   ["Podcast", "https://feeds.fireside.fm/podrocket/rss"],
 ]);
 
-util.NewSource("MilanJovanovic.tech", "mjt-logo.jfif", "mjt-logo.jfif", [
+NewSource("MilanJovanovic.tech", "mjt-logo.jfif", "mjt-logo.jfif", [
   ["Milan's .NET Weekly", "https://www.milanjovanovic.tech/rss/feed.xml"],
 ]);
 
-util.NewSource(
+NewSource(
   "TheNewStack.io",
   null,
   "tns-logo.png",
@@ -289,42 +289,39 @@ util.NewSource(
   ["https://thenewstack.io/", "item", "/feed"]
 );
 
-util.NewSource("Reactjs.org", null, "react-logo.png", [
+NewSource("Reactjs.org", null, "react-logo.png", [
   ["React Updates", "https://legacy.reactjs.org/feed.xml"],
 ]);
 
-util.NewSource("Nodejs.org", null, "node-logo.png", [
+NewSource("Nodejs.org", null, "node-logo.png", [
   ["Node.js Blog", "https://nodejs.org/en/feed/blog.xml"],
 ]);
 
-util.NewSource("Nextjs.org", null, "nextjs-logo.jpeg", [
+NewSource("Nextjs.org", null, "nextjs-logo.jpeg", [
   ["Next.js Updates", "https://nextjs.org/feed.xml"],
 ]);
 
-util.NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
+NewSource("Vuejs.org", "vue-logo.png", "vue-logo.png", [
   ["Vue.js Updates", "https://news.vuejs.org/feed.xml"],
 ]);
 
-util.NewSource(
+NewSource(
   "Angular.io",
   "https://angular.io/assets/images/favicons/favicon-32x32.png",
   "ang-logo.svg",
   [["Angular Blog", "https://blog.angular.io/feed"]]
 );
 
-util.NewSource(
-  "Svelte.dev",
-  "https://svelte.dev/favicon.png",
-  "svlt-logo.png",
-  [["Svelte blog", "https://svelte.dev/blog/rss.xml"]]
-);
+NewSource("Svelte.dev", "https://svelte.dev/favicon.png", "svlt-logo.png", [
+  ["Svelte blog", "https://svelte.dev/blog/rss.xml"],
+]);
 
-util.NewSource("Javascript Updates", "js-logo.png", "js-logo.png", [
+NewSource("Javascript Updates", "js-logo.png", "js-logo.png", [
   ["ECMA Updates", "https://ecmascript-daily.github.io/atom.xml"],
   ["Javascript Tutorial", "https://www.javascripttutorial.net/feed/"],
 ]);
 
-util.NewSource(
+NewSource(
   ".NET",
   "dotnet-logo.png",
   "dotnet-logo.png",
@@ -346,7 +343,7 @@ util.NewSource(
   ["https://visualstudiomagazine.com/rss-feeds/", "item", ".aspx"]
 );
 
-util.NewSource(
+NewSource(
   "Spring",
   "sb-logo.jpg",
   "sb-logo.jpg",
@@ -355,7 +352,7 @@ util.NewSource(
   ["https://spring.io/blog/category/", "item", ".atom"]
 );
 
-util.NewSource(
+NewSource(
   "HackerNoon",
   null,
   "hckrnoon-logo.jpg",
@@ -426,13 +423,13 @@ util.NewSource(
   ["https://hackernoon.com/tagged/", "item", "/feed"]
 );
 
-util.NewSource("Mozilla.org", null, "mzla-logo.webp", [
+NewSource("Mozilla.org", null, "mzla-logo.webp", [
   ["Hacks", "https://hacks.mozilla.org/feed/"],
   ["Blog", "https://blog.mozilla.org/feed/"],
   ["Accessibility", "https://blog.mozilla.org/accessibility/feed/"],
 ]);
 
-util.NewSource(
+NewSource(
   "freeCodeCamp",
   "https://cdn.freecodecamp.org/universal/favicons/favicon.ico",
   "fcc-logo.png",
@@ -656,11 +653,11 @@ util.NewSource(
   ["https://www.freecodecamp.org/news/tag/", "item", "/rss"]
 );
 
-util.NewSource("Dev.to", null, "dev-logo.png", [
+NewSource("Dev.to", null, "dev-logo.png", [
   ["Latest News", "https://dev.to/feed"],
 ]);
 
-util.NewSource("Apple Developer", "adn-logo.ico", "adn-logo.ico", [
+NewSource("Apple Developer", "adn-logo.ico", "adn-logo.ico", [
   ["Latest Apple News", "https://www.apple.com/newsroom/rss-feed.rss"],
   [
     "Latest Apple Developer News",
@@ -668,11 +665,11 @@ util.NewSource("Apple Developer", "adn-logo.ico", "adn-logo.ico", [
   ],
 ]);
 
-util.NewSource("The Diplomat", null, "td-logo.png", [
+NewSource("The Diplomat", null, "td-logo.png", [
   ["Current Affairs", "https://thediplomat.com/feed/"],
 ]);
 
-util.NewSource(
+NewSource(
   "DefenseNews",
   "https://www.defensenews.com/pf/resources/img/favicons/def/favicon-32x32.png?d=104",
   "dn-logo.jpg",
@@ -685,26 +682,26 @@ util.NewSource(
   ]
 );
 
-util.NewSource("Janes", null, "janes-logo.png", [
+NewSource("Janes", null, "janes-logo.png", [
   ["Janes News", "https://www.janes.com/feeds/news"],
 ]);
 
-util.NewSource("GlobalSecurity.org", null, "gs-logo.png", [
+NewSource("GlobalSecurity.org", null, "gs-logo.png", [
   ["Defence News", "https://www.globalsecurity.org/globalsecurity-org.xml"],
 ]);
 
-util.NewSource("Football Updates", "epl-logo.png", "epl-logo.png", [
+NewSource("Football Updates", "epl-logo.png", "epl-logo.png", [
   ["World", "https://www.espn.co.uk/espn/rss/football/news"],
   ["EPL", "https://www.football.london/?service=rss"],
 ]);
 
-util.NewSource("Science Daily", null, "scd-logo.jpg", [
+NewSource("Science Daily", null, "scd-logo.jpg", [
   ["All News", "https://www.sciencedaily.com/rss/all.xml"],
   ["Top Science", "https://www.sciencedaily.com/rss/top/science.xml"],
   ["Top Technology", "https://www.sciencedaily.com/rss/top/technology.xml"],
 ]);
 
-util.NewSource(
+NewSource(
   "SpaceNews",
   "https://spacenews.com/wp-content/themes/spacenews/favicon-32x32.png",
   "spn-logo.png",

@@ -189,7 +189,7 @@
   </Transition>
 </template>
 <script>
-import Util from "../util";
+import {articleLink, ElapsedTime, titlePic, articleDescription} from "../util";
 import CardComponent from "./UI/CardComponent.vue";
 export default {
   props: ["index", "feed", "data", "feeds", "screenWidth", "pic", "provider"],
@@ -202,7 +202,7 @@ export default {
   },
   methods: {
     link(data) {
-      return Util.articleLink(data);
+      return articleLink(data);
     },
     date() {
       const rssMode = (data) => {
@@ -220,13 +220,13 @@ export default {
       };
 
       this.rssMode = rssMode(this.data);
-      return Util.ElapsedTime(this.feeds[0][this.rssMode]);
+      return ElapsedTime(this.feeds[0][this.rssMode]);
     },
     titlePic(idx, feeds, data) {
-      return Util.titlePic(idx, feeds, data);
+      return titlePic(idx, feeds, data);
     },
     articleDescription(idx, feeds, data) {
-      return Util.articleDescription(idx, feeds, data);
+      return articleDescription(idx, feeds, data);
     },
     articleInjector() {
       if (this.screenWidth >= 1200) {

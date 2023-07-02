@@ -1,9 +1,8 @@
-export default class Util {
-  // Array containing data of multiple sources initiated
-  static sources = [];
+// Array containing data of multiple sources initiated
+  export const sourcesContainer = [];
 
   // Dynamic constructor method to add new source into sources object
-  static NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
+  export function NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
     // Initiate topics array
     const topics = [];
 
@@ -51,16 +50,16 @@ export default class Util {
       });
     }
     // Adding all the relevant data into sources array as an object
-    return this.sources.push({ name, url, logo, topics });
+    return sourcesContainer.push({ name, url, logo, topics });
   }
 
   // URL Encoder method
-  static UrlEncoder(url) {
+  export function UrlEncoder(url) {
     return encodeURIComponent(url);
   }
 
   // Custom show elapsed time algorithm method
-  static ElapsedTime(date) {
+  export function ElapsedTime(date) {
     // get UNIX timestamp of pubDate value
     const Elapsed = new Date(date).getTime();
     // get UNIX timestamp of Present value
@@ -111,7 +110,7 @@ export default class Util {
   }
 
   // Article Link
-  static articleLink(data) {
+  export function articleLink(data) {
     const link = data[0];
     if (typeof link === "object") {
       return link["$"].href;
@@ -120,7 +119,7 @@ export default class Util {
   }
 
   // Article header picture extracting and display logic
-  static titlePic(idx, feeds, data) {
+  export function titlePic(idx, feeds, data) {
     // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
     if (Object.keys(data).includes("rss")) {
       if (Object.prototype.hasOwnProperty.call(feeds[idx], "enclosure")) {
@@ -167,7 +166,7 @@ export default class Util {
   }
 
   // Article description extracting and display logic
-  static articleDescription(idx, feeds, data) {
+  export function articleDescription(idx, feeds, data) {
     // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
     if (
       Object.keys(data).includes("rss") &&
@@ -212,4 +211,3 @@ export default class Util {
       return feeds[idx].summary[0].replaceAll(/<[^>]*>/gi, "").trim();
     }
   }
-}

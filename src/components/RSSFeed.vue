@@ -128,7 +128,7 @@
 import axios from "axios";
 // import Util from "../util";
 const xml2js = require("xml2js");
-import sources from "@/assets/sources.js";
+import Sources from "@/assets/sources.js";
 import HeaderComponent from "./HeaderComponent.vue";
 import ErrorComponent from "./ErrorComponent.vue";
 import FooterComponent from "./FooterComponent.vue";
@@ -161,7 +161,7 @@ export default {
       topicNavUrl: "",
       topicTitle: "",
       topicTitle2: "",
-      sources: sources,
+      sources: Sources,
       devActivationCount: 0,
     };
   },
