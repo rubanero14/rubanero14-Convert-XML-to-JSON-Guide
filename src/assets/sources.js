@@ -289,7 +289,7 @@ NewSource(
   ["https://thenewstack.io/", "item", "/feed"]
 );
 
-NewSource("Honeypot.io", null, "hp-logo.png", [
+NewSource("Honeypot.io", "hp-logo.png", "hp-logo.png", [
   ["Honeypot Updates", "https://cult.honeypot.io/rss.xml"],
 ]);
 
@@ -705,12 +705,9 @@ NewSource("Science Daily", null, "scd-logo.jpg", [
   ["Top Technology", "https://www.sciencedaily.com/rss/top/technology.xml"],
 ]);
 
-NewSource(
-  "SpaceNews",
-  "https://spacenews.com/wp-content/themes/spacenews/favicon-32x32.png",
-  "spn-logo.png",
-  [["SpaceNews", "https://spacenews.com/feed/"]]
-);
+NewSource("SpaceNews", "spn-logo.png", "spn-logo.png", [
+  ["SpaceNews", "https://spacenews.com/feed/"],
+]);
 
 // Exporting the variable to any file
 export default sources;
