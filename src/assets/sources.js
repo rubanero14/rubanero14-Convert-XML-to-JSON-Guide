@@ -289,6 +289,10 @@ NewSource(
   ["https://thenewstack.io/", "item", "/feed"]
 );
 
+NewSource("Honeypot.io", null, "hp-logo.png", [
+  ["Honeypot Updates", "https://cult.honeypot.io/rss.xml"],
+]);
+
 NewSource("Reactjs.org", null, "react-logo.png", [
   ["React Updates", "https://legacy.reactjs.org/feed.xml"],
 ]);
