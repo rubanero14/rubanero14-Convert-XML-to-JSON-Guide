@@ -70,7 +70,7 @@
                     />
                     <aside
                       v-if="date"
-                      class="time d-flex align-items-center text-dark mb-0"
+                      class="time d-flex align-items-center text-secondary mb-0"
                     >
                       <em
                         ><strong
@@ -173,7 +173,7 @@
               />
               <aside
                 v-if="date"
-                class="time d-flex align-items-center text-dark mb-0"
+                class="time d-flex align-items-center text-secondary mb-0"
               >
                 <em
                   ><strong
@@ -189,7 +189,12 @@
   </Transition>
 </template>
 <script>
-import {articleLink, ElapsedTime, titlePic, articleDescription} from "../util";
+import {
+  articleLink,
+  ElapsedTime,
+  titlePic,
+  articleDescription,
+} from "../util";
 import CardComponent from "./UI/CardComponent.vue";
 export default {
   props: ["index", "feed", "data", "feeds", "screenWidth", "pic", "provider"],
