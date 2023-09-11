@@ -2,7 +2,15 @@
 export const sourcesContainer = [];
 
 // Dynamic constructor method to add new source into sources object
-export function NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
+export function NewSource(
+  Name = null,
+  sub = null,
+  Logo = null,
+  Topics = null,
+  Topics2 = null,
+  rssUrl = null,
+  _genre = null
+) {
   // Initiate topics array
   const topics = [];
 
@@ -50,7 +58,7 @@ export function NewSource(Name, sub, Logo, Topics, Topics2, rssUrl) {
     });
   }
   // Adding all the relevant data into sources array as an object
-  return sourcesContainer.push({ name, url, logo, topics });
+  return sourcesContainer.push({ name, url, logo, topics, _genre });
 }
 
 // URL Encoder method

@@ -1,3 +1,4 @@
+<!-- eslint-disable no-prototype-builtins -->
 <template>
   <div class="container">
     <div class="row">
@@ -18,13 +19,39 @@
         <!-- Sources Tiles Section -->
         <Transition name="card-fade" appear mode="out-in">
           <div v-if="!isloading && tabNav === 0">
-            <Transition name="fade" appear mode="out-in">
-              <h2 @click="devMode()" class="text-light mb-3">Sources</h2>
-            </Transition>
+            <div class="row mb-3">
+              <div class="col-sm-6 text-start">
+                <Transition name="fade" appear mode="out-in">
+                  <h2 @click="devMode()" class="text-light mb-3">Sources</h2>
+                </Transition>
+              </div>
+              <div class="col-sm-6 text-end">
+                <div class="d-flex justify-content-end align-items-center">
+                  <label class="me-2">Choose Genre:</label>
+                  <select
+                    class="form-select w-50"
+                    v-model="this.selectGenre"
+                    @change="formatSourcesByGenre(this.selectGenre)"
+                  >
+                    <option value="" selected>All</option>
+                    <option value="Finance">Finance</option>
+                    <option value="News">News</option>
+                    <option value="Tech Education">Tech Education</option>
+                    <option value="Defense">Defense</option>
+                    <option value="Science">Science</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Blogs">Blogs</option>
+                    <option value="Podcasts">Podcasts</option>
+                    <option value="Music">Music</option>
+                    <option value="Gaming">Gaming</option>
+                  </select>
+                </div>
+              </div>
+            </div>
             <div>
               <!-- Declaring and assigning index using v-for and use it to assign as key -->
               <div
-                v-for="(source, index) in sources"
+                v-for="(source, index) in formattedSources"
                 :key="index"
                 class="d-inline-block"
               >
@@ -161,8 +188,9 @@ export default {
       topicNavUrl: "",
       topicTitle: "",
       topicTitle2: "",
-      sources: Sources,
       devActivationCount: 0,
+      formattedSources: [],
+      selectGenre: undefined,
     };
   },
   watch: {
@@ -174,11 +202,21 @@ export default {
   mounted() {
     window.addEventListener("resize", this.setScreenWidth);
     this.setScreenWidth();
+    this.formattedSources = Sources;
   },
   unmounted() {
     window.removeEventListener("resize", this.setScreenWidth);
   },
   methods: {
+    formatSourcesByGenre(genre) {
+      this.formattedSources = [];
+      for (let source of Sources) {
+        if (genre === "") this.formattedSources = Sources;
+        if (source["_genre"].includes(genre)) {
+          this.formattedSources.push(source);
+        }
+      }
+    },
     forwardNav(data) {
       if (this.tabNav === 0 && data.topics.length > 1) {
         this.topicTitle = data["name"];
