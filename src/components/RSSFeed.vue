@@ -20,13 +20,13 @@
         <Transition name="card-fade" appear mode="out-in">
           <div v-if="!isloading && tabNav === 0">
             <div class="row mb-3">
-              <div class="col-sm-6 text-center    ">
+              <div class="col-sm-6 text-center">
                 <Transition name="fade" appear mode="out-in">
                   <h2 @click="devMode()" class="text-light mb-3">Sources</h2>
                 </Transition>
               </div>
               <div class="col-sm-6 text-center">
-                <div class="d-flex justify-content-end align-items-center">
+                <div class="d-flex justify-content-center align-items-center">
                   <label class="me-2">Choose Genre:</label>
                   <select
                     class="form-select w-50"
