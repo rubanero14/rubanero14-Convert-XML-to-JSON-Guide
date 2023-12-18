@@ -545,6 +545,16 @@ NewSource(
 );
 
 NewSource(
+  "Oracle.com",
+  null,
+  "java-logo.jpg",
+  null,
+  ["java", "developers"],
+  ["https://blogs.oracle.com/", "item", "/rss"],
+  ["Tech Education", "Blogs", "News"]
+);
+
+NewSource(
   "Spring",
   "sb-logo.jpg",
   "sb-logo.jpg",
