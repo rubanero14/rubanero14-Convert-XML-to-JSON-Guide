@@ -190,7 +190,7 @@ export default {
       topicTitle2: "",
       devActivationCount: 0,
       formattedSources: [],
-      selectGenre: undefined,
+      selectGenre: "",
     };
   },
   watch: {
