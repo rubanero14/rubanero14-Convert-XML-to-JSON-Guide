@@ -545,7 +545,7 @@ NewSource(
 );
 
 NewSource(
-  "Oracle.com",
+  "Oracle",
   null,
   "java-logo.jpg",
   null,

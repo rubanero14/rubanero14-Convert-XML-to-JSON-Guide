@@ -12,7 +12,7 @@
             <img
               class="logo"
               :src="source.logo"
-              onerror="this.src='https://rss.com/favicon.ico'"
+              onerror="this.src='./rss-logo.png'"
             />
           </div>
         </card-component>
