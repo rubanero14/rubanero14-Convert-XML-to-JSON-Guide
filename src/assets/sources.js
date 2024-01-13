@@ -545,12 +545,22 @@ NewSource(
 );
 
 NewSource(
-  "Oracle",
-  null,
+  "Java Updates",
   "java-logo.jpg",
+  "java-logo.jpg",
+  [
+    ["Java Latest News - Oracle", "https://blogs.oracle.com/java/rss"],
+    [
+      "Java Developers News - Oracle",
+      "https://blogs.oracle.com/developers/rss",
+    ],
+    [
+      "Java Developers News - Jetbrains",
+      "https://blog.jetbrains.com/idea/feed",
+    ],
+  ],
   null,
-  ["java", "developers"],
-  ["https://blogs.oracle.com/", "item", "/rss"],
+  null,
   ["Tech Education", "Blogs", "News"]
 );
 
