@@ -17,13 +17,13 @@
       <a
         target="_blank"
         class="issue btn-sm btn-secondary"
-        href="https://github.com/rubanero14/Multi-RSS-News-Feed-Vue3/issues"
+        :href="this.source_code + '/issues'"
         >ticket</a
       >
     </div>
     <a
       v-if="this.tabNav === 0 && this.showSourceCode"
-      href="https://github.com/rubanero14/rubanero14-Convert-XML-to-JSON-Guide/blob/master/src"
+      :href="this.source_code_2"
       class="btn btn-outline-light mb-lg-3 w-100"
       target="_blank"
       ><i class="bi bi-code-slash"></i> Source Code</a
@@ -42,6 +42,12 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      source_code: process.env.VUE_APP_SOURCE_CODE,
+      source_code_2: process.env.VUE_APP_SOURCE_CODE_2,
+    };
+  },
   props: [
     "tabNav",
     "isloading",

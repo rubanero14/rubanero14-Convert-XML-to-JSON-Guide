@@ -36,7 +36,7 @@
           <div class="col-12">
             <a
               @click="$emit('backwardNav')"
-              href="https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7"
+              :href="this.cors_link"
               class="btn btn-success w-100"
               target="_blank"
             >
@@ -51,6 +51,13 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      cors_link:
+        process.env.VUE_APP_CORS_LINK +
+        "accessRequest=01a082fe9409ff8c6c2e76a853281642569c12198c0358fadbbe4a03321d2fd7",
+    };
+  },
   props: ["data", "tabNav", "isError"],
 };
 </script>

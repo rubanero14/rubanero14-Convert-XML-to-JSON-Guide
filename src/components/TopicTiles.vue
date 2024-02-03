@@ -17,7 +17,7 @@
             <img
               class="favicon"
               :src="topicNavUrl"
-              onerror="this.src='https://rss.com/favicon.ico'"
+              onerror="this.src=this.rss_icon"
             />
             <br />
             <strong class="mb-2">
@@ -32,6 +32,11 @@
 <script>
 import CardComponent from "./UI/CardComponent.vue";
 export default {
+  data() {
+    return {
+      rss_icon: process.env.VUE_APP_RSS_ICON,
+    };
+  },
   props: ["index", "topic", "topicNavUrl"],
   components: { CardComponent },
 };

@@ -66,7 +66,7 @@
                       class="img"
                       v-if="pic"
                       :src="pic"
-                      onerror="this.src='https://rss.com/favicon.ico'"
+                      onerror="this.src=this.rss_icon"
                     />
                     <aside
                       v-if="date"
@@ -169,7 +169,7 @@
                 class="img"
                 v-if="pic"
                 :src="pic"
-                onerror="this.src='https://rss.com/favicon.ico'"
+                onerror="this.src=this.rss_icon"
               />
               <aside
                 v-if="date"
@@ -203,6 +203,7 @@ export default {
     return {
       articleDesktop: "",
       articleMobile: "",
+      rss_icon: process.env.VUE_APP_RSS_ICON,
     };
   },
   methods: {

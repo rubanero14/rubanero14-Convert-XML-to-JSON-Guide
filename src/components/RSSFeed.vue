@@ -191,6 +191,8 @@ export default {
       devActivationCount: 0,
       formattedSources: [],
       selectGenre: "",
+      external_api_url: process.env.VUE_APP_EXTERNAL_API_URL,
+      internal_api_url: process.env.VUE_APP_INTERNAL_API_URL,
     };
   },
   watch: {
@@ -264,7 +266,7 @@ export default {
         payloadUrl.includes("sciencedaily") ||
         payloadUrl.includes("thenewstack")
       ) {
-        const payload = `https://cors-anywhere.herokuapp.com/${payloadUrl}`;
+        const payload = this.external_api_url + payloadUrl;
         this.data = await axios
           .get(payload)
           .then((response) => {
@@ -277,9 +279,7 @@ export default {
             return err.message + ",";
           });
       } else {
-        const payload = `https://node-simple-rss-feed-proxy-server.onrender.com/${UrlEncoder(
-          payloadUrl
-        )}`;
+        const payload = this.internal_api_url + UrlEncoder(payloadUrl);
         // Fetch API as XML and convert into JSON format
         this.data = await axios
           .get(payload)

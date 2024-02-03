@@ -15,7 +15,7 @@
         target="_blank"
         class="text-light ms-1"
         style="text-decoration: none"
-        href="https://github.com/rubanero14/Multi-RSS-News-Feed-Vue3"
+        :href="this.source_code"
         >RUBANERO</a
       >
     </strong>
@@ -23,6 +23,11 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      source_code: process.env.VUE_APP_SOURCE_CODE,
+    };
+  },
   props: ["tabNav", "isloading", "isError", "topicData", "feeds", "sources"],
   methods: {
     showLowerBackBtn() {
