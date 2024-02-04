@@ -369,6 +369,22 @@ NewSource(
 );
 
 NewSource(
+  "Academind",
+  null,
+  "cnc-logo.ico",
+  [
+    ["Academind Podcast", "https://academind.podigee.io/feed/mp3"],
+    [
+      "Code Curiosity Podcast",
+      "https://code-curiosity-maximilian-schwarzmueller.podigee.io/feed/mp3",
+    ],
+  ],
+  null,
+  null,
+  ["Tech Education", "Podcasts"]
+);
+
+NewSource(
   "TechCabal",
   "tc-logo.png",
   "tc-logo.png",
