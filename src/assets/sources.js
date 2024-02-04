@@ -371,7 +371,7 @@ NewSource(
 NewSource(
   "Academind",
   null,
-  "cnc-logo.ico",
+  "cnc-logo.jpeg",
   [
     ["Academind Podcast", "https://academind.podigee.io/feed/mp3"],
     [
