@@ -34,7 +34,10 @@
                     v-else
                   />
                 </div>
-                <hr v-if="titlePic(index, feeds, data).includes('.mp3')" />
+                <hr
+                  v-if="titlePic(index, feeds, data).includes('.mp3')"
+                  class="media-divider mx-3"
+                />
               </div>
             </div>
             <div class="p-3">
@@ -321,6 +324,16 @@ img.img {
   .banner-divider {
     margin-left: 12px;
   }
+}
+
+@media screen and (max-width: 768px) {
+  .media-divider {
+    margin-bottom: 0;
+  }
+}
+
+hr {
+  padding-inline: ;
 }
 
 /* Declared variable --j is used to dynamically calculate transition time */
