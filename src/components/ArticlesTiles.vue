@@ -332,10 +332,6 @@ img.img {
   }
 }
 
-hr {
-  padding-inline: ;
-}
-
 /* Declared variable --j is used to dynamically calculate transition time */
 .fade-articles-enter-active {
   transition: all 0.5s ease-in-out;
