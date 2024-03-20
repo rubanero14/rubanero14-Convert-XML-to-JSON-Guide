@@ -1008,7 +1008,7 @@ NewSource(
   ["Science", "News"]
 );
 
-console.log(sources);
+//console.log(sources);
 
 // Exporting the variable to any file
 export default sources;
