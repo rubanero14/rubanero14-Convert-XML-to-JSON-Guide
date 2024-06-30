@@ -306,15 +306,6 @@ NewSource(
   null,
   ["Podcasts"]
 );
-NewSource(
-  "SpaceNews",
-  "spn-logo.png",
-  "spn-logo.png",
-  [["SpaceNews", "https://spacenews.com/feed/"]],
-  null,
-  null,
-  ["Science", "News"]
-);
 
 NewSource(
   "Abhijit Chavda",
