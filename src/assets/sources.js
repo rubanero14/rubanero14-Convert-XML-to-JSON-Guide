@@ -989,6 +989,7 @@ NewSource(
   "nfl-logo.png",
   "nfl-logo.png",
   [
+    ["NFL.com", "https://rss.app/feeds/CVDzzksU6g15fgcY.xml"],
     ["Yahoo Sports", "https://sports.yahoo.com/nfl/rss"],
     ["PFF", "https://www.pff.com/feed"],
     ["ESPN", "https://www.espn.com/espn/rss/nfl/news"],
