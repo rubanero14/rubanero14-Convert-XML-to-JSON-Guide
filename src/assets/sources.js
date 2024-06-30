@@ -306,6 +306,15 @@ NewSource(
   null,
   ["Podcasts"]
 );
+NewSource(
+  "SpaceNews",
+  "spn-logo.png",
+  "spn-logo.png",
+  [["SpaceNews", "https://spacenews.com/feed/"]],
+  null,
+  null,
+  ["Science", "News"]
+);
 
 NewSource(
   "Abhijit Chavda",
@@ -1014,6 +1023,26 @@ NewSource(
   [
     ["World Football", "https://www.espn.co.uk/espn/rss/football/news"],
     ["English Premier League", "https://www.football.london/?service=rss"],
+  ],
+  null,
+  null,
+  ["Sports", "News"]
+);
+
+NewSource(
+  "NFL Updates",
+  "nfl-logo.png",
+  "nfl-logo.png",
+  [
+    ["NFL.com", "https://rss.app/feeds/CVDzzksU6g15fgcY.xml"],
+    ["Yahoo Sports", "https://sports.yahoo.com/nfl/rss"],
+    ["PFF", "https://www.pff.com/feed"],
+    ["ESPN", "https://www.espn.com/espn/rss/nfl/news"],
+    [
+      "Fox Sports",
+      "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30&tags=fs/nfl",
+    ],
+    ["CBS Sports", "https://www.cbssports.com/rss/headlines/nfl/"],
   ],
   null,
   null,
