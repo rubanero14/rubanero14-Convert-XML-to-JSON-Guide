@@ -976,8 +976,27 @@ NewSource(
   "epl-logo.png",
   "epl-logo.png",
   [
-    ["World", "https://www.espn.co.uk/espn/rss/football/news"],
-    ["EPL", "https://www.football.london/?service=rss"],
+    ["World Football", "https://www.espn.co.uk/espn/rss/football/news"],
+    ["English Premier League", "https://www.football.london/?service=rss"],
+  ],
+  null,
+  null,
+  ["Sports", "News"]
+);
+
+NewSource(
+  "NFL Updates",
+  "nfl-logo.png",
+  "nfl-logo.png",
+  [
+    ["Yahoo Sports", "https://sports.yahoo.com/nfl/rss"],
+    ["PFF", "https://www.pff.com/feed"],
+    ["ESPN", "https://www.espn.com/espn/rss/nfl/news"],
+    [
+      "Fox Sports",
+      "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30&tags=fs/nfl",
+    ],
+    ["CBS Sports", "https://www.cbssports.com/rss/headlines/nfl/"],
   ],
   null,
   null,
