@@ -287,6 +287,42 @@ NewSource(
   ["Podcasts", "Music"]
 );
 
+// NewSource(
+//   "Joe Rogan Podcasts",
+//   null,
+//   "jre-logo.svg",
+//   [["JRE Experience", "https://rss.app/feeds/TzU2wYtsxFxltuOk.xml"]],
+//   null,
+//   null,
+//   ["Podcasts"]
+// );
+
+NewSource(
+  "The Ranveer Show",
+  "trs-logo.jpg",
+  "trs-logo.jpg",
+  [["BeerBiceps Podcasts", "https://feeds.simplecast.com/7PWFZi_d"]],
+  null,
+  null,
+  ["Podcasts"]
+);
+
+NewSource(
+  "Abhijit Chavda",
+  "acda-logo.png",
+  "acda-logo.png",
+  [
+    ["AC Podcast", "https://anchor.fm/s/6948ea18/podcast/rss"],
+    [
+      "The #AskAbhijit Show",
+      "https://feeds.soundcloud.com/users/soundcloud:users:479405643/sounds.rss",
+    ],
+  ],
+  null,
+  null,
+  ["Podcasts"]
+);
+
 NewSource(
   "Game Informer",
   null,
@@ -978,26 +1014,6 @@ NewSource(
   [
     ["World Football", "https://www.espn.co.uk/espn/rss/football/news"],
     ["English Premier League", "https://www.football.london/?service=rss"],
-  ],
-  null,
-  null,
-  ["Sports", "News"]
-);
-
-NewSource(
-  "NFL Updates",
-  "nfl-logo.png",
-  "nfl-logo.png",
-  [
-    ["NFL.com", "https://rss.app/feeds/CVDzzksU6g15fgcY.xml"],
-    ["Yahoo Sports", "https://sports.yahoo.com/nfl/rss"],
-    ["PFF", "https://www.pff.com/feed"],
-    ["ESPN", "https://www.espn.com/espn/rss/nfl/news"],
-    [
-      "Fox Sports",
-      "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30&tags=fs/nfl",
-    ],
-    ["CBS Sports", "https://www.cbssports.com/rss/headlines/nfl/"],
   ],
   null,
   null,
