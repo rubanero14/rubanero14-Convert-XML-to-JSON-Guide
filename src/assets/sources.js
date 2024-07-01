@@ -287,15 +287,15 @@ NewSource(
   ["Podcasts", "Music"]
 );
 
-// NewSource(
-//   "Joe Rogan Podcasts",
-//   null,
-//   "jre-logo.svg",
-//   [["JRE Experience", "https://rss.app/feeds/TzU2wYtsxFxltuOk.xml"]],
-//   null,
-//   null,
-//   ["Podcasts"]
-// );
+NewSource(
+  "Joe Rogan Podcasts",
+  null,
+  "jre-logo.svg",
+  [["JRE Experience", "https://rss.app/feeds/ymX56kH08GvdGrXY.xml"]],
+  null,
+  null,
+  ["Podcasts"]
+);
 
 NewSource(
   "The Ranveer Show",

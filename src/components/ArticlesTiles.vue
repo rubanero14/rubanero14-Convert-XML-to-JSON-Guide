@@ -15,8 +15,8 @@
                 <div class="d-flex justify-content-center align-items-center">
                   <iframe
                     class="banner"
-                    :src="titlePic(index, feeds, data)"
                     frameborder="0"
+                    :src="reformatUrl(titlePic(index, feeds, data))"
                     v-if="titlePic(index, feeds, data).includes('youtube')"
                   ></iframe>
                   <audio
@@ -95,7 +95,7 @@
               >
                 <iframe
                   class="banner"
-                  :src="titlePic(index, feeds, data)"
+                  :src="reformatUrl(titlePic(index, feeds, data))"
                   frameborder="0"
                   v-if="titlePic(index, feeds, data).includes('youtube')"
                 ></iframe>
@@ -210,6 +210,19 @@ export default {
     };
   },
   methods: {
+    reformatUrl(url) {
+      if (url === "" || url === null) return;
+      const id = url
+        .replace("https://youtu.be/", "")
+        .replace("https://youtube.com/playlist?list=", "")
+        .replace("https://www.youtube.com/live/", "")
+        .replace("https://www.youtube.com/watch?v=", "")
+        .split("?")[0];
+
+      return url.includes("playlist")
+        ? `https://www.youtube.com/embed/playlist?list=${id}&playnext=1`
+        : `https://www.youtube.com/embed/${id}?autoplay=1&loop=1&playlist=${id}`;
+    },
     link(data) {
       return articleLink(data);
     },

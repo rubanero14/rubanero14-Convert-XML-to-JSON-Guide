@@ -130,6 +130,10 @@ export function articleLink(data) {
 export function titlePic(idx, feeds, data) {
   // Refer https://eslint.org/docs/latest/rules/no-prototype-builtins for hasOwnProperty lint errors
   if (Object.keys(data).includes("rss")) {
+    if (feeds[idx].title[0].includes("Joe Rogan Experience")) {
+      return feeds[idx].link[0];
+    }
+
     if (Object.prototype.hasOwnProperty.call(feeds[idx], "enclosure")) {
       return feeds[idx].enclosure[0].$.url;
     }
