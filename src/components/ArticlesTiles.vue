@@ -19,6 +19,18 @@
                     :src="reformatUrl(titlePic(index, feeds, data))"
                     v-if="titlePic(index, feeds, data).includes('youtube')"
                   ></iframe>
+                  <video
+                    class="banner"
+                    controls
+                    autoplay
+                    width="400"
+                    v-if="titlePic(index, feeds, data).includes('.mov')"
+                  >
+                    <source
+                      :src="titlePic(index, feeds, data)"
+                      type="video/mp4"
+                    />
+                  </video>
                   <audio
                     class="banner"
                     controls
@@ -99,6 +111,18 @@
                   frameborder="0"
                   v-if="titlePic(index, feeds, data).includes('youtube')"
                 ></iframe>
+                <video
+                  class="banner"
+                  controls
+                  autoplay
+                  width="400"
+                  v-if="titlePic(index, feeds, data).includes('.mov')"
+                >
+                  <source
+                    :src="titlePic(index, feeds, data)"
+                    type="video/mp4"
+                  />
+                </video>
                 <audio
                   class="banner"
                   controls

@@ -289,7 +289,7 @@ NewSource(
 
 NewSource(
   "Joe Rogan Podcasts",
-  null,
+  "jre-logo.svg",
   "jre-logo.svg",
   [["JRE Experience", "https://rss.app/feeds/ymX56kH08GvdGrXY.xml"]],
   null,
@@ -359,6 +359,16 @@ NewSource(
   null,
   "csst-logo.jpg",
   [["CSS-Tricks", "https://css-tricks.com/feed/"]],
+  null,
+  null,
+  ["Tech Education", "Blogs"]
+);
+
+NewSource(
+  "Kevin Powell CSS Evangelist",
+  "kp-logo.png",
+  "kp-logo.png",
+  [["CSS Tips and Tricks", "https://css-tricks.com/feed/"]],
   null,
   null,
   ["Tech Education", "Blogs"]
@@ -470,7 +480,7 @@ NewSource(
 
 NewSource(
   "TheNewStack.io",
-  null,
+  "tns-logo.png",
   "tns-logo.png",
   null,
   [
