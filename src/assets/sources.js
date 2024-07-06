@@ -368,7 +368,12 @@ NewSource(
   "Kevin Powell CSS Evangelist",
   "kp-logo.png",
   "kp-logo.png",
-  [["Kevin Powell CSS Tips and Tricks", "https://css-tricks.com/feed/"]],
+  [
+    [
+      "Kevin Powell CSS Tips and Tricks",
+      "https://feeds.zencastr.com/f/kdZb7wVs.rss",
+    ],
+  ],
   null,
   null,
   ["Tech Education", "Blogs"]
