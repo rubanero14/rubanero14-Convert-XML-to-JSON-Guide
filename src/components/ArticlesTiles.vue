@@ -239,6 +239,7 @@ export default {
       const id = url
         .replace("https://youtu.be/", "")
         .replace("https://youtube.com/playlist?list=", "")
+        .replace("https://youtube.com/embed/", "")
         .replace("https://www.youtube.com/live/", "")
         .replace("https://www.youtube.com/watch?v=", "")
         .split("?")[0];

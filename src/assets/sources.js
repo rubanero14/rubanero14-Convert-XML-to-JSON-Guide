@@ -368,7 +368,7 @@ NewSource(
   "Kevin Powell CSS Evangelist",
   "kp-logo.png",
   "kp-logo.png",
-  [["CSS Tips and Tricks", "https://css-tricks.com/feed/"]],
+  [["Kevin Powell CSS Tips and Tricks", "https://css-tricks.com/feed/"]],
   null,
   null,
   ["Tech Education", "Blogs"]
@@ -999,9 +999,16 @@ NewSource(
 
 NewSource(
   "Janes",
-  null,
   "janes-logo.png",
-  [["Janes News", "https://www.janes.com/feeds/news"]],
+  "janes-logo.png",
+  [
+    ["India", "https://rss.app/feeds/y3xsVsxjcS8cENIq.xml"],
+    ["US", "https://rss.app/feeds/7zVdTWjMUVK59sXf.xml"],
+    ["Russia", "https://rss.app/feeds/BfEIsAJ3RUW987bH.xml"],
+    ["France", "https://rss.app/feeds/4sbN6YbhONIRwnoa.xml"],
+    ["China", "https://rss.app/feeds/per60mwnsD8cSTcA.xml"],
+    ["UK", "https://rss.app/feeds/h1u49NMJ5XvdhHlI.xml"],
+  ],
   null,
   null,
   ["Defense", "News"]
