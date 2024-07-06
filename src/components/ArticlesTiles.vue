@@ -262,7 +262,7 @@ export default {
         }
 
         if (Object.keys(data).includes("feed")) {
-          return "updated";
+          return "updated" ?? "entry";
         }
       };
 

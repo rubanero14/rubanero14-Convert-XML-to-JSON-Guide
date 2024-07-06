@@ -641,6 +641,56 @@ NewSource(
   ["Tech Education", "Blogs", "News"]
 );
 
+// NewSource(
+//   "PHP Updates",
+//   "php-logo.png",
+//   "php-logo.png",
+//   [["PHP Updates", "https://www.php.net/releases/feed.php"]],
+//   null,
+//   null,
+//   ["Tech Education", "Blogs", "News"]
+// );
+
+// NewSource(
+//   "Laravel",
+//   "laravel-logo.jpg",
+//   "laravel-logo.jpg",
+//   [["Laravel Updates", "https://laravel-news.com/feed/json"]],
+//   null,
+//   null,
+//   ["Tech Education", "Blogs", "News"]
+// );
+
+NewSource(
+  "C++ Updates",
+  "cpp-logo.jpg",
+  "cpp-logo.jpg",
+  [["C++ Updates", "https://isocpp.org/blog/rss"]],
+  null,
+  null,
+  ["Tech Education", "Blogs", "News"]
+);
+
+NewSource(
+  "Python Updates",
+  "python-logo.png",
+  "python-logo.png",
+  [["Python Updates", "https://blog.python.org/feeds/posts/default?alt=rss"]],
+  null,
+  null,
+  ["Tech Education", "Blogs", "News"]
+);
+
+NewSource(
+  "Django",
+  "django-logo.png",
+  "django-logo.png",
+  [["Django Updates", "https://www.djangoproject.com/rss/weblog/"]],
+  null,
+  null,
+  ["Tech Education", "Blogs", "News"]
+);
+
 NewSource(
   "HackerNoon",
   null,
