@@ -512,9 +512,9 @@ NewSource(
 
 NewSource(
   "Reactjs.org",
-  null,
   "react-logo.png",
-  [["React Updates", "https://legacy.reactjs.org/feed.xml"]],
+  "react-logo.png",
+  [["React Updates", "https://react.dev/rss.xml"]],
   null,
   null,
   ["Tech Education", "Blogs", "News"]
@@ -551,8 +551,8 @@ NewSource(
 );
 
 NewSource(
-  "Angular.io",
-  "https://angular.io/assets/images/favicons/favicon-32x32.png",
+  "Angular",
+  "ang-logo.svg",
   "ang-logo.svg",
   [["Angular Blog", "https://blog.angular.io/feed"]],
   null,
